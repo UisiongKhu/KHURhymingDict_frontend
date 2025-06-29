@@ -1,0 +1,144 @@
+{
+    "Homepage":  {
+        "Header": {
+            "Title": "KÀI HÓ ŪN Rhyming Dict."
+        }
+    },
+    "Rhymes": {
+        "Title": "Rhymes List"
+    },
+    "Search": {
+        "SimpleSearch": {
+            "Title": "Simple Search",
+            "SearchOption": {
+                "Title": "Search Options",
+                "SubTitle": {
+                    "Nucleus": "Nucleus",
+                    "Coda": "Coda (Final Sound)",
+                    "Tone": "Tone"
+                },
+                "NasalSound": "Nasal sound",
+                "SimilarVowel": "Similar vowel",
+
+                "IgnoreFinalSound": "Ignore final sound",
+                "SameArticulationPart": "Same part of articulation",
+            
+                "SameTone": "Same Tone"
+            },
+            "SearchOptionInfo": {
+                "Title": "Search Option Info",
+                "Default": {
+                    "Title": "Default",
+                    "Content": "When no option is being selected, it will search all the words that rhyming with the keyword. (both the vowel and the final sound)."
+                },
+                "IgnoreFinalSound": {
+                    "Title": "Ignore Final Sound",
+                    "Content": "When selected, it will search all the words that rhyming with the keyword, ignoring the final sound (coda)."
+                },
+                "SameTone": {
+                    "Title": "Same Tone",
+                    "Content": "When selected, it will filter the words that have different tone. Take \"ah ūn\" and \"phah phún\" as an example, it will no longer consider as rhymed word because they have different tone."
+                },
+                "NasalSound": {
+                    "Title": "Nasal Sound",
+                    "Content": "When selected, it will search all the words that rhyming with the keyword, ignoring they are nasal or not. Take \"soaⁿ\" and \"soa\" as an example, it will be consider as a rhyming pair of words."
+                },
+
+                "SameArticulationPart": {
+                    "Title": "Same Part of Articulation",
+                    "Content": "When selected, it will search all the words that rhyming with the keyword, as long as they have the same part of articulation. Take \"sin\" and \"si̍t\" as an example, it will be consider as a rhyming pair of words."
+                },
+                "SimilarVowel": {
+                    "Title": "Similar Vowel",
+                    "Content": "When selected, it will search all the words with similar vowel(s)."
+                }
+            }
+        }
+    },
+    "Contact": {
+        "Title": "CONTACT US",
+        "Content": "If there's any opinion for Kài Hó Ūn Rhyming Dictionary, comment here to let us know!",
+        "Form": {
+            "Title": "Opinion",
+            "Name": {
+                "Title": "Name",
+                "Placeholder": "Enter your name here"
+            },
+            "Email": {
+                "Title": "E-mail",
+                "Placeholder": "Enter your e-mail address"
+            },
+            "OpinionTitle": {
+                "Title": "Title",
+                "Placeholder": "Enter the title for your opinion"
+            },
+            "Content": {
+                "Title": "Content",
+                "Placeholder": "Type your opinion here"
+            }
+        },
+        "Submit": "Submit"
+    },
+    "SearchBar":{
+        "Homepage": {
+            "Label": "Let's hit the rhymes",
+            "Placeholder": "Enter the syllable or word you want to rhyme",
+            "Dropdown": {
+                "Options": [
+                    "1 Word",
+                    "2 Words",
+                    "3 Words"
+                ]
+            }
+        },
+        "SimpleSearch": {
+            "Label": "Let's hit the rhymes",
+            "Placeholder": "Enter the syllable or word you want to rhyme",
+            "Dropdown": {
+                "Options": [
+                    "1 Word",
+                    "2 Words",
+                    "3 Words"
+                ]
+            }
+        }
+    },
+    "RhymeCard": {
+        "Amount_one": "word",
+        "Amount_other": "words"
+    },
+    "SideMenu": {
+        "PageNameList": [
+            "Introduction Page",
+            "Homepage",
+            "Rhyme List",
+            "Simple Search",
+            "Detail Search",
+            "Forum",
+            "Contact Us"
+        ],
+        "PageLinkList": [
+            "/introduction",
+            "/",
+            "/chonglam",
+            "/search",
+            "/search/detail",
+            "/forum",
+            "/contactUs"
+        ]
+    },
+    "Components": {
+        "LanguageSelector": {
+            "LanguageOptions": [
+                "en",
+                "tg_POJ",
+                "tg_HJ"
+            ],
+            "LanguageNames": {
+                "en": "English",
+                "tg_POJ": "Pe̍h Ōe Jī",
+                "tg_HJ": "漢字"
+            }
+        }
+    }
+}

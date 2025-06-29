@@ -1,0 +1,140 @@
+{
+    "Homepage":  {
+        "Header": {
+            "Title": "KÀI HÓ ŪN 介好韻"
+        }
+    },
+    "Rhymes": {
+        "Title": "字韻總覽"
+    },
+    "Search": {
+        "SimpleSearch": {
+            "Title": "簡單尋",
+            "SearchOption": {
+                "Title": "超尋个設定",
+                "SubTitle": {
+                    "Nucleus": "韻腹",
+                    "Coda": "韻尾",
+                    "Tone": "聲調"
+                },
+                "NasalSound": "鼻音不論",
+                "SimilarVowel": "韻腹相瓦",
+                "IgnoreFinalSound": "韻尾不論",
+                "SameArticulationPart": "韻尾仝部位",
+                "SameTone": "聲調相仝"
+            },
+            "SearchOptionInfo": {
+                "Title": "超尋設定說明",
+                "Default": {
+                    "Title": "預設",
+                    "Content": "若朗無揀、着是照正常押韻个定義、尋韻母（韻腹＋韻尾）朗總仝个音。若不定揀一項、按呢有揀个朗會有效。"
+                },
+                "IgnoreFinalSound": {
+                    "Title": "韻尾不論",
+                    "Content": "不管韻尾是省乜音、韻腹有仝着凖算。"
+                },
+                "SameTone": {
+                    "Title": "聲調相仝",
+                    "Content": "聲調愛仝即有凖算、一字無仝着無算。例：「押韻/ah ūn」甲「拍翸/phah phún」無算押韻。"
+                },
+                "NasalSound": {
+                    "Title": "鼻音不論",
+                    "Content": "有鼻音無不論、若韻腹有仝着凖算。例：「山/soaⁿ」字甲「沙/soa」字算有押韻。"
+                },
+                "SameArticulationPart": {
+                    "Title": "韻尾仝部位",
+                    "Content": "若韻尾个呼音部位相仝着凖算。例：「新/sin」字甲「翼/si̍t」字算有押韻。"
+                },
+                "SimilarVowel": {
+                    "Title": "韻腹相瓦",
+                    "Content": "會尋韻腹相瓦个字。"
+                }
+            }
+        }
+    },
+    "Contact": {
+        "Title": "甲阮接接",
+        "Content": "若是對阮介好韻有省乜意見、窗好治遮留話互阮知！",
+        "Form": {
+            "Title": "意見書",
+            "Name": {
+                "Title": "汝个名",
+                "Placeholder": "治遮拍汝个名"
+            },
+            "Email": {
+                "Title": "電子批桶地址",
+                "Placeholder": "治遮拍汝个電子批桶地址"
+            },
+            "OpinionTitle": {
+                "Title": "標題",
+                "Placeholder": "治遮拍汝个意見標題"
+            },
+            "Content": {
+                "Title": "內容",
+                "Placeholder": "治遮寫汝个意見"
+            }
+        },
+        "Submit": "寄出去"
+    },
+    "SearchBar":{
+        "Homepage": {
+            "Label": "互汝好韻",
+            "Placeholder": "輸入卜超尋个字詞",
+            "Dropdown": {
+                "Options": [
+                    "押一字",
+                    "押二字",
+                    "押三字"
+                ]
+            }
+        },
+        "SimpleSearch": {
+            "Label": "互汝好韻",
+            "Placeholder": "輸入卜超尋个字詞",
+            "Dropdown": {
+                "Options": [
+                    "押一字",
+                    "押二字",
+                    "押三字"
+                ]
+            }
+        }
+    },
+    "RhymeCard": {
+        "Amount": "字"
+    },
+    "SideMenu": {
+        "PageNameList": [
+            "紹介頁",
+            "主頁",
+            "字韻總覽",
+            "簡單尋",
+            "詳細尋",
+            "留話枋",
+            "聯絡枋"
+        ],
+        "PageLinkList": [
+            "/introduction",
+            "/",
+            "/chonglam",
+            "/search",
+            "/search/detail",
+            "/forum",
+            "/contactUs"
+        ]
+    },
+    "Components": {
+        "LanguageSelector": {
+            "LanguageOptions": [
+                "en",
+                "tg_POJ",
+                "tg_HJ"
+            ],
+            "LanguageNames": {
+                "en": "英文",
+                "tg_POJ": "Pe̍h Ōe Jī",
+                "tg_HJ": "漢字"
+            }
+        }
+    }
+}

@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Iansui&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  @keyframes fading-in {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    50%{
+      transform: translateX(-50%);
+      opacity: 0.8;
+    }
+    100%{
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  --animate-fading-in: fading-in 0.2s ease-out forwards;
+}
+
+@theme {
+  @keyframes fading-out {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    50%{
+      transform: translateX(-50%);
+      opacity: 0.8;
+    }
+    100%{
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+  --animate-fading-out: fading-out 0.2s ease-in forwards;
+}
+
+@theme {
+  /* 暗色模式 - Google Style */
+  --color-header-dark: #303147;      /* Google Dark Mode 表面色，用於導航欄 */
+  --color-header-hover-dark: #28293f;
+  --color-main-dark: #202124;        /* Google Dark Mode 主內容區背景 */
+  --color-main-hover-dark: #232427;  /* 稍亮的深灰，用於懸停或細節 */
+  --color-element-dark: #E8EAED;     /* Google Dark Mode 文字色，淺灰 */
+  --color-interactive-dark: #0870E5; /* Google Blue，在暗色背景上的亮藍色，互動元素強調色 */
+  --color-interactive-hover-dark: #1458D0; /* 稍暗的亮藍色，互動元素懸停色 */
+  --color-infobd-dark: #3F4348;      /* Google Dark Mode 邊框/次要資訊背景色 */
+  --color-infobd-dark-hover: #70757A; /* 稍亮的灰，用於資訊邊框懸停 */
+
+  /* 亮色模式 - Google Style */
+  --color-header: #F2F4F7;           /* 純白，導航欄背景 */
+  --color-header-hover: #EBEDF0;
+  --color-main: #FFFFFF;             /* 純白，主背景 */
+  --color-main-hover: #F5F5F5;       /* 淺灰，用於懸停或細節 */
+  --color-element: #202124;          /* Google Standard Dark Text，深灰 */
+  --color-interactive: #0870E5;      /* Google Blue，標準藍色，互動元素強調色 */
+  --color-interactive-hover: #1458D0; /* 稍深的藍色，互動元素懸停色 */
+  --color-infobd: #DADCE0;           /* Google Standard Border/Divider Color，淺灰 */
+  --color-infobd-hover: #CFCFCF;     /* 稍深的淺灰，用於資訊邊框懸停 */
+}
+
+@font-face {
+  font-family: phiaute;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/poj-phiaute.otf") format("opentype");
+}
+
+@font-face {
+  font-family: poj-garamond;
+  font-style: normal;
+  font-weight: normal;
+  src: url("../assets/fonts/poj-garamond08-regular-webfont.woff2") format("woff2"),
+  url("../assets/fonts/poj-garamond08-regular-webfont.woff") format("woff")
+}
+
+@font-face {
+  font-family: poj-garamond-italic;
+  font-style: italic;
+  font-weight: normal;
+  font-display: swap;
+  src: url("../assets/fonts/poj-Garamond08-Italic.otf") format("opentype");
+}

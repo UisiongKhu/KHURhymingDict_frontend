@@ -1,0 +1,140 @@
+{
+    "Homepage":  {
+        "Header": {
+            "Title": "KÀI HÓ ŪN"
+        }
+    },
+    "Rhymes": {
+        "Title": "JĪ ŪN CHÓNG LÁM"
+    },
+    "Search": {
+        "SimpleSearch": {
+            "Title": "KÁN TAN CHHŌE",
+            "SearchOption": {
+                "Title": "Chhiau chhōe ê siat tēng",
+                "SubTitle": {
+                    "Nucleus": "Ūn pak",
+                    "Coda": "Ūn bóe",
+                    "Tone": "Siaⁿ tiāu"
+                },
+                "NasalSound": "Phīⁿ im put lūn",
+                "SimilarVowel": "Ūn pak sio óa",
+                "IgnoreFinalSound": "Ūn bóe put lūn",
+                "SameArticulationPart": "Ūn bóe kāng pō͘ ūi",
+                "SameTone": "Siaⁿ tiāu sio kâng"
+            },
+            "SearchOptionInfo": {
+                "Title": "Chhiau chhōe siat tēng soeh bêng",
+                "Default": {
+                    "Title": "Ī siat",
+                    "Content": "Nā lóng bô kéng, tio̍h sī chiàu chèng siông ah ūn ê tēng gī, chhōe ūn bó (ūn pak + ūn bóe) lóng chóng kâng ê im. Nā m̄ nā kéng chi̍t hāng, án ne kéng ‧ê lóng ē ū hāu."
+                },
+                "IgnoreFinalSound": {
+                    "Title": "Ūn bóe put lūn",
+                    "Content": "M̄ koán ūn bóe sī siáⁿ mi̍h im, ūn pak ū kâng to̍h chún sǹg."
+                },
+                "SameTone": {
+                    "Title": "Siaⁿ tiāu sio kâng",
+                    "Content": "Siaⁿ tiāu ài kâng chiah ū chún sǹg, nā ūn pak sio kâng to̍h chún sǹg. Lē. \"Ah ūn\" kap \"phah phún\" bô sǹg ah ūn."
+                },
+                "NasalSound": {
+                    "Title": "Phīⁿ im put lūn",
+                    "Content": "Ū phīⁿ im ‧bô put lūn, nā ūn pak ū kâng to̍h chún sǹg. Lē. Soaⁿ ‧jī kap soa ‧jī sǹg ū ah ūn."
+                },
+                "SameArticulationPart": {
+                    "Title": "Ūn bóe kāng pō͘ ūi",
+                    "Content": "Nā ūn bóe ê ho͘ im pō͘ ūi sio kâng to̍h chún sǹg. Lē. Sin ‧jī kap si̍t ‧jī sǹg ū ah ūn."
+                },
+                "SimilarVowel": {
+                    "Title": "Ūn pak sio óa",
+                    "Content": "Ē chhōe ūn pak sio óa ê jī."
+                }
+            }
+        }
+    },
+    "Contact": {
+        "Title": "KAP GOÁN CHIH CHIAP",
+        "Content": "Nā sī tùi goán Kài Hó Ūn ū siáⁿ mi̍h ì kiàn, thang hó tī chia lâu ōe hō͘ goán chai.",
+        "Form": {
+            "Title": "Ì kiàn su",
+            "Name": {
+                "Title": "Lí ê miâ",
+                "Placeholder": "Tī chia phah lí ê miâ"
+            },
+            "Email": {
+                "Title": "E-mail tē chí",
+                "Placeholder": "Tī chia phah lí ê E-mail tē chí"
+            },
+            "OpinionTitle": {
+                "Title": "Phiau tê",
+                "Placeholder": "Tī chia phah lí ê ì kiàn phiau tê"
+            },
+            "Content": {
+                "Title": "Lōe iông",
+                "Placeholder": "Tī chia siá lí ê ì kiàn"
+            }
+        },
+        "Submit": "Kià chhut khì"
+    },
+    "SearchBar":{
+        "Homepage": {
+            "Label": "Hō͘ lí hó ūn",
+            "Placeholder": "Su ji̍p beh chhiâu chhōe ê jī sû",
+            "Dropdown": {
+                "Options": [
+                    "Ah 1 jī",
+                    "Ah 2 jī",
+                    "Ah 3 jī"
+                ]
+            }
+        },
+        "SimpleSearch": {
+            "Label": "Hō͘ lí hó ūn",
+            "Placeholder": "Su ji̍p beh chhiâu chhōe ê jī sû",
+            "Dropdown": {
+                "Options": [
+                    "Ah 1 jī",
+                    "Ah 2 jī",
+                    "Ah 3 jī"
+                ]
+            }
+        }
+    },
+    "RhymeCard": {
+        "Amount": "jī"
+    },
+    "SideMenu": {
+        "PageNameList": [
+            "Siāu kài ia̍h",
+            "Chú ia̍h",
+            "Jī ūn chóng lám",
+            "Kán tan chhōe",
+            "Siông sè chhōe",
+            "Lāu ōe pang",
+            "Liân lo̍k pang"
+        ],
+        "PageLinkList": [
+            "/introduction",
+            "/",
+            "/chonglam",
+            "/search",
+            "/search/detail",
+            "/forum",
+            "/contactUs"
+        ]
+    },
+    "Components": {
+        "LanguageSelector": {
+            "LanguageOptions": [
+                "en",
+                "tg_POJ",
+                "tg_HJ"
+            ],
+            "LanguageNames": {
+                "en": "English",
+                "tg_POJ": "Pe̍h Ōe Jī",
+                "tg_HJ": "Hàn jī"
+            }
+        }
+    }
+}
