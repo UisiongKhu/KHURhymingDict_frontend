@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { useTranslation } from "react-i18next";
 
@@ -13,8 +14,8 @@ function Contact(){
             <Header/>
 
             <div id="main-container" className="min-h-screen h-content bg-main dark:bg-main-dark text-element dark:text-element-dark flex flex-col items-center">
-                <h1 className='font-[phiaute] text-5xl self-center dark:text-element-dark text-element'>{t('Contact.Title')}</h1>
-                <p className="lg:text-xl md:text-xl sm:text-lg text-lg">{t('Contact.Content')}</p>
+                <h1 className='mt-5 font-[phiaute] text-5xl self-center dark:text-element-dark text-element'>{t('Contact.Title')}</h1>
+                <p className="mb-5 lg:text-xl md:text-xl sm:text-lg text-lg text-left lg:w-1/2 md:1/2 w-2/3">{t('Contact.Content')}</p>
                 <div className="flex flex-col lg:w-2/3 w-5/6">
                     <div id="contact-form" className="font-[iansui] border-2 rounded-lg border-interactive dark:border-interactive-dark p-2 grid grid-cols-2 grid-rows-10">
                         <div className={`${styleDataArea} col-span-2 w-content mx-auto`}>
@@ -34,15 +35,13 @@ function Contact(){
                         </div>
                         <div className={`${styleDataArea} lg:flex-col col-span-2 row-span-7`}>
                             <label htmlFor="content">{t('Contact.Form.Content.Title')}</label>
-                            <input id="content" className={`${styleInputArea}`} placeholder={t('Contact.Form.Content.Placeholder')}></input>
+                            <textarea id="content" className={`${styleInputArea}`} placeholder={t('Contact.Form.Content.Placeholder')}></textarea>
                         </div>
                     </div>
                     <button type="submit" className={`${styleButton} ms-auto`}>{t('Contact.Submit')}</button>
                 </div>
-                
+                <Footer className='text-sm text-element dark:text-element-dark bg-header dark:bg-header-dark w-full h-30 fixed lg:flex hidden bottom-0 border-1 border-infobd dark:border-infobd-dark' />
             </div>
-            
-            {/* Your Page Content */}
         </>
     )
 }
