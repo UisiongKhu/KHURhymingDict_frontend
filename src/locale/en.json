@@ -57,7 +57,7 @@
     },
     "Contact": {
         "Title": "CONTACT US",
-        "Content": "If there's any opinion for Kài Hó Ūn Rhyming Dictionary, comment here to let us know!",
+        "Content": "If there's any opinion for Kài Hó Ūn Rhyming Dictionary, comment here to let us know! We will send you a e-mail when we received your opinion. ",
         "Form": {
             "Title": "Opinion",
             "Name": {
@@ -78,6 +78,10 @@
             }
         },
         "Submit": "Submit"
+    },
+    "Forum": {
+        "Title": "Forum",
+        "Content": "Talks about rhymes and shit."
     },
     "SearchBar":{
         "Homepage": {
@@ -101,6 +105,10 @@
                     "3 Words"
                 ]
             }
+        },
+        "Forum": {
+            "Label": "Wanna find some thing?",
+            "Placeholder": "Then enter the keyword here"
         }
     },
     "RhymeCard": {
@@ -138,6 +146,14 @@
                 "en": "English",
                 "tg_POJ": "Pe̍h Ōe Jī",
                 "tg_HJ": "漢字"
+            }
+        },
+        "Footer": {
+            "Title": {
+                "Contact": "Contact Us",
+                "Forum": "Discussion",
+                "Dev": "Devlopers",
+                "Introduction": "Introduction"
             }
         }
     }
