@@ -1,7 +1,7 @@
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
-import Stats from '../components/Stats';
 import { useTranslation } from 'react-i18next';
+import Footer from '../components/Footer';
 
 function Homepage(){     
 
@@ -22,7 +22,7 @@ function Homepage(){
                 <div id='main-container' className='flex flex-col' >
                     <SearchBar className='' label={t('SearchBar.Homepage.Label')} placeholder={t('SearchBar.Homepage.Placeholder')}  options={getSearchBarDropdownOptions()}/>
 
-                    <Stats className='mt-40 text-element dark:text-element-dark rounded-md border-1 border-infobd dark:border-infobd-dark w-full h-60 self-center' />
+                    <Footer className='text-sm text-element dark:text-element-dark bg-header dark:bg-header-dark w-full h-30 fixed lg:flex hidden bottom-0 border-1 border-infobd dark:border-infobd-dark' />
                 </div>
             </div>
             
