@@ -9,6 +9,10 @@ function Header(){
     const navigate = useNavigate();
     const [isHeaderMenuOpen, setHeaderMenuOpen] = useState(false);
     const [isHeaderExiting, setHeaderExiting] = useState(false);
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
     const toggleMenu = ()=> {
         if(!isHeaderMenuOpen){
             setHeaderMenuOpen(true);
@@ -20,6 +24,16 @@ function Header(){
 
     useEffect(()=>{
         let timer: ReturnType<typeof setTimeout>;
+        
+        const handleResize = () => {
+            setWindowSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            })
+        }
+
+        window.addEventListener('resize', handleResize);
+
         if(isHeaderExiting){
             timer = setTimeout(()=>{setHeaderMenuOpen(false);setHeaderExiting(false);},200); 
         }
@@ -28,7 +42,7 @@ function Header(){
                 clearTimeout(timer);
             }
         }
-    },[isHeaderExiting])
+    },[isHeaderExiting, windowSize])
 
     return(
         <>
@@ -44,7 +58,7 @@ function Header(){
                         </svg>
                     </button>
 
-                    {isHeaderMenuOpen && <SideMenu className={`absolute border-infobd dark:border-infobd-dark rounded-br-md bg-header dark:bg-header-dark text-element dark:text-element w-80 md:top-10 bottom-10 left-0 z-40 max-h-screen overflow-y-auto
+                    {isHeaderMenuOpen && <SideMenu className={`${windowSize.height<=500?'h-64 max-h-64':'h-fit max-h-screen'} absolute border-infobd dark:border-infobd-dark bg-header dark:bg-header-dark text-element dark:text-element w-79 md:top-10 bottom-10 left-0 z-40 overflow-y-auto
                     ${!isHeaderMenuOpen&&!isHeaderExiting ? ' hidden':''}
                     ${isHeaderMenuOpen&&!isHeaderExiting ?' animate-fading-in':''}
                     ${isHeaderExiting ?' animate-fading-out':''}`} />

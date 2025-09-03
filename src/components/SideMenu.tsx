@@ -13,14 +13,14 @@ function SideMenu(prop: propType){
     const getPageNameListBtns = () => {
         return PageNameListArray.map((value,index)=>(
             <>
-                <button className={`${index===PageNameListArray.length-1?'rounded-br-md':''} w-full h-20 p-5 font-[phiaute] text-left text-element dark:text-element-dark hover:bg-header-hover dark:hover:bg-header-hover-dark text-2xl`} onClick={()=>{navigate(PageNameLinkArray[index])}}>{value}</button>
+                <button className={`${index===PageNameListArray.length-1?'rounded-br-md':''} w-full p-5 font-[phiaute] text-left text-element dark:text-element-dark hover:bg-header-hover dark:hover:bg-header-hover-dark text-2xl`} onClick={()=>{navigate(PageNameLinkArray[index])}}>{value}</button>
             </>
         ));
     };
 
     return(
         <>
-            <div className={`${prop.className!==undefined?prop.className:''} flex flex-col h-fit`}>
+            <div className={`${prop.className!==undefined?prop.className:''} flex flex-col`}>
                 {getPageNameListBtns()}
             </div>
         </>
