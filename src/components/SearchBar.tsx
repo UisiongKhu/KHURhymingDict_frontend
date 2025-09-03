@@ -27,7 +27,11 @@ function SearchBar(props:SearchBarType){
                             ):
                             <></>
                         }
-                        <button type="submit" className="bg-interactive dark:bg-interactive-dark hover:bg-interactive-hover dark:hover:bg-interactive-hover-dark p-2 border-interactive dark:border-interactive-dark rounded-r-lg rounded-br-lg">
+                        <button type="submit" className="bg-interactive dark:bg-interactive-dark hover:bg-interactive-hover dark:hover:bg-interactive-hover-dark p-2 border-interactive dark:border-interactive-dark rounded-r-lg rounded-br-lg" onClick={()=>{
+                            if(!props.submitAction===undefined && !props.json===undefined){
+                                props.submitAction!(props.json!);
+                            }
+                        }}>
                             <svg className="w-4 h-4 text-white dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                             </svg>
