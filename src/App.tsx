@@ -4,6 +4,7 @@ import Homepage from './pages/Homepage'
 import Contact from './pages/Contact'
 import Rhymes from './pages/Rhymes'
 import SimpleSearch from './pages/SimpleSearch'
+import Forum from './pages/Forum'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path='chonglam' element={<Rhymes/>}></Route>
         <Route path='search' element={<SimpleSearch/>}></Route>
         <Route path='contactUs' element={<Contact/>}></Route>
+        <Route path='forum' element={<Forum/>}></Route>
       </Routes>
     </BrowserRouter>
     </>

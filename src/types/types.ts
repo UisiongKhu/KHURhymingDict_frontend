@@ -15,6 +15,8 @@ export type SearchBarType = {
     label: string;
     placeholder: string;
     options?: Array<SearchBarOption>;
+    json?: object;
+    submitAction?: (json: object) => Promise<any>;
 }
 export type CheckboxType = {
     className?: string;
@@ -32,6 +34,19 @@ export type RhymeSearchOptionStates = {
     IgnoreFinalSound: boolean;
     SameArticulationPart: boolean;
     SameTone: boolean;
+}
+
+export type TopicType = {
+    className?: string;
+    title: string;
+    content: string;
+    author: string;
+    likesAmount: number;
+    commentsAmount: number;
+    pined: boolean;
+    liked: boolean;
+    createAt: Date;
+    updatedAt?: Date;
 }
 
 export type SearchBarOption = {value: "", text: ""};
