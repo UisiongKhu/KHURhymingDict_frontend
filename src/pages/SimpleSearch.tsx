@@ -11,7 +11,7 @@ function SimpleSearch(){
     const [optionsVisible, setOptionsVisible] = useState(true);
     const [infoVisible, setInfoVisible] = useState(false);
     const [getSearchOptionStates, setSearchOptionStates] = useState<RhymeSearchOptionStates>( {
-        NasalSound: false,
+        IgnoreNasalSound: false,
         SimilarVowel: false,
         IgnoreFinalSound: false,
         SameArticulationPart: false,

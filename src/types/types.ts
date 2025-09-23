@@ -29,7 +29,7 @@ export type CheckboxType = {
 }
 
 export type RhymeSearchOptionStates = {
-    NasalSound: boolean;
+    IgnoreNasalSound: boolean;
     SimilarVowel: boolean;
     IgnoreFinalSound: boolean;
     SameArticulationPart: boolean;
