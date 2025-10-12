@@ -81,6 +81,9 @@
         "Content": "Káng hó ūn, phah la̍h liâng."
     },
     "SearchBar":{
+        "ErrorMessage": {
+            "Empty": "Chhiau chhōe nôa bē eng tit khang khang"
+        },
         "Homepage": {
             "Label": "Hō͘ lí hó ūn",
             "Placeholder": "Su ji̍p beh chhiâu chhōe ê jī sû",
@@ -101,6 +104,10 @@
                     "Ah 2 jī",
                     "Ah 3 jī"
                 ]
+            },
+            "Error": {
+                "NoResult": "Chhōe bô ah ūn ê sû lūi",
+                "SearchFailed": "Chhiau chhōe sit pāi, chhiáⁿ koh kiám cha su ji̍p ê chu liāu"
             }
         },
         "Forum": {
@@ -151,6 +158,22 @@
                 "Dev": "Siáng khai hoat",
                 "Introduction": "Bāng chām siāu kài"
             }
+        },
+        "RhymeSearchResults": {
+            "Header": {
+                "Lomaji": "Pe̍h Ōe jī",
+                "HanjiKip": "Hàn jī "
+            }
+        },
+        "SearchResultWordInfo": {
+            "Title": "SIÔNG SÈ CHU LIĀU",
+            "Lomaji": "Pe̍h Ōe jī",
+            "HanjiKip": "Hàn jī",
+            "Syllable": "ê im chat",
+            "Rhyme": "Ūn bó",
+            "Vowel": "Ūn pak",
+            "Coda": "Ūn bóe",
+            "Tone": "Siaⁿ tiāu"
         }
     }
 }

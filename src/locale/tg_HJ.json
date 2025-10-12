@@ -81,6 +81,9 @@
         "Content": "講好韻、拍納涼"
     },
     "SearchBar":{
+        "ErrorMessage": {
+            "Empty": "超尋欄袂用得空空"
+        },
         "Homepage": {
             "Label": "互汝好韻",
             "Placeholder": "輸入卜超尋个字詞",
@@ -101,6 +104,10 @@
                     "押二字",
                     "押三字"
                 ]
+            },
+            "Error": {
+                "NoResult": "尋無押韻个詞彙",
+                "SearchFailed": "超尋失敗、請閣檢查輸入个資料"
             }
         },
         "Forum": {
@@ -151,6 +158,22 @@
                 "Dev": "省人開發",
                 "Introduction": "網站紹介" 
             }
+        },
+        "RhymeSearchResults": {
+            "Header": {
+                "Lomaji": "白話字",
+                "HanjiKip": "漢字"
+            }
+        },
+        "SearchResultWordInfo": {
+            "Title": "詳細資料",
+            "Lomaji": "白話字",
+            "HanjiKip": "漢字",
+            "Syllable": "个音節",
+            "Rhyme": "韻母",
+            "Vowel": "韻腹",
+            "Coda": "韻尾",
+            "Tone": "聲調"
         }
     }
 }

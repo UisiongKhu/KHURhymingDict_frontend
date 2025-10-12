@@ -84,6 +84,9 @@
         "Content": "Talks about rhymes and shit."
     },
     "SearchBar":{
+        "ErrorMessage": {
+            "Empty": "The search area can not be empty."
+        },
         "Homepage": {
             "Label": "Let's hit the rhymes",
             "Placeholder": "Enter the syllable or word you want to rhyme",
@@ -104,6 +107,11 @@
                     "2 Words",
                     "3 Words"
                 ]
+            },
+            "Error": {
+                "NoResult": "No result found.",
+                "SearchFailed": "Search failed, check your input data."
+
             }
         },
         "Forum": {
@@ -155,6 +163,23 @@
                 "Dev": "Devlopers",
                 "Introduction": "Introduction"
             }
+        },
+        "RhymeSearchResults": {
+            "Header": {
+                "Lomaji": "POJ",
+                "HanjiKip": "Hanji"
+            }
+        },
+        "SearchResultWordInfo": {
+            "Title": "Details",
+            "Lomaji": "POJ",
+            "HanjiKip": "Hanji",
+            "Syllable_one": "syllable",
+            "Syllable_other": "syllables",
+            "Rhyme": "Rhyme",
+            "Vowel": "Vowel",
+            "Coda": "Coda (Final Sound)",
+            "Tone": "Tone"
         }
     }
 }
