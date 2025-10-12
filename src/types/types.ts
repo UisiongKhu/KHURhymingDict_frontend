@@ -16,7 +16,10 @@ export type SearchBarType = {
     placeholder: string;
     options?: Array<SearchBarOption>;
     json?: object;
-    submitAction?: (json: object) => Promise<any>;
+    input?: string;
+    inputFunc?: (event: ChangeEvent<HTMLInputElement>) => void;
+    selectFunc?: (event: ChangeEvent<HTMLSelectElement>) => void;
+    onClick?: (json: object) => void;
 }
 export type CheckboxType = {
     className?: string;
@@ -50,3 +53,36 @@ export type TopicType = {
 }
 
 export type SearchBarOption = {value: "", text: ""};
+
+export type SearchResultType = {
+    className?: string;
+    lomaji: string;
+    hanjiKip: string;
+    hanjiClj?: string;
+}
+
+export type RhymeSearchResultsType = {
+    className?: string;
+    results?: SearchResultType[];
+    successful?: boolean;
+}
+
+export type Syllable = {
+    lomaji: string,
+    hanjiKip: string | null,
+    hanjiClj: string | null,
+    consonant: string | null,
+    vowel: string,
+    coda: string | null,
+    tone: number,
+    nasal: boolean
+}
+
+export type SearchResultWordInfoType = {
+    lomaji: string;
+    hanjiKip: string;
+    hanjiClj?: string;
+    syllableAmount?: number;
+    syllables?: Syllable[];
+    className?: string;
+}
