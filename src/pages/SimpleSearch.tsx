@@ -2,14 +2,18 @@ import { useTranslation } from "react-i18next";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import Checkbox from "../components/Checkbox";
-import type { RhymeSearchOptionStates } from "../types/types";
+import type { RhymeSearchOptionStates, SearchResultType } from "../types/types";
 import type { ChangeEvent } from "react";
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
+import RhymeSearchResults from "../components/RhymeSearchResults";
+import { isHanji } from "../misc/misc";
 function SimpleSearch(){
     const [t] = useTranslation();
     const [optionsVisible, setOptionsVisible] = useState(true);
     const [infoVisible, setInfoVisible] = useState(false);
+    const [submited, setSubmited] = useState(false);
+    const [firstTimeSumbit, setFirstTimeSumbit] = useState(false);
     const [getSearchOptionStates, setSearchOptionStates] = useState<RhymeSearchOptionStates>( {
         IgnoreNasalSound: false,
         SimilarVowel: false,
@@ -17,6 +21,10 @@ function SimpleSearch(){
         SameArticulationPart: false,
         SameTone: false,
     });
+    const [rhymingSyllableCount, setRhymingSyllableCount] = useState(1);
+    const [keyword, setKeyword] = useState("");
+    const [searchResults, setSearchResults] = useState(Array<SearchResultType>);
+    const [getSearchBarInput, setSearchBarInput] = useState("");
     const keyofSearchOptionStates = Object.keys(getSearchOptionStates) as (keyof RhymeSearchOptionStates)[];
     const OptionsStringArray = t<'SearchBar.Homepage.Dropdown.Options', { returnObjects: true }, string[]>('SearchBar.Homepage.Dropdown.Options', { returnObjects: true }).map(v=>v);
     const getSearchBarDropdownOptions = () =>{
@@ -40,12 +48,79 @@ function SimpleSearch(){
     const handleInfoVisible = () => {
         setInfoVisible(!infoVisible);
     }
-
     
-    useEffect(()=>{
+    const handleSearchBarInput = (event: ChangeEvent<HTMLInputElement>) => {
+        setSearchBarInput(event.target.value);
+    }
 
+    const handleSearchBarSelect = (event: ChangeEvent<HTMLSelectElement>) => {
+        setRhymingSyllableCount(Number(event.target.value));
+    }
+
+    const handleSumbit = async (props: {keyword: string}) => {
+        if(!firstTimeSumbit) setFirstTimeSumbit(true);
+        if(props.keyword === undefined || props.keyword === ""){
+            alert(t('SearchBar.ErrorMessage.Empty'));
+        }else{
+            setSubmited(true);
+            setKeyword(props.keyword);
+        }
+    }
+
+    useEffect(()=>{
         console.log(`new state: ${JSON.stringify(getSearchOptionStates)}`)
     },[getSearchOptionStates])
+
+    useEffect(()=>{
+    }, [firstTimeSumbit, optionsVisible, infoVisible]);
+
+    useEffect(()=>{
+        const fetchResults = async () => {
+            if(submited){
+                // Call Rhyming API
+                const apiUrl = import.meta.env.VITE_API_BASE_URL;
+                const queryData : {
+                    lomaji?:string,
+                    hanjiKip?:string,}={};
+                if(isHanji(keyword)){
+                    queryData.hanjiKip = keyword;
+                }else{
+                    queryData.lomaji = keyword;
+                }
+                const params = new URLSearchParams(queryData);
+                params.append('ignoreNasalSound', String(getSearchOptionStates.IgnoreNasalSound));
+                params.append('ignoreFinalSound', String(getSearchOptionStates.IgnoreFinalSound));
+                params.append('sameArticulationPart', String(getSearchOptionStates.SameArticulationPart));
+                params.append('sameTone', String(getSearchOptionStates.SameTone));
+                params.append('similarVowel', String(getSearchOptionStates.SimilarVowel));
+                params.append('rhymingSyllableCount', rhymingSyllableCount.toString());
+                console.log(rhymingSyllableCount);
+                const response = await fetch(`${apiUrl}/rhyming/word?${params.toString()}`, {
+                    method: 'GET', 
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+                console.log(`Response Status: ${response.status}`)
+                if(response.status === 200){
+                    const result = await response.json().then(res=>res.data);
+                    setSearchResults(result);
+                    if(result.length===0){
+                        setOptionsVisible(true);
+                        alert(t('SearchBar.SimpleSearch.Error.NoResult'));   
+                    }else{
+                        setOptionsVisible(false);
+                    }
+                }else{
+                    setOptionsVisible(true);
+                    alert(t('SearchBar.SimpleSearch.Error.SearchFailed'));   
+                }
+                setInfoVisible(false);
+            }
+        };
+        fetchResults();
+        setSubmited(false);
+    }, [submited])
 
     return(
         <>
@@ -53,7 +128,7 @@ function SimpleSearch(){
             <div className='h-content min-h-screen bg-main dark:bg-main-dark text-element dark:text-element-dark'>
                 <div className="flex flex-col justify-center">
                     <h1 className='self-center mt-10 font-[phiaute] text-5xl'>{t('Search.SimpleSearch.Title')}</h1>
-                    <SearchBar label={t('SearchBar.SimpleSearch.Label')} placeholder={t('SearchBar.SimpleSearch.Placeholder')} options={getSearchBarDropdownOptions()} />
+                    <SearchBar label={t('SearchBar.SimpleSearch.Label')} input={getSearchBarInput} inputFunc={handleSearchBarInput} selectFunc={handleSearchBarSelect} placeholder={t('SearchBar.SimpleSearch.Placeholder')} options={getSearchBarDropdownOptions()} onClick={()=>handleSumbit({keyword: getSearchBarInput})} />
 
                     <div id="option-container" className="font-[iansui] self-center mt-2 p-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-2 border-infobd dark:border-infobd-dark">
                         <div id="option-title-container" className="flex flex-row justify-between">
@@ -86,8 +161,8 @@ function SimpleSearch(){
                             </button>
                         </div>
                         <div id="info-content-container" className={`grid grid-cols-3 gap-2 ${(infoVisible)?'':'hidden'}`}>
-                                <h3 className="col-span-1">{t('Search.SimpleSearch.SearchOptionInfo.Default.Title')}</h3>
-                                <p className="col-span-2">{t('Search.SimpleSearch.SearchOptionInfo.Default.Content')}</p>
+                            <h3 className="col-span-1">{t('Search.SimpleSearch.SearchOptionInfo.Default.Title')}</h3>
+                            <p className="col-span-2">{t('Search.SimpleSearch.SearchOptionInfo.Default.Content')}</p>
 
                             <h3 className="col-span-1">{t('Search.SimpleSearch.SearchOptionInfo.NasalSound.Title')}</h3>
                             <p className="col-span-2">{t('Search.SimpleSearch.SearchOptionInfo.NasalSound.Content')}</p>
@@ -105,6 +180,7 @@ function SimpleSearch(){
                             <p className="col-span-2">{t('Search.SimpleSearch.SearchOptionInfo.SameTone.Content')}</p>
                         </div>
                     </div>
+                    <RhymeSearchResults className={`font-[iansui] self-center border-2 mt-2 mb-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-infobd dark:border-infobd-dark ${(firstTimeSumbit && searchResults.length>0)?'':'hidden'}`} results={searchResults} />
                 </div>
             </div>
             <Footer className='text-sm text-element dark:text-element-dark bg-header dark:bg-header-dark w-full h-30 fixed lg:flex hidden bottom-0 border-1 border-infobd dark:border-infobd-dark' />
