@@ -22,3 +22,24 @@ export const to10KCommaString = (num:number)=>{
 
   return result;
 };
+
+export const isHanji = (str : string) => {
+    const regex =  /[\u4e00-\u9fa5\uF900-\uFAFF\u{20000}-\u{2A6DF}]/u;
+    return regex.test(str);
+};
+
+export const getLomajiArr = (str : string) => {
+    const lowercasedStr = str.toLowerCase();
+    const cleanedStr = lowercasedStr.replace(/[-.,;?!–—]/g, ' ');
+    const resultArr = cleanedStr.split(/\s+/).filter(word => word.length > 0);
+
+    return resultArr;
+};
+
+export const getSyllableAmount = (str : string) => {
+    const lowercasedStr = str.toLowerCase();
+    const cleanedStr = lowercasedStr.replace(/[-.,;?!–—]/g, ' ');
+    const resultArr = cleanedStr.split(/\s+/).filter(word => word.length > 0);
+
+    return resultArr.length;
+};
