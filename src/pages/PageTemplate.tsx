@@ -10,7 +10,7 @@ function PageTemplate(){
         <>
             <Header/>
 
-            <div id={'Tiāⁿ ēng ê kong lêng'} className="min-h-screen h-content bg-main dark:bg-main-dark text-element dark:text-element">
+            <div id={'Tiāⁿ ēng ê kong lêng'} className="min-h-screen h-content bg-main dark:bg-main-dark text-element dark:text-element-dark">
                 <button onClick={()=>{navigate(`Lí beh ài khì ê bāng liān á`)}}>Lí beh ài khì ê só͘ chāi</button>
                 <p>{t('Lí ū siat tēng ê hoan e̍k lōe iông5')}</p>
             </div>
