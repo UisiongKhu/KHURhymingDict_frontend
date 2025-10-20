@@ -179,7 +179,12 @@
             "Rhyme": "Rhyme",
             "Vowel": "Vowel",
             "Coda": "Coda (Final Sound)",
-            "Tone": "Tone"
+            "Tone": "Tone",
+            "SyllableSerial": "Syllable",
+            "Error": {
+                "FetchFailed": "Cannot Fetch Word Info, please contact the developer.",
+                "WordNotFound": "Word Not Found, please contact the developer."
+            }
         }
     }
 }

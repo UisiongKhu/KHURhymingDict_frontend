@@ -173,7 +173,12 @@
             "Rhyme": "Ūn bó",
             "Vowel": "Ūn pak",
             "Coda": "Ūn bóe",
-            "Tone": "Siaⁿ tiāu"
+            "Tone": "Siaⁿ tiāu",
+            "SyllableSerial": "Im chat",
+            "Error": {
+                "FetchFailed": "Lia̍h chu liāu chhut têng tâⁿ, chhiáⁿ liân lo̍k khai hoat chiá.",
+                "WordNotFound": "Chhōe bô chit ê sû, chhiáⁿ liân lo̍k khai hoat chiá."
+            }
         }
     }
 }

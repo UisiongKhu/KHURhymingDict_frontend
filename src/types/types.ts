@@ -69,20 +69,18 @@ export type RhymeSearchResultsType = {
 
 export type Syllable = {
     lomaji: string,
-    hanjiKip: string | null,
-    hanjiClj: string | null,
-    consonant: string | null,
+    hanjiKip?: string | null,
+    hanjiClj?: string | null,
+    consonant?: string | null,
     vowel: string,
-    coda: string | null,
+    coda?: string | null,
     tone: number,
-    nasal: boolean
+    nasal?: boolean
 }
 
 export type SearchResultWordInfoType = {
     lomaji: string;
     hanjiKip: string;
     hanjiClj?: string;
-    syllableAmount?: number;
-    syllables?: Syllable[];
     className?: string;
 }

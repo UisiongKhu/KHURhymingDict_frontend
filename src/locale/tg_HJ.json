@@ -173,7 +173,12 @@
             "Rhyme": "韻母",
             "Vowel": "韻腹",
             "Coda": "韻尾",
-            "Tone": "聲調"
+            "Tone": "聲調",
+            "SyllableSerial": "音節",
+            "Error": {
+                "FetchFailed": "掠資料出重耽、請聯絡開發者。",
+                "WordNotFound": "尋無此个詞，請聯絡開發者。"
+            }
         }
     }
 }
