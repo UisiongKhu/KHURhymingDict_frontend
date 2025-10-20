@@ -17,6 +17,7 @@ function App() {
         <Route path='search' element={<SimpleSearch/>}></Route>
         <Route path='contactUs' element={<Contact/>}></Route>
         <Route path='forum' element={<Forum/>}></Route>
+        <Route path='*' element={<div>404 Not Found</div>}></Route>
       </Routes>
     </BrowserRouter>
     </>
