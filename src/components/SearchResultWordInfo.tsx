@@ -59,7 +59,16 @@ function SearchResultWordInfo(props: SearchResultWordInfoType){
 
     return (
         <div id="search-result-word-info" className={`flex flex-col bg-main dark:bg-main-dark text-element dark:text-element-dark border-2 rounded-xl border-blue-600 dark:border-blue-700 p-2 ${props.className}`}>
-            <p className="text-2xl mb-5">{t("Components.SearchResultWordInfo.Title")}</p>
+            <div className="flex flex-row justify-between">
+                <p className="text-2xl mb-5">{t("Components.SearchResultWordInfo.Title")}</p>
+                <button onClick={props.onClose}>
+                    <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24"/>
+                        <path d="M7 17L16.8995 7.10051" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 7.00001L16.8995 16.8995" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
             <p className="text-lg">{t("Components.SearchResultWordInfo.Lomaji")}: {props.lomaji}</p>
             <p className="text-lg">{t("Components.SearchResultWordInfo.HanjiKip")}: {props.hanjiKip}</p>
             {/* Chit pha ài kái */}

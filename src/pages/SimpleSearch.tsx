@@ -8,12 +8,15 @@ import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import RhymeSearchResults from "../components/RhymeSearchResults";
 import { isHanji } from "../misc/misc";
+import SearchResultWordInfo from "../components/SearchResultWordInfo";
 function SimpleSearch(){
     const [t] = useTranslation();
     const [optionsVisible, setOptionsVisible] = useState(true);
     const [infoVisible, setInfoVisible] = useState(false);
     const [submited, setSubmited] = useState(false);
     const [firstTimeSumbit, setFirstTimeSumbit] = useState(false);
+    const [currentWordInfoParam, setCurrentWordInfoParam] = useState<{ lomaji: string; hanjiKip: string } | null>(null);
+    const [showWordInfo, setShowWordInfo] = useState(false);
     const [getSearchOptionStates, setSearchOptionStates] = useState<RhymeSearchOptionStates>( {
         IgnoreNasalSound: false,
         SimilarVowel: false,
@@ -55,6 +58,16 @@ function SimpleSearch(){
 
     const handleSearchBarSelect = (event: ChangeEvent<HTMLSelectElement>) => {
         setRhymingSyllableCount(Number(event.target.value));
+    }
+
+    const handleWordInfoClick = (lomaji: string, hanjiKip: string) => {
+        setCurrentWordInfoParam({ lomaji, hanjiKip });
+        setShowWordInfo(true);
+    }
+
+    const handleWordInfoClose = () => {
+        setShowWordInfo(false);
+        setCurrentWordInfoParam
     }
 
     const handleSumbit = async (props: {keyword: string}) => {
@@ -180,9 +193,15 @@ function SimpleSearch(){
                             <p className="col-span-2">{t('Search.SimpleSearch.SearchOptionInfo.SameTone.Content')}</p>
                         </div>
                     </div>
-                    <RhymeSearchResults className={`font-[iansui] self-center border-2 mt-2 mb-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-infobd dark:border-infobd-dark ${(firstTimeSumbit && searchResults.length>0)?'':'hidden'}`} results={searchResults} />
+                    <RhymeSearchResults className={`font-[iansui] self-center border-2 mt-2 mb-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-infobd dark:border-infobd-dark ${(firstTimeSumbit && searchResults.length>0)?'':'hidden'}`} results={searchResults} onWordInfoClick={handleWordInfoClick} />
+                    
                 </div>
             </div>
+            {currentWordInfoParam && showWordInfo &&
+                // Display Word Info fixed to the middle of the screen
+                <div className="font-[iansui] fixed inset-0 flex items-center justify-center overflow-y-auto p-2">
+                    <SearchResultWordInfo lomaji={currentWordInfoParam.lomaji} hanjiKip={currentWordInfoParam.hanjiKip} className="rounded-lg shadow-xl max-w-2xl w-full" onClose={handleWordInfoClose}/>
+            </div>}
             <Footer className='text-sm text-element dark:text-element-dark bg-header dark:bg-header-dark w-full h-30 fixed lg:flex hidden bottom-0 border-1 border-infobd dark:border-infobd-dark' />
         </>
     )

@@ -59,12 +59,14 @@ export type SearchResultType = {
     lomaji: string;
     hanjiKip: string;
     hanjiClj?: string;
+    onClick?: (lomaji:string, hanjiKip:string) => void;
 }
 
 export type RhymeSearchResultsType = {
     className?: string;
     results?: SearchResultType[];
     successful?: boolean;
+    onWordInfoClick?: (lomaji: string, hanjiKip: string) => void;
 }
 
 export type Syllable = {
@@ -83,4 +85,5 @@ export type SearchResultWordInfoType = {
     hanjiKip: string;
     hanjiClj?: string;
     className?: string;
+    onClose?: () => void;
 }

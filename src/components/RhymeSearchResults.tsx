@@ -16,7 +16,7 @@ function RhymeSearchResults(props: RhymeSearchResultsType){
                 </thead>
                 <tbody key="tbody">
                 {isShowResults?
-                props.results!.map((result)=>(<SearchResult lomaji={result.lomaji} hanjiKip={result.hanjiKip} />))
+                props.results!.map((result)=>(<SearchResult lomaji={result.lomaji} hanjiKip={result.hanjiKip} onClick={props.onWordInfoClick} />))
                 :
                 <></>
                 }
