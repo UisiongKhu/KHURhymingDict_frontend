@@ -193,7 +193,8 @@ function SimpleSearch(){
                             <p className="col-span-2">{t('Search.SimpleSearch.SearchOptionInfo.SameTone.Content')}</p>
                         </div>
                     </div>
-                    <RhymeSearchResults className={`font-[iansui] self-center border-2 mt-2 mb-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-infobd dark:border-infobd-dark ${(firstTimeSumbit && searchResults.length>0)?'':'hidden'}`} results={searchResults} onWordInfoClick={handleWordInfoClick} />
+                    {(firstTimeSumbit && searchResults.length>0) && 
+                    <RhymeSearchResults className={`font-[iansui] self-center border-2 mt-2 mb-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-infobd dark:border-infobd-dark`} results={searchResults} onWordInfoClick={handleWordInfoClick} />}
                     
                 </div>
             </div>
