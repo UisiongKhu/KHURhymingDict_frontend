@@ -168,6 +168,9 @@
             "Header": {
                 "Lomaji": "POJ",
                 "HanjiKip": "Hanji"
+            },
+            "Pagination": {
+                "PageText": "Page <0></0> of {{totalPages}} ({{totalItems}} results, <1></1> results per page)"
             }
         },
         "SearchResultWordInfo": {

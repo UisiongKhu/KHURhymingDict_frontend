@@ -163,6 +163,9 @@
             "Header": {
                 "Lomaji": "白話字",
                 "HanjiKip": "漢字"
+            },
+            "Pagination": {
+                "PageText": "第 <0></0> / {{totalPages}} 頁（{{totalItems}} 條、一頁 <1></1> 條）"
             }
         },
         "SearchResultWordInfo": {

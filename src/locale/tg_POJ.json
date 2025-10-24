@@ -163,6 +163,9 @@
             "Header": {
                 "Lomaji": "Pe̍h Ōe jī",
                 "HanjiKip": "Hàn jī "
+            },
+            "Pagination": {
+                "PageText": "Tē <0></0> / {{totalPages}} ia̍h ({{totalItems}} tiâu, chi̍t ia̍h <1></1> tiâu)"
             }
         },
         "SearchResultWordInfo": {
