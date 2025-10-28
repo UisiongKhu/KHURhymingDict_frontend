@@ -43,3 +43,27 @@ export const getSyllableAmount = (str : string) => {
 
     return resultArr.length;
 };
+
+export const getToneNameHanji = (tone: number) => {
+    // For Formosan Taigi
+    switch(tone){
+        case 1:
+            return "陰平";
+        case 2:
+            return "陰上";
+        case 3:
+            return "陰去";
+        case 4:
+            return "陰入";
+        case 5:
+            return "陽平";
+        case 6:
+            return "陽上";
+        case 7:
+            return "陽去";
+        case 8:
+            return "陽入";
+        default:
+            return "未知聲調";
+    }
+}
