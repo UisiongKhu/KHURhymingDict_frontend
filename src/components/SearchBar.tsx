@@ -16,7 +16,10 @@ function SearchBar(props:SearchBarType){
             <div className={`flex flex-col items-center font-[iansui] ${props.className}`}>
                 <div className='flex flex-col w-full lg:max-w-lg md:max-w-md sm:max-w-sm max-w-sm '>
                     <label className='dark:text-element-dark' htmlFor='searchbar'>{props.label}</label>
-                    <form id="searchbarContainer" className="flex flex-row p-1">
+                    <form id="searchbarContainer" className="flex flex-row p-1" onSubmit={(e)=>{
+                        e.preventDefault(); // Ī hông default ê hêng ûi, to̍h sī ē submit koh refresh
+                        props.onClick!(props.json!); // Kiò thoân ji̍p lâi ê hâm sò͘
+                    }}>
                         <input id='searchbar' value={props.input} className="text-element min-w-0 dark:text-element-dark flex-grow border-2 border-r-0 border-interactive dark:border-interactive-dark bg-main dark:bg-main-dark dark:placeholder-element-dark rounded-l-lg focus:ring-2 focus:ring-interactive dark:focus:ring-interactive-dark" type="search" placeholder={props.placeholder} onChange={props.inputFunc}/>
                         {
                             (props.options!==undefined)?
