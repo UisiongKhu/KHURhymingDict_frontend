@@ -171,7 +171,11 @@ function SimpleSearch(){
                     <h1 className='self-center mt-10 font-[phiaute] text-5xl'>{t('Search.SimpleSearch.Title')}</h1>
                     <SearchBar label={t('SearchBar.SimpleSearch.Label')} input={getSearchBarInput} inputFunc={handleSearchBarInput} selectFunc={handleSearchBarSelect} placeholder={t('SearchBar.SimpleSearch.Placeholder')} options={getSearchBarDropdownOptions()} onClick={()=>handleSumbit({keyword: getSearchBarInput})} />
 
-                    <div id="option-container" className="font-[iansui] self-center mt-2 p-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-2 border-infobd dark:border-infobd-dark">
+                    <div id="option-container" className={`font-[iansui] self-center mt-2 p-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-2 border-infobd dark:border-infobd-dark 
+                        transition-all duration-200 ease-out transform origin-top
+                        ${(optionsVisible)?'max-h-100':''}
+                        ${!optionsVisible?'max-h-15 overflow-hidden':''}
+                        `}>
                         <div id="option-title-container" className="flex flex-row justify-between">
                             <h1 className="text-lg text-left mb-1">{t('Search.SimpleSearch.SearchOption.Title')}</h1>
                             <button type="button" onClick={handleOptionVisible}>
@@ -180,7 +184,11 @@ function SimpleSearch(){
                                 </svg>
                             </button>
                         </div>
-                        <div id="option-content-container" className={`grid grid-cols-2 gap-2 text-left text-md ${(optionsVisible)?'':'hidden'}`}>
+                        <div id="option-content-container" className={`grid grid-cols-2 gap-2 text-left text-md 
+                            transition-all duration-200 ease-out transform origin-top
+                            ${optionsVisible?'opacity-100 scale-y-100 visible':''}
+                            ${!optionsVisible?'opacity-0 scale-y-0 invisible':''}
+                        `}>
                             <h2>{t('Search.SimpleSearch.SearchOption.SubTitle.Nucleus')}</h2><br/>
                                 <Checkbox checkboxId="cbNasalSound" label={t('Search.SimpleSearch.SearchOption.NasalSound')} onChangeFunc={handleChecked} />
                                 <Checkbox checkboxId="cbSimilarVowel" label={t('Search.SimpleSearch.SearchOption.SimilarVowel')} onChangeFunc={handleChecked}/>
@@ -192,7 +200,11 @@ function SimpleSearch(){
                         </div>
                     </div>
 
-                    <div id="info-container" className="font-[iansui] self-center mt-2 mb-2 p-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-2 border-infobd dark:border-infobd-dark">
+                    <div id="info-container" className={`font-[iansui] self-center mt-2 mb-2 p-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-2 border-infobd dark:border-infobd-dark
+                        transition-all duration-200 ease-out transform origin-top
+                        ${(infoVisible)?'max-h-100':''}
+                        ${!infoVisible?'max-h-15 overflow-hidden':''}
+                        `}>
                         <div id="info-title-container" className="flex flex-row justify-between">
                             <h1 className="text-lg text-left text-element dark:text-element-dark mb-1">{t('Search.SimpleSearch.SearchOptionInfo.Title')}</h1>
                             <button type="button" onClick={handleInfoVisible}>
@@ -201,7 +213,10 @@ function SimpleSearch(){
                             </svg>
                             </button>
                         </div>
-                        <div id="info-content-container" className={`grid grid-cols-3 gap-2 ${(infoVisible)?'':'hidden'}`}>
+                        <div id="info-content-container" className={`grid grid-cols-3 gap-2
+                            transition-all duration-300 ease-out transform origin-top
+                            ${infoVisible?'opacity-100 scale-y-100 visible':''}
+                            ${!infoVisible?'opacity-0 scale-y-0 invisible':''}`}>
                             <h3 className="col-span-1">{t('Search.SimpleSearch.SearchOptionInfo.Default.Title')}</h3>
                             <p className="col-span-2">{t('Search.SimpleSearch.SearchOptionInfo.Default.Content')}</p>
 
