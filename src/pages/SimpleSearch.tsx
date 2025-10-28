@@ -4,19 +4,21 @@ import SearchBar from "../components/SearchBar";
 import Checkbox from "../components/Checkbox";
 import type { RhymeSearchOptionStates, SearchResultType } from "../types/types";
 import type { ChangeEvent } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import RhymeSearchResults from "../components/RhymeSearchResults";
 import { isHanji } from "../misc/misc";
 import SearchResultWordInfo from "../components/SearchResultWordInfo";
 function SimpleSearch(){
     const [t] = useTranslation();
+    const wordInfoRef =  useRef<HTMLDivElement>(null);
     const [optionsVisible, setOptionsVisible] = useState(true);
     const [infoVisible, setInfoVisible] = useState(false);
     const [submited, setSubmited] = useState(false);
     const [firstTimeSumbit, setFirstTimeSumbit] = useState(false);
     const [currentWordInfoParam, setCurrentWordInfoParam] = useState<{ lomaji: string; hanjiKip: string } | null>(null);
     const [showWordInfo, setShowWordInfo] = useState(false);
+    const [wordInfoExiting, setWordInfoExiting] = useState(false);
     const [getSearchOptionStates, setSearchOptionStates] = useState<RhymeSearchOptionStates>( {
         IgnoreNasalSound: false,
         SimilarVowel: false,
@@ -66,8 +68,7 @@ function SimpleSearch(){
     }
 
     const handleWordInfoClose = () => {
-        setShowWordInfo(false);
-        setCurrentWordInfoParam
+        setWordInfoExiting(true);
     }
 
     const handleSumbit = async (props: {keyword: string}) => {
@@ -135,6 +136,33 @@ function SimpleSearch(){
         setSubmited(false);
     }, [submited])
 
+    useEffect(()=>{
+        let timer: ReturnType<typeof setTimeout>;
+        if(wordInfoExiting){
+            timer = setTimeout(()=>{setShowWordInfo(false);setWordInfoExiting(false);setCurrentWordInfoParam(null);},200);
+        }
+        return ()=>{
+            if(timer){
+                clearTimeout(timer);
+            }
+        }
+    }, [wordInfoExiting]);
+
+    useEffect(()=>{
+        const handleClickOutside = (event: MouseEvent) => {
+            if (wordInfoRef.current && !wordInfoRef.current.contains(event.target as Node)) {
+                if(showWordInfo){
+                    handleWordInfoClose();
+                }
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [showWordInfo]);
+
     return(
         <>
             <Header/> 
@@ -200,8 +228,10 @@ function SimpleSearch(){
             </div>
             {currentWordInfoParam && showWordInfo &&
                 // Display Word Info fixed to the middle of the screen
-                <div className="font-[iansui] fixed inset-0 flex items-center justify-center overflow-y-auto p-2">
-                    <SearchResultWordInfo lomaji={currentWordInfoParam.lomaji} hanjiKip={currentWordInfoParam.hanjiKip} className="rounded-lg shadow-xl max-w-2xl w-full" onClose={handleWordInfoClose}/>
+                <div className={`font-[iansui] fixed inset-0 flex items-center justify-center overflow-y-auto p-2 
+                ${showWordInfo && !wordInfoExiting ? ' animate-enlarge' : ''}
+                ${showWordInfo && wordInfoExiting ? ' animate-shrink' : ''}`}>
+                    <SearchResultWordInfo ref={wordInfoRef} lomaji={currentWordInfoParam.lomaji} hanjiKip={currentWordInfoParam.hanjiKip} className="rounded-lg shadow-xl max-w-2xl w-full" onClose={handleWordInfoClose}/>
             </div>}
             <Footer className='text-sm text-element dark:text-element-dark bg-header dark:bg-header-dark w-full h-30 fixed lg:flex hidden bottom-0 border-1 border-infobd dark:border-infobd-dark' />
         </>

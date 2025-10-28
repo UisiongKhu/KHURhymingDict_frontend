@@ -85,5 +85,6 @@ export type SearchResultWordInfoType = {
     hanjiKip: string;
     hanjiClj?: string;
     className?: string;
+    ref?: React.Ref<HTMLDivElement>;
     onClose?: () => void;
 }

@@ -37,6 +37,31 @@
   --animate-fading-out: fading-out 0.2s ease-in forwards;
 }
 
+
+@theme {
+  @keyframes enlarge {
+    0% {
+      transform: scale(0);
+    }
+    100%{
+      transform: scale(1);
+    }
+  }
+  --animate-enlarge: enlarge 0.2s ease-out forwards;
+}
+
+@theme {
+  @keyframes shrink {
+    0% {
+      transform: scale(1);
+    }
+    100%{
+      transform: scale(0);
+    }
+  }
+  --animate-shrink: shrink 0.2s ease-in forwards;
+}
+
 @theme {
   /* 暗色模式 - Google Style */
   --color-header-dark: #303147;      /* Google Dark Mode 表面色，用於導航欄 */
