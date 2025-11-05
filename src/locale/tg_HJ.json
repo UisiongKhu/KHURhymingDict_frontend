@@ -182,6 +182,10 @@
                 "FetchFailed": "掠資料出重耽、請聯絡開發者。",
                 "WordNotFound": "尋無此个詞，請聯絡開發者。"
             }
+        },
+        "Loading": {
+            "DefaultText": "當塊尋……",
+            "SearchResultWordInfo": "當塊讀……"
         }
     }
 }

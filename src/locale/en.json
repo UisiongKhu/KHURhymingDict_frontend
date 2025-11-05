@@ -188,6 +188,10 @@
                 "FetchFailed": "Cannot Fetch Word Info, please contact the developer.",
                 "WordNotFound": "Word Not Found, please contact the developer."
             }
+        },
+        "Loading": {
+            "DefaultText": "Loading...",
+            "SearchResultWordInfo": "Loading..."
         }
     }
 }

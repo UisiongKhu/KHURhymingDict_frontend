@@ -88,3 +88,8 @@ export type SearchResultWordInfoType = {
     ref?: React.Ref<HTMLDivElement>;
     onClose?: () => void;
 }
+
+export type LoadingType = {
+    text?: string;
+    className?: string;
+}

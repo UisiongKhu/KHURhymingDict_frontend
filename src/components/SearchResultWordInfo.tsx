@@ -2,13 +2,14 @@ import { useTranslation } from "react-i18next";
 import type { SearchResultWordInfoType, Syllable } from "../types/types";
 import { getSyllableAmount, getToneNameHanji } from "../misc/misc";
 import { useEffect, useState } from "react";
+import Loading from "./Loading";
 
 function SearchResultWordInfo(props: SearchResultWordInfoType){
 
     const [t, i18n] = useTranslation();
     const [syllables, setSyllables] = useState<Syllable[]>([]);
     const [isSyllableExist, setIsSyllableExist] = useState<boolean>(false);
-
+    const [loading, setLoading] = useState<boolean>(true);
     const dataToSyllables = (data:any) => {
         const syllablesData =  data.wordLinks.map((link:any)=> link.syllable);
         return syllablesData.map((syllableData:any) => {
@@ -26,6 +27,7 @@ function SearchResultWordInfo(props: SearchResultWordInfoType){
 
 
     useEffect(() => {
+        setLoading(true);
         // Fetch Word Info
         const fetchWord = async () => {
             const apiUrl = import.meta.env.VITE_API_BASE_URL;
@@ -53,6 +55,7 @@ function SearchResultWordInfo(props: SearchResultWordInfoType){
             else{
                 alert("Cannot Fetch Word Info, please contact the developer.");
             }
+            setLoading(false);
         };
         fetchWord();
     },[]);
@@ -75,7 +78,8 @@ function SearchResultWordInfo(props: SearchResultWordInfoType){
             {/* Chit pha ài kái */}
             <p className="text-xl mb-2 text-end pe-5">{getSyllableAmount(props.lomaji)} {t("Components.SearchResultWordInfo.Syllable", {count: getSyllableAmount(props.lomaji)})}</p>
 
-            {isSyllableExist ? syllables?.map((syllable, index) => {
+            {isSyllableExist && loading && <Loading className="text-element dark:text-element-dark" text={t('Components.Loading.SearchResultWordInfo')} />}
+            {isSyllableExist && !loading ? syllables?.map((syllable, index) => {
                 return (
                     <div key={`syllable-container-${index}`} className="flex flex-col items-center mb-2">
                         <p key={`syllable-serial-${index}`} className="text-xl">{t("Components.SearchResultWordInfo.SyllableSerial")} {index + 1}</p>

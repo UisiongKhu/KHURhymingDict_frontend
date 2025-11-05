@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import RhymeSearchResults from "../components/RhymeSearchResults";
 import { isHanji } from "../misc/misc";
 import SearchResultWordInfo from "../components/SearchResultWordInfo";
+import Loading from "../components/Loading";
 function SimpleSearch(){
     const [t] = useTranslation();
     const wordInfoRef =  useRef<HTMLDivElement>(null);
@@ -30,6 +31,7 @@ function SimpleSearch(){
     const [keyword, setKeyword] = useState("");
     const [searchResults, setSearchResults] = useState(Array<SearchResultType>);
     const [getSearchBarInput, setSearchBarInput] = useState("");
+    const [resultsLoading, setResultsLoading] = useState(false);
     const keyofSearchOptionStates = Object.keys(getSearchOptionStates) as (keyof RhymeSearchOptionStates)[];
     const OptionsStringArray = t<'SearchBar.Homepage.Dropdown.Options', { returnObjects: true }, string[]>('SearchBar.Homepage.Dropdown.Options', { returnObjects: true }).map(v=>v);
     const getSearchBarDropdownOptions = () =>{
@@ -90,6 +92,7 @@ function SimpleSearch(){
 
     useEffect(()=>{
         const fetchResults = async () => {
+            setResultsLoading(true);
             if(submited){
                 // Call Rhyming API
                 const apiUrl = import.meta.env.VITE_API_BASE_URL;
@@ -130,6 +133,7 @@ function SimpleSearch(){
                     alert(t('SearchBar.SimpleSearch.Error.SearchFailed'));   
                 }
                 setInfoVisible(false);
+                setResultsLoading(false);
             }
         };
         fetchResults();
@@ -166,14 +170,14 @@ function SimpleSearch(){
     return(
         <>
             <Header/> 
-            <div className='h-content min-h-screen bg-main dark:bg-main-dark text-element dark:text-element-dark'>
+            <div className='h-content min-h-screen bg-main dark:bg-main-dark text-element dark:text-element-dark mb-30'>
                 <div className="flex flex-col justify-center">
                     <h1 className='self-center mt-10 font-[phiaute] text-5xl'>{t('Search.SimpleSearch.Title')}</h1>
                     <SearchBar label={t('SearchBar.SimpleSearch.Label')} input={getSearchBarInput} inputFunc={handleSearchBarInput} selectFunc={handleSearchBarSelect} placeholder={t('SearchBar.SimpleSearch.Placeholder')} options={getSearchBarDropdownOptions()} onClick={()=>handleSumbit({keyword: getSearchBarInput})} />
 
                     <div id="option-container" className={`font-[iansui] self-center mt-2 p-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-2 border-infobd dark:border-infobd-dark 
                         transition-all duration-200 ease-out transform origin-top
-                        ${(optionsVisible)?'max-h-100':''}
+                        ${(optionsVisible)?'max-h-fit':''}
                         ${!optionsVisible?'max-h-15 overflow-hidden':''}
                         `}>
                         <div id="option-title-container" className="flex flex-row justify-between">
@@ -202,7 +206,7 @@ function SimpleSearch(){
 
                     <div id="info-container" className={`font-[iansui] self-center mt-2 mb-2 p-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-2 border-infobd dark:border-infobd-dark
                         transition-all duration-200 ease-out transform origin-top
-                        ${(infoVisible)?'max-h-100':''}
+                        ${(infoVisible)?'max-h-fit':''}
                         ${!infoVisible?'max-h-15 overflow-hidden':''}
                         `}>
                         <div id="info-title-container" className="flex flex-row justify-between">
@@ -236,19 +240,22 @@ function SimpleSearch(){
                             <p className="col-span-2">{t('Search.SimpleSearch.SearchOptionInfo.SameTone.Content')}</p>
                         </div>
                     </div>
-                    {(firstTimeSumbit && searchResults.length>0) && 
-                    <RhymeSearchResults className={`font-[iansui] self-center border-2 mt-2 mb-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-infobd dark:border-infobd-dark`} results={searchResults} onWordInfoClick={handleWordInfoClick} />}
+                    {/* Show loading animation when fetching results */ }
+                    {firstTimeSumbit && resultsLoading && <Loading className="text-element dark:text-element-dark self-center" />}
+                    {/* Show results */}
+                    {(firstTimeSumbit && searchResults.length>0) && !resultsLoading &&
+                    <RhymeSearchResults className={`font-[iansui] self-center border-2 mt-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-infobd dark:border-infobd-dark mb-2`} results={searchResults} onWordInfoClick={handleWordInfoClick} />}
                     
                 </div>
             </div>
             {currentWordInfoParam && showWordInfo &&
                 // Display Word Info fixed to the middle of the screen
-                <div className={`font-[iansui] fixed inset-0 flex items-center justify-center overflow-y-auto p-2 
+                <div className={`font-[iansui] fixed inset-0 flex items-center justify-center overflow-y-auto p-2 z-50
                 ${showWordInfo && !wordInfoExiting ? ' animate-enlarge' : ''}
                 ${showWordInfo && wordInfoExiting ? ' animate-shrink' : ''}`}>
                     <SearchResultWordInfo ref={wordInfoRef} lomaji={currentWordInfoParam.lomaji} hanjiKip={currentWordInfoParam.hanjiKip} className="rounded-lg shadow-xl max-w-2xl w-full" onClose={handleWordInfoClose}/>
             </div>}
-            <Footer className='text-sm text-element dark:text-element-dark bg-header dark:bg-header-dark w-full h-30 fixed lg:flex hidden bottom-0 border-1 border-infobd dark:border-infobd-dark' />
+            <Footer className='text-sm text-element dark:text-element-dark bg-header dark:bg-header-dark w-full h-30 fixed lg:flex hidden bottom-0 border-1 border-infobd dark:border-infobd-dark z-30' />
         </>
     )
 }

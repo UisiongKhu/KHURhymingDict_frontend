@@ -19,6 +19,7 @@ function RhymeSearchResults(props: RhymeSearchResultsType){
             event.target.value = totalPages.toString();
             setCurrentPage(totalPages);
         }else if(value===""){
+            // Do nothing
         }else{
             alert("Please enter a valid page number between 1 and "+totalPages);
         }
