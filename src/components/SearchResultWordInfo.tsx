@@ -73,8 +73,8 @@ function SearchResultWordInfo(props: SearchResultWordInfoType){
                     </svg>
                 </button>
             </div>
-            <p className="text-4xl text-center"><b>{props.lomaji}</b></p>
-            <p className="text-5xl text-center"><b>{props.hanjiKip}</b></p>
+            <p className="text-xl md:text-4xl sm:text-2xl text-center"><b>{props.lomaji}</b></p>
+            <p className="text-2xl md:text-5xl sm:text-3xl text-center"><b>{props.hanjiKip}</b></p>
             {/* Chit pha ài kái */}
             <p className="text-xl mb-2 text-end pe-5">{getSyllableAmount(props.lomaji)} {t("Components.SearchResultWordInfo.Syllable", {count: getSyllableAmount(props.lomaji)})}</p>
 
@@ -83,15 +83,19 @@ function SearchResultWordInfo(props: SearchResultWordInfoType){
                 return (
                     <div key={`syllable-container-${index}`} className="flex flex-col items-center mb-2">
                         <p key={`syllable-serial-${index}`} className="text-xl">{t("Components.SearchResultWordInfo.SyllableSerial")} {index + 1}</p>
-                        <div key={`syllable-table-${index}`} className="grid w-3/4 grid-rows-6 grid-cols-4 border-2 border-infobd dark:border-infobd-dark">
-                            <p key={`syllable-content-${index}`} className="py-2 text-4xl text-center col-span-2 row-span-3 border-r-2 border-infobd dark:border-infobd-dark">{syllable.lomaji}</p>
-                            <p key={`syllable-vowel-title-${index}`} className="text-lg text-center ps-2 row-span-2 border-r-2 border-b-2 border-infobd dark:border-infobd-dark"><b>{`${t("Components.SearchResultWordInfo.Vowel")}`}</b></p>
-                            <p key={`syllable-vowel-data-${index}`} className="text-lg text-center ps-2 row-span-2 border-b-2 border-infobd dark:border-infobd-dark">{syllable.vowel}</p>
-                            <p key={`syllable-coda-title-${index}`} className="text-lg text-center ps-2 row-span-2 border-r-2 border-b-2 border-infobd dark:border-infobd-dark"><b>{`${t("Components.SearchResultWordInfo.Coda")}`}</b></p>
-                            <p key={`syllable-coda-data-${index}`} className="text-lg text-center ps-2 row-span-2 border-b-2 border-infobd dark:border-infobd-dark">{syllable.coda}</p>
-                            <p key={`syllable-content-${index}`} className="text-4xl text-center col-span-2 row-span-3 border-r-2 border-infobd dark:border-infobd-dark">{syllable.hanjiKip}</p>
-                            <p key={`syllable-tone-title-${index}`} className="text-lg text-center ps-2 row-span-2 border-r-2 border-infobd dark:border-infobd-dark"><b>{`${t("Components.SearchResultWordInfo.Tone")}`}</b></p>
-                            <p key={`syllable-tone-data-${index}`} className="text-lg text-center ps-2 row-span-2 border-infobd dark:border-infobd-dark">{i18n.language==="tg_HJ" && getToneNameHanji(syllable.tone) } {syllable.tone}</p>
+                        <div key={`syllable-table-${index}`} className="grid w-3/4 grid-rows-1 grid-cols-[1fr_2fr] sm:grid-cols-[1fr_1fr] border-2 border-infobd dark:border-infobd-dark">
+                            <div key={`syllable-content-table-${index}`} className="grid grid-rows-2 grid-cols-1">
+                                <p key={`syllable-content-lomaji-${index}`} className="text-xl sm:text-3xl py-2 text-center border-r-2 border-infobd dark:border-infobd-dark">{syllable.lomaji}</p>
+                                <p key={`syllable-content-hanji-${index}`} className="text-3xl sm:text-4xl text-center border-r-2 border-infobd dark:border-infobd-dark">{syllable.hanjiKip}</p>
+                            </div>
+                            <div key={`syllable-info-table-${index}`} className="grid grid-rows-3 grid-cols-[2fr_1fr]">
+                                <p key={`syllable-vowel-title-${index}`} className="text-center border-r-2 border-b-2 border-infobd dark:border-infobd-dark"><b>{`${t("Components.SearchResultWordInfo.Vowel")}`}</b></p>
+                                <p key={`syllable-vowel-data-${index}`} className="text-center border-b-2 border-infobd dark:border-infobd-dark">{syllable.vowel}</p>
+                                <p key={`syllable-coda-title-${index}`} className="text-center border-r-2 border-b-2 border-infobd dark:border-infobd-dark"><b>{`${t("Components.SearchResultWordInfo.Coda")}`}</b></p>
+                                <p key={`syllable-coda-data-${index}`} className="text-center border-b-2 border-infobd dark:border-infobd-dark">{syllable.coda}</p>
+                                <p key={`syllable-tone-title-${index}`} className="text-center border-r-2 border-infobd dark:border-infobd-dark"><b>{`${t("Components.SearchResultWordInfo.Tone")}`}</b></p>
+                                <p key={`syllable-tone-data-${index}`} className="text-center border-infobd dark:border-infobd-dark">{i18n.language==="tg_HJ" && getToneNameHanji(syllable.tone) } {syllable.tone}</p>
+                            </div>
                         </div>
                     </div>
                 );

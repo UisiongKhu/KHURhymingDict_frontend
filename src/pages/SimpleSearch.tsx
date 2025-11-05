@@ -250,10 +250,10 @@ function SimpleSearch(){
             </div>
             {currentWordInfoParam && showWordInfo &&
                 // Display Word Info fixed to the middle of the screen
-                <div className={`font-[iansui] fixed inset-0 flex items-center justify-center overflow-y-auto p-2 z-50
+                <div className={`font-[iansui] fixed inset-0 flex self-center  items-center justify-center overflow-y-auto p-2 z-50
                 ${showWordInfo && !wordInfoExiting ? ' animate-enlarge' : ''}
                 ${showWordInfo && wordInfoExiting ? ' animate-shrink' : ''}`}>
-                    <SearchResultWordInfo ref={wordInfoRef} lomaji={currentWordInfoParam.lomaji} hanjiKip={currentWordInfoParam.hanjiKip} className="rounded-lg shadow-xl max-w-2xl w-full" onClose={handleWordInfoClose}/>
+                    <SearchResultWordInfo ref={wordInfoRef} lomaji={currentWordInfoParam.lomaji} hanjiKip={currentWordInfoParam.hanjiKip} className="rounded-lg shadow-xl sm:max-w-2xl max-w-lg sm:w-full w-5/6" onClose={handleWordInfoClose}/>
             </div>}
             <Footer className='text-sm text-element dark:text-element-dark bg-header dark:bg-header-dark w-full h-30 fixed lg:flex hidden bottom-0 border-1 border-infobd dark:border-infobd-dark z-30' />
         </>
