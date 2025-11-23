@@ -21,11 +21,11 @@ function SimpleSearch(){
     const [showWordInfo, setShowWordInfo] = useState(false);
     const [wordInfoExiting, setWordInfoExiting] = useState(false);
     const [getSearchOptionStates, setSearchOptionStates] = useState<RhymeSearchOptionStates>( {
-        IgnoreNasalSound: false,
-        SimilarVowel: false,
-        IgnoreFinalSound: false,
-        SameArticulationPart: false,
-        SameTone: false,
+        IgnoreNasalSound: localStorage.getItem('IgnoreNasalSound')==='true' || false,
+        SimilarVowel: localStorage.getItem('SimilarVowel')==='true' || false,
+        IgnoreFinalSound: localStorage.getItem('IgnoreFinalSound')==='true' || false,
+        SameArticulationPart: localStorage.getItem('SameArticulationPart')==='true' || false,
+        SameTone: localStorage.getItem('SameTone')==='true' || false,
     });
     const [rhymingSyllableCount, setRhymingSyllableCount] = useState(1);
     const [keyword, setKeyword] = useState("");
@@ -77,6 +77,7 @@ function SimpleSearch(){
         if(!firstTimeSumbit) setFirstTimeSumbit(true);
         if(props.keyword === undefined || props.keyword === ""){
             alert(t('SearchBar.ErrorMessage.Empty'));
+            setResultsLoading(false);
         }else{
             setSubmited(true);
             setKeyword(props.keyword);
@@ -85,6 +86,11 @@ function SimpleSearch(){
 
     useEffect(()=>{
         console.log(`new state: ${JSON.stringify(getSearchOptionStates)}`)
+        localStorage.setItem('IgnoreNasalSound', getSearchOptionStates.IgnoreNasalSound.toString());
+        localStorage.setItem('SimilarVowel', getSearchOptionStates.SimilarVowel.toString());
+        localStorage.setItem('IgnoreFinalSound', getSearchOptionStates.IgnoreFinalSound.toString());
+        localStorage.setItem('SameArticulationPart', getSearchOptionStates.SameArticulationPart.toString());
+        localStorage.setItem('SameTone', getSearchOptionStates.SameTone.toString());
     },[getSearchOptionStates])
 
     useEffect(()=>{
@@ -124,12 +130,16 @@ function SimpleSearch(){
                     setSearchResults(result);
                     if(result.length===0){
                         setOptionsVisible(true);
+                        setResultsLoading(false);
+                        setSearchResults([]);
                         alert(t('SearchBar.SimpleSearch.Error.NoResult'));   
                     }else{
                         setOptionsVisible(false);
                     }
                 }else{
+                    setResultsLoading(false);
                     setOptionsVisible(true);
+                    setSearchResults([]);
                     alert(t('SearchBar.SimpleSearch.Error.SearchFailed'));   
                 }
                 setInfoVisible(false);
@@ -173,7 +183,7 @@ function SimpleSearch(){
             <div className='h-content min-h-screen bg-main dark:bg-main-dark text-element dark:text-element-dark mb-30'>
                 <div className="flex flex-col justify-center">
                     <h1 className='self-center mt-10 font-[phiaute] text-5xl'>{t('Search.SimpleSearch.Title')}</h1>
-                    <SearchBar label={t('SearchBar.SimpleSearch.Label')} input={getSearchBarInput} inputFunc={handleSearchBarInput} selectFunc={handleSearchBarSelect} placeholder={t('SearchBar.SimpleSearch.Placeholder')} options={getSearchBarDropdownOptions()} onClick={()=>handleSumbit({keyword: getSearchBarInput})} />
+                    <SearchBar className="w-full px-5 self-center" label={t('SearchBar.SimpleSearch.Label')} input={getSearchBarInput} inputFunc={handleSearchBarInput} selectFunc={handleSearchBarSelect} placeholder={t('SearchBar.SimpleSearch.Placeholder')} options={getSearchBarDropdownOptions()} onClick={()=>handleSumbit({keyword: getSearchBarInput})} />
 
                     <div id="option-container" className={`font-[iansui] self-center mt-2 p-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-2 border-infobd dark:border-infobd-dark 
                         transition-all duration-200 ease-out transform origin-top
@@ -194,13 +204,13 @@ function SimpleSearch(){
                             ${!optionsVisible?'opacity-0 scale-y-0 invisible':''}
                         `}>
                             <h2>{t('Search.SimpleSearch.SearchOption.SubTitle.Nucleus')}</h2><br/>
-                                <Checkbox checkboxId="cbNasalSound" label={t('Search.SimpleSearch.SearchOption.NasalSound')} onChangeFunc={handleChecked} />
-                                <Checkbox checkboxId="cbSimilarVowel" label={t('Search.SimpleSearch.SearchOption.SimilarVowel')} onChangeFunc={handleChecked}/>
+                                <Checkbox checkboxId="cbIgnoreNasalSound" label={t('Search.SimpleSearch.SearchOption.NasalSound')} onChangeFunc={handleChecked} checked={getSearchOptionStates.IgnoreNasalSound} />
+                                <Checkbox checkboxId="cbSimilarVowel" label={t('Search.SimpleSearch.SearchOption.SimilarVowel')} onChangeFunc={handleChecked} checked={getSearchOptionStates.SimilarVowel} />
                             <h2>{t('Search.SimpleSearch.SearchOption.SubTitle.Coda')}</h2><br/>
-                                <Checkbox checkboxId="cbIgnoreFinalSound" label={t('Search.SimpleSearch.SearchOption.IgnoreFinalSound')} onChangeFunc={handleChecked}/>
-                                <Checkbox checkboxId="cbSameArticulationPart" label={t('Search.SimpleSearch.SearchOption.SameArticulationPart')} onChangeFunc={handleChecked}/>
+                                <Checkbox checkboxId="cbIgnoreFinalSound" label={t('Search.SimpleSearch.SearchOption.IgnoreFinalSound')} onChangeFunc={handleChecked} checked={getSearchOptionStates.IgnoreFinalSound} />
+                                <Checkbox checkboxId="cbSameArticulationPart" label={t('Search.SimpleSearch.SearchOption.SameArticulationPart')} onChangeFunc={handleChecked} checked={getSearchOptionStates.SameArticulationPart} />
                             <h2>{t('Search.SimpleSearch.SearchOption.SubTitle.Tone')}</h2><br/>
-                                <Checkbox checkboxId="cbSameTone" label={t('Search.SimpleSearch.SearchOption.SameTone')} onChangeFunc={handleChecked}/>
+                                <Checkbox checkboxId="cbSameTone" label={t('Search.SimpleSearch.SearchOption.SameTone')} onChangeFunc={handleChecked} checked={getSearchOptionStates.SameTone} />
                         </div>
                     </div>
 
