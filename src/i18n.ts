@@ -4,6 +4,12 @@ import LocaleFileEN from './locale/en.json';
 import LocaleFileTGPOJ from './locale/tg_POJ.json';
 import LocaleFileTGHJ from './locale/tg_HJ.json';
 
+const localeList = ['en','tg_POJ','tg_HJ'];
+var savedLocale = localStorage.getItem('locale');
+if(savedLocale===null || !localeList.includes(savedLocale)){
+  savedLocale='tg_POJ';
+}
+
 i18n
   .use(initReactI18next) // 把 i18n 實例傳入 react-i18next
   .init({
@@ -19,7 +25,7 @@ i18n
         translation: LocaleFileTGHJ,
       }
     },
-    lng: 'tg_POJ', // 預設語言 (Ū-siat Gí-giân)
+    lng: savedLocale, // 預設語言 (Ū-siat Gí-giân)
     fallbackLng: 'en', // 當預設語言無找到翻譯時，會回退到這个語言 (Tng ū-siat gí-giân bô chhōe-tio̍h hoan-e̍k sî, ē tòe-thè kàu chit ê gí-giân)
 
     interpolation: {

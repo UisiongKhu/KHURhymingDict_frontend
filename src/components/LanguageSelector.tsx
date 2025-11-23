@@ -12,6 +12,7 @@ function LanguageSelector(props: _props){
     const handleLanguageSelected = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedLocaleCode = event.target.value;
         i18n.changeLanguage(selectedLocaleCode);
+        localStorage.setItem('locale',selectedLocaleCode);
     }
     const LanguageArr = t<'Components.LanguageSelector.LanguageOptions', { returnObjects: true }, string[]>('Components.LanguageSelector.LanguageOptions', { returnObjects: true }).map(v=>v);
     const getLanguageOptionElements = ()=>{
