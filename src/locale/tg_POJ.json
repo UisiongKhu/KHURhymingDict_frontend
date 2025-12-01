@@ -1,7 +1,26 @@
 {
     "Homepage":  {
         "Header": {
-            "Title": "KÀI HÓ ŪN"
+            "Title": "KÀI HÓ ŪN 介好韻"
+        },
+        "Title": "KÀI HÓ ŪN AH ŪN SÛ TIÁN",
+        "Brief": "Kài Hó Ūn sī chi̍t ê hō͘ lán thang chhiau ah ūn sû ê ke si<br/>Bô lūn sī beh siá koa, siá si a̍h sī jīm hô ē ah ūn ê Tâi gí bûn chok phín lóng thang kā lí pang chān!",
+        "SearchButton": "Lâi khì chhōe!",
+        "Stat": {
+            "Title": "Thóng kè chu liāu",
+            "UserVisited": "Kàu chām jîn sò͘",
+            "RhymeSearched": "Chhiau chhōe kúi pái",
+            "SyllableAmount": "Jī ê chóng sò͘",
+            "WordAmount": "Sû lūi chóng sò͘",
+            "DataSourceAmount": "Chu liāu chúi thâu"
+        },
+        "Contact": {
+            "Title": "Kā goán liân lo̍k",
+            "AuthorEmailText": "Chok chiá ê phoe tháng:"
+        },
+        "DataSource": {
+            "Title": "Chu liāu ê chúi thâu",
+            "ChhoeTaigiDatabase": "ChhoeTaigi：Tâi gí Jī sû Chu liāu khò͘"
         }
     },
     "Rhymes": {
@@ -9,7 +28,7 @@
     },
     "Search": {
         "SimpleSearch": {
-            "Title": "KÁN TAN CHHŌE",
+            "Title": "CHHŌE HÓ ŪN",
             "SearchOption": {
                 "Title": "Chhiau chhōe ê siat tēng",
                 "SubTitle": {
@@ -120,22 +139,14 @@
     },
     "SideMenu": {
         "PageNameList": [
-            "Siāu kài ia̍h",
             "Chú ia̍h",
             "Jī ūn chóng lám",
-            "Kán tan chhōe",
-            "Siông sè chhōe",
-            "Lāu ōe pang",
-            "Liân lo̍k pang"
+            "Chhōe hó ūn"
         ],
         "PageLinkList": [
-            "/introduction",
             "/",
             "/chonglam",
-            "/search",
-            "/search/detail",
-            "/forum",
-            "/contactUs"
+            "/search"
         ]
     },
     "Components": {

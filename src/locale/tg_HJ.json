@@ -2,6 +2,25 @@
     "Homepage":  {
         "Header": {
             "Title": "KÀI HÓ ŪN 介好韻"
+        },
+        "Title": "介好韻押韻詞典",
+        "Brief": "介好韻是一个互咱窗超押韻詞个家私<br/>無論是卜寫歌．寫詩曷是任何會押韻个台語文作品朗窗共汝幫賛！",
+        "SearchButton": "來去尋",
+        "Stat": {
+            "Title": "統計資料",
+            "UserVisited": "到站人數",
+            "RhymeSearched": "超尋幾擺",
+            "SyllableAmount": "字个總數",
+            "WordAmount": "詞彙總數",
+            "DataSourceAmount": "資料水頭"
+        },
+        "Contact": {
+            "Title": "共阮聯絡",
+            "AuthorEmailText": "作者个批桶："
+        },
+        "DataSource": {
+            "Title": "資料个水頭",
+            "ChhoeTaigiDatabase": "ChhoeTaigi：台語字詞資料庫"
         }
     },
     "Rhymes": {
@@ -9,7 +28,7 @@
     },
     "Search": {
         "SimpleSearch": {
-            "Title": "簡單尋",
+            "Title": "尋好韻",
             "SearchOption": {
                 "Title": "超尋个設定",
                 "SubTitle": {
@@ -120,22 +139,14 @@
     },
     "SideMenu": {
         "PageNameList": [
-            "紹介頁",
             "主頁",
             "字韻總覽",
-            "簡單尋",
-            "詳細尋",
-            "留話枋",
-            "聯絡枋"
+            "尋好韻"
         ],
         "PageLinkList": [
-            "/introduction",
             "/",
             "/chonglam",
-            "/search",
-            "/search/detail",
-            "/forum",
-            "/contactUs"
+            "/search"
         ]
     },
     "Components": {

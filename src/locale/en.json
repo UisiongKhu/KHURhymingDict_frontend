@@ -2,6 +2,25 @@
     "Homepage":  {
         "Header": {
             "Title": "KÀI HÓ ŪN Rhyming Dict."
+        },
+        "Title": "KÀI HÓ ŪN Rhyming Dictionary",
+        "Brief": "Kài Hó Ūn is a Taiwanese rhyming dictionary<br/>It's a tool that allows us to look up rhyming words.<br/>It can help you with writing songs, poetry, or any Taiwanese literary work that requires rhymes!",
+        "SearchButton": "HIT THE RHYME!",
+        "Stat": {
+            "Title": "Statistic",
+            "UserVisited": "User Visited",
+            "RhymeSearched": "Rhyme Searched",
+            "SyllableAmount": "Syllable Amount",
+            "WordAmount": "Word Amount",
+            "DataSourceAmount": "Data Source Amount"
+        },
+        "Contact": {
+            "Title": "Contact Us",
+            "AuthorEmailText": "E-mail address of the author:"
+        },
+        "DataSource": {
+            "Title": "Data Source",
+            "ChhoeTaigiDatabase": "ChhoeTaigi Taiwanese Database"
         }
     },
     "Rhymes": {
@@ -9,7 +28,7 @@
     },
     "Search": {
         "SimpleSearch": {
-            "Title": "Simple Search",
+            "Title": "Search Rhyming Words",
             "SearchOption": {
                 "Title": "Search Options",
                 "SubTitle": {
@@ -100,7 +119,7 @@
         },
         "SimpleSearch": {
             "Label": "Let's hit the rhymes",
-            "Placeholder": "Enter the syllable or word you want to rhyme",
+            "Placeholder": "Enter an word",
             "Dropdown": {
                 "Options": [
                     "1 Word",
@@ -125,22 +144,14 @@
     },
     "SideMenu": {
         "PageNameList": [
-            "Introduction Page",
             "Homepage",
             "Rhyme List",
-            "Simple Search",
-            "Detail Search",
-            "Forum",
-            "Contact Us"
+            "Hit The Rhymes"
         ],
         "PageLinkList": [
-            "/introduction",
             "/",
             "/chonglam",
-            "/search",
-            "/search/detail",
-            "/forum",
-            "/contactUs"
+            "/search"
         ]
     },
     "Components": {
