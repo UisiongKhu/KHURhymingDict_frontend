@@ -21,6 +21,13 @@
         "DataSource": {
             "Title": "Chu liāu ê chúi thâu",
             "ChhoeTaigiDatabase": "ChhoeTaigi：Tâi gí Jī sû Chu liāu khò͘"
+        },
+        "News": {
+            "Title": "Siau sit",
+            "Table": {
+                "Title": "Phiau tê",
+                "Date": "Ji̍t kî"
+            }
         }
     },
     "Rhymes": {

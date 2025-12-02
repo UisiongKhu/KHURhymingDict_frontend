@@ -21,6 +21,13 @@
         "DataSource": {
             "Title": "Data Source",
             "ChhoeTaigiDatabase": "ChhoeTaigi Taiwanese Database"
+        },
+        "News": {
+            "Title": "News",
+            "Table": {
+                "Title": "Title",
+                "Date": "Date"
+            }
         }
     },
     "Rhymes": {

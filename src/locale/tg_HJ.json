@@ -21,6 +21,13 @@
         "DataSource": {
             "Title": "資料个水頭",
             "ChhoeTaigiDatabase": "ChhoeTaigi：台語字詞資料庫"
+        },
+        "News": {
+            "Title": "消息",
+            "Table": {
+                "Title": "標題",
+                "Date": "日期"
+            }
         }
     },
     "Rhymes": {
