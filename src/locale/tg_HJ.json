@@ -28,6 +28,18 @@
                 "Title": "標題",
                 "Date": "日期"
             }
+        },
+        "Tutorial": {
+            "Title": "安盞用",
+            "Brief": "鳥鼠標仔指 UI 个一項、就會展伊个說明。",
+            "Tooltip": {
+                "SearchBar": "治遮輸入字詞、市揤仔着會開始超尋押韻詞。",
+                "IgnoreNasalSound": "有鼻音無不論、若韻腹有仝着凖算。例：「山/soaⁿ」字甲「沙/soa」字算有押韻。",
+                "SimilarVowel": "會尋韻腹相瓦个字。",
+                "IgnoreFinalSound": "不管韻尾是省乜音、韻腹有仝着凖算。",
+                "SameArticulationPart": "若韻尾个呼音部位相仝着凖算。例：「新/sin」字甲「翼/si̍t」字算有押韻。",
+                "SameTone": "聲調愛仝即有凖算、一字無仝着無算。例：「押韻/ah ūn」甲「拍翸/phah phún」無算押韻。"
+            }
         }
     },
     "Rhymes": {

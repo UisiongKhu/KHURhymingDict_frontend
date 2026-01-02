@@ -28,6 +28,18 @@
                 "Title": "Title",
                 "Date": "Date"
             }
+        },
+        "Tutorial": {
+            "Title": "How to Use",
+            "Brief": "Put the cursor on any component to show the description of it.",
+            "Tooltip": {
+                "SearchBar": "Enter a word or syllable here, then click the button to search for rhyming words.",
+                "IgnoreNasalSound": "When selected, it will search all the words that rhyming with the keyword, ignoring they are nasal or not. Take \"soaⁿ\" and \"soa\" as an example, it will be consider as a rhyming pair of words.",
+                "SimilarVowel": "When selected, it will search all the words with similar vowel(s).",
+                "IgnoreFinalSound": "When selected, it will search all the words that rhyming with the keyword, ignoring the final sound (coda).",
+                "SameArticulationPart": "When selected, it will search all the words that rhyming with the keyword, as long as they have the same part of articulation. Take \"sin\" and \"si̍t\" as an example, it will be consider as a rhyming pair of words.",
+                "SameTone": "When selected, it will filter the words that have different tone. Take \"ah ūn\" and \"phah phún\" as an example, it will no longer consider as rhymed word because they have different tone."
+            }
         }
     },
     "Rhymes": {

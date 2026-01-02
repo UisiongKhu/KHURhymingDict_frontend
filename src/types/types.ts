@@ -11,6 +11,7 @@ export type RhymeCardType = {
     note?: string;    
 }
 export type SearchBarType = {
+    id?: string;
     className?: string;
     label: string;
     placeholder: string;
@@ -20,6 +21,8 @@ export type SearchBarType = {
     inputFunc?: (event: ChangeEvent<HTMLInputElement>) => void;
     selectFunc?: (event: ChangeEvent<HTMLSelectElement>) => void;
     onClick?: (json: object) => void;
+    onFocus?: (event: React.FocusEvent<HTMLElement>) => void;
+    onMouseEnter?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 export type CheckboxType = {
     className?: string;

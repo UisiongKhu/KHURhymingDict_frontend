@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Iansui&display=swap');
 @import 'tailwindcss';
 
+
 @theme {
   @keyframes fading-in {
     0% {
@@ -108,4 +109,22 @@
   font-weight: normal;
   font-display: swap;
   src: url("../assets/fonts/poj-Garamond08-Italic.otf") format("opentype");
+}
+
+.tooltip {
+  border: 3px solid var(--color-header);
+}
+
+.tooltip-arrow {
+  border-right: 1px solid var(--color-header);
+  border-bottom: 1px solid var(--color-header);
+}
+
+.tooltip-arrow-dark {
+  border-right: 1px solid var(--color-header-dark);
+  border-bottom: 1px solid var(--color-header-dark);
+}
+
+.tooltip-dark {
+  border: 3px solid var(--color-header-dark);
 }

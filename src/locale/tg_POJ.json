@@ -28,6 +28,18 @@
                 "Title": "Phiau tê",
                 "Date": "Ji̍t kî"
             }
+        },
+        "Tutorial": {
+            "Title": "An chóaⁿ iōng",
+            "Brief": "Niáu chhí phiau á kí UI ê chi̍t hāng, tio̍h ē tián i ê soeh bêng.",
+            "Tooltip": {
+                "SearchBar": "Tī chia su ji̍p jī sû, chhi̍h ji̍h á tio̍h ē khai sí chhiau chhōe ah ūn sû.",
+                "IgnoreNasalSound": "Ū phīⁿ im ‧bô put lūn, nā ūn pak ū kâng to̍h chún sǹg. Lē. Soaⁿ ‧jī kap soa ‧jī sǹg ū ah ūn.",
+                "SimilarVowel": "Ē chhōe ūn pak sio óa ê jī.",
+                "IgnoreFinalSound": "M̄ koán ūn bóe sī siáⁿ mi̍h im, ūn pak ū kâng to̍h chún sǹg.",
+                "SameArticulationPart": "Nā ūn bóe ê ho͘ im pō͘ ūi sio kâng to̍h chún sǹg. Lē. Sin ‧jī kap si̍t ‧jī sǹg ū ah ūn.",
+                "SameTone": "Siaⁿ tiāu ài kâng chiah ū chún sǹg, nā ūn pak sio kâng to̍h chún sǹg. Lē. \"Ah ūn\" kap \"phah phún\" bô sǹg ah ūn."
+            }
         }
     },
     "Rhymes": {
