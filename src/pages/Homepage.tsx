@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { to10KCommaString } from '../misc/misc';
 import SearchBar from '../components/SearchBar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Checkbox from '../components/Checkbox';
 import { Tooltip } from 'react-tooltip';
 
@@ -14,6 +14,13 @@ function Homepage(){
     const isLocaleHanji = i18n.language === 'tg_HJ';
     const [getSearchBarInput, setSearchBarInput] = useState("");
     const [optionsVisible, setOptionsVisible] = useState(true);
+    const [homepageStats, setHomepageStats] = useState({
+        totalVisitors: 0,
+        searchCounter: 0,
+        syllableCounter: 0,
+        wordCounter: 0,
+        dataSourceAmount: 0,
+    });
     const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const OptionsStringArray = t<'SearchBar.Homepage.Dropdown.Options', { returnObjects: true }, string[]>('SearchBar.Homepage.Dropdown.Options', { returnObjects: true }).map(v=>v);
     const handleSearchBarInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,6 +34,28 @@ function Homepage(){
     const handleOptionVisible = () => {
         setOptionsVisible(!optionsVisible);
     }
+
+    // Ùi Statistics API the̍h Thâu ia̍h ê thóng kè chu liāu
+    const apiUrl = import.meta.env.VITE_API_BASE_URL;
+    useEffect(()=>{
+        const fetchHomepageStats = async () => {
+            try {
+                const statistics = await fetch(`${apiUrl}/statistics/homepage`, {
+                    method: 'GET',
+                });
+                const statsData = await statistics.json();
+                // Tī chia ē-sái chhú lí statsData
+                setHomepageStats(statsData);
+                console.log('Homepage statistics data:', homepageStats);
+            } catch (e) {
+                console.log('Error fetching homepage statistics:', e);
+            }
+        }
+        fetchHomepageStats();
+    },[]);
+    useEffect(()=> {}, [homepageStats]);
+
+
     // Chit ia̍h bô footer, in ūi footer ê mih á tī chia lóng ū khǹg.
 
     return(
@@ -116,15 +145,15 @@ function Homepage(){
                             <p className='my-5 font-[phiaute] text-3xl'>{t('Homepage.Stat.Title')}</p>
                             <div id='stat-data-container' className={`grid grid-cols-2 grid-rows-5 bg-header dark:bg-header-dark rounded-xl p-5 font-[phiaute] ${isLocaleHanji?"text-2xl":"text-3xl"}`}>
                                 <p>{t('Homepage.Stat.UserVisited')}</p>
-                                <p className='text-end'>{to10KCommaString(12345)}</p>
+                                <p className='text-end'>{to10KCommaString(homepageStats.totalVisitors)}</p>
                                 <p>{t('Homepage.Stat.RhymeSearched')}</p>
-                                <p className='text-end'>1,2345</p>
+                                <p className='text-end'>{to10KCommaString(homepageStats.searchCounter)}</p>
                                 <p>{t('Homepage.Stat.SyllableAmount')}</p>
-                                <p className='text-end'>{to10KCommaString(5125)}</p>
+                                <p className='text-end'>{to10KCommaString(homepageStats.syllableCounter)}</p>
                                 <p>{t('Homepage.Stat.WordAmount')}</p>
-                                <p className='text-end'>2134,1234</p>
+                                <p className='text-end'>{to10KCommaString(homepageStats.wordCounter)}</p>
                                 <p>{t('Homepage.Stat.DataSourceAmount')}</p>
-                                <p className='text-end'>12</p>
+                                <p className='text-end'>{to10KCommaString(homepageStats.dataSourceAmount)}</p>
                             </div>
                         </div>
                         <div id='data-sources-container' className='md:w-1/2 sm:w-full p-4'>
