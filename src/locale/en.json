@@ -27,7 +27,8 @@
             "Table": {
                 "Title": "Title",
                 "Date": "Date"
-            }
+            },
+            "NoAnnouncement": "No announcement available."
         },
         "Tutorial": {
             "Title": "How to Use",
@@ -120,6 +121,16 @@
     "Forum": {
         "Title": "Forum",
         "Content": "Talks about rhymes and shit."
+    },
+    "Announcement": {
+        "Exit": "Back",
+        "Published": "Published",
+        "LastUpdated": "Last Updated",
+        "NotFound": {
+            "Title": "Announcement not found",
+            "Brief": "Can't find the announcement, please check the number of the announcement or contact the developer."   
+        },
+        "BackToList": "Back to previous page"
     },
     "SearchBar":{
         "ErrorMessage": {

@@ -118,6 +118,16 @@
         "Title": "留話枋",
         "Content": "講好韻、拍納涼"
     },
+    "Announcement": {
+        "Exit": "返去頭前許頁",
+        "Published": "發布日",
+        "LastUpdated": "上尾編輯日",
+        "NotFound": {
+            "Title": "尋無公告",
+            "Brief": "請檢查公告个番號曷是共開發者志接。"
+        },
+        "BackToList": "返去頭前許頁"
+    },
     "SearchBar":{
         "ErrorMessage": {
             "Empty": "超尋欄袂用得空空"

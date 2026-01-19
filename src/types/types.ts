@@ -96,3 +96,18 @@ export type LoadingType = {
     text?: string;
     className?: string;
 }
+
+export type HomepageAnnouncementTitleType = {
+    id: number;
+    title: string;
+    createdAt: Date;
+}
+
+export type Announcement = {
+    id: number;
+    title: string;
+    content: string;
+    createdAt: Date;
+    updatedAt?: Date;
+    isFalse?: boolean;
+}

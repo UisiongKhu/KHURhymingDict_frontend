@@ -6,6 +6,8 @@ import SearchBar from '../components/SearchBar';
 import { useEffect, useState } from 'react';
 import Checkbox from '../components/Checkbox';
 import { Tooltip } from 'react-tooltip';
+import type { HomepageAnnouncementTitleType } from '../types/types';
+import HomepageAnnouncementTitle from '../components/HomepageAnnouncementTitle';
 
 function Homepage(){     
 
@@ -21,6 +23,7 @@ function Homepage(){
         wordCounter: 0,
         dataSourceAmount: 0,
     });
+    const [announcementData, setAnnouncementData] = useState<HomepageAnnouncementTitleType[]>([]);
     const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const OptionsStringArray = t<'SearchBar.Homepage.Dropdown.Options', { returnObjects: true }, string[]>('SearchBar.Homepage.Dropdown.Options', { returnObjects: true }).map(v=>v);
     const handleSearchBarInput = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,7 +54,19 @@ function Homepage(){
                 console.log('Error fetching homepage statistics:', e);
             }
         }
+        const fetchAnnouncement = async () => {
+            try {
+                const _announcementData = await fetch(`${apiUrl}/announcement`, {
+                    method: 'GET',
+                }).then(res => res.json());
+                setAnnouncementData(_announcementData);
+                console.log('Homepage announcement data:', _announcementData);
+            } catch (e) {
+                console.log('Error fetching homepage announcement titles:', e);
+            }
+        }
         fetchHomepageStats();
+        fetchAnnouncement();
     },[]);
     useEffect(()=> {}, [homepageStats]);
 
@@ -109,7 +124,7 @@ function Homepage(){
                                                 <Checkbox checkboxId="cbSameTone" label={t('Search.SimpleSearch.SearchOption.SameTone')} />
                                         </div>
                                         <Tooltip anchorSelect='.tutorial-searchbar' place='left' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.SearchBar')}</Tooltip>
-                                        <Tooltip id="cbIgnoreNasalSound" place='left' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.IgnoreNasalSound')}</Tooltip>
+                                        <Tooltip id="cbIgnoreNasalSound" place='left-end' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.IgnoreNasalSound')}</Tooltip>
                                         <Tooltip id="cbSimilarVowel" place='right' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.SimilarVowel')}</Tooltip>
                                         <Tooltip id="cbIgnoreFinalSound" place='left' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.IgnoreFinalSound')}</Tooltip>
                                         <Tooltip id="cbSameArticulationPart" place='right' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.SameArticulationPart')}</Tooltip>
@@ -128,14 +143,10 @@ function Homepage(){
                                         <th className={`w-1/4 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('Homepage.News.Table.Date')}</th>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td className='border-e-2 border-header dark:border-header-dark text-center ps-2'>Kin á ji̍t ài chhì giām</td>
-                                            <td className='text-center'>25.12.2</td>
-                                        </tr>
-                                        <tr>
-                                            <td className='border-e-2 border-header dark:border-header-dark text-center ps-2'>Bîn á chài mā ài chhì giām</td>
-                                            <td className='text-center'>25.12.3</td>
-                                        </tr>
+                                        {announcementData.length === 0 && <HomepageAnnouncementTitle id={-1} title={t('Homepage.News.NoAnnouncement')} createdAt={new Date()}/>}
+                                        {announcementData.map((announcementTitle)=>{
+                                            return(<HomepageAnnouncementTitle key={`announcement-${announcementTitle.id}`} id={announcementTitle.id} title={announcementTitle.title} createdAt={new Date(announcementTitle.createdAt)}/>)
+                                        })}
                                     </tbody>
                                 </table>
                             </div>

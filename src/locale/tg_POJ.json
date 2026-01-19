@@ -118,6 +118,16 @@
         "Title": "Lâu ōe pang",
         "Content": "Káng hó ūn, phah la̍h liâng."
     },
+    "Announcement": {
+        "Exit": "Tńg khì thâu chêng hit ia̍h",
+        "Published": "Hoat pò͘ ji̍t",
+        "LastUpdated": "Siāng bóe pian chi̍p ji̍t",
+        "NotFound": {
+            "Title": "Chhōe bô kong kò͘",
+            "Brief": "Chhiáⁿ kiám chá kong kò͘ ê hoan hō͘ sī a̍h sī kāng khai hoat chiá chih chiap."
+        },
+        "BackToList": "Tńg khì thâu chêng hit ia̍h"
+    },
     "SearchBar":{
         "ErrorMessage": {
             "Empty": "Chhiau chhōe nôa bē eng tit khang khang"

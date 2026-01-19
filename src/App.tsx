@@ -7,6 +7,7 @@ import Rhymes from './pages/Rhymes'
 import SimpleSearch from './pages/SimpleSearch'
 import Forum from './pages/Forum'
 import { useEffect } from 'react';
+import AnnouncementDetail from './pages/AnnouncementDetail';
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
         <Route path='search' element={<SimpleSearch/>}></Route>
         <Route path='contactUs' element={<Contact/>}></Route>
         <Route path='forum' element={<Forum/>}></Route>
+        <Route path='announcement/:id' element={<AnnouncementDetail/>}></Route>
         <Route path='*' element={<div>404 Not Found</div>}></Route>
       </Routes>
     </BrowserRouter>
