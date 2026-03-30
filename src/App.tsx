@@ -8,6 +8,9 @@ import SimpleSearch from './pages/SimpleSearch'
 import Forum from './pages/Forum'
 import { useEffect } from 'react';
 import AnnouncementDetail from './pages/AnnouncementDetail';
+import Administration from './pages/Administration';
+import Login from './pages/Login';
+import Registration from './pages/Registration';
 
 function App() {
 
@@ -53,6 +56,9 @@ function App() {
         <Route path='contactUs' element={<Contact/>}></Route>
         <Route path='forum' element={<Forum/>}></Route>
         <Route path='announcement/:id' element={<AnnouncementDetail/>}></Route>
+        <Route path='hoann' element={<Administration/>}></Route>
+        <Route path='jipcham' element={<Login/>}></Route>
+        <Route path='chhengsinkhaucho' element={<Registration/>}></Route>
         <Route path='*' element={<div>404 Not Found</div>}></Route>
       </Routes>
     </BrowserRouter>
