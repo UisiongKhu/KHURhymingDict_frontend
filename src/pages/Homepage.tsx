@@ -8,6 +8,7 @@ import Checkbox from '../components/Checkbox';
 import { Tooltip } from 'react-tooltip';
 import type { HomepageAnnouncementTitleType } from '../types/types';
 import HomepageAnnouncementTitle from '../components/HomepageAnnouncementTitle';
+import { apiFetch } from '../utils/api';
 
 function Homepage(){     
 
@@ -39,11 +40,10 @@ function Homepage(){
     }
 
     // Ùi Statistics API the̍h Thâu ia̍h ê thóng kè chu liāu
-    const apiUrl = import.meta.env.VITE_API_BASE_URL;
     useEffect(()=>{
         const fetchHomepageStats = async () => {
             try {
-                const statistics = await fetch(`${apiUrl}/statistics/homepage`, {
+                const statistics = await apiFetch(`/statistics/homepage`, {
                     method: 'GET',
                 });
                 const statsData = await statistics.json();
@@ -56,7 +56,7 @@ function Homepage(){
         }
         const fetchAnnouncement = async () => {
             try {
-                const _announcementData = await fetch(`${apiUrl}/announcement`, {
+                const _announcementData = await apiFetch(`/announcement`, {
                     method: 'GET',
                 }).then(res => res.json());
                 setAnnouncementData(_announcementData);
@@ -65,6 +65,7 @@ function Homepage(){
                 console.log('Error fetching homepage announcement titles:', e);
             }
         }
+        
         fetchHomepageStats();
         fetchAnnouncement();
     },[]);

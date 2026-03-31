@@ -3,13 +3,20 @@ import { useNavigate } from "react-router-dom";
 
 type propType = {
     className?: string,
+    isAdmin?: boolean,
 }
 
 function SideMenu(prop: propType){
     const navigate = useNavigate();
     const [t] = useTranslation();
     const PageNameListArray = t<'SideMenu.PageNameList', { returnObjects: true }, string[]>('SideMenu.PageNameList', { returnObjects: true }).map(v=>v);
+    if(!prop.isAdmin){
+        PageNameListArray.pop();
+    }
     const PageNameLinkArray = t<'SideMenu.PageLinkList', { returnObjects: true }, string[]>('SideMenu.PageLinkList', { returnObjects: true }).map(v=>v);
+    if(!prop.isAdmin){
+        PageNameLinkArray.pop();
+    }
     const getPageNameListBtns = () => {
         return PageNameListArray.map((value,index)=>(
             <>

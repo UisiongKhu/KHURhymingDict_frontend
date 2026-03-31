@@ -176,12 +176,14 @@
         "PageNameList": [
             "Homepage",
             "Rhyme List",
-            "Hit The Rhymes"
+            "Hit The Rhymes",
+            "Adiministration"
         ],
         "PageLinkList": [
             "/",
             "/chonglam",
-            "/search"
+            "/search",
+            "/hoann"
         ]
     },
     "Components": {

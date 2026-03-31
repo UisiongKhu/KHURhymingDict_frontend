@@ -67,3 +67,8 @@ export const getToneNameHanji = (tone: number) => {
             return "未知聲調";
     }
 }
+
+export const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+};

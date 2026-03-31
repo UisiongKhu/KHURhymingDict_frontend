@@ -170,12 +170,14 @@
         "PageNameList": [
             "Chú ia̍h",
             "Jī ūn chóng lám",
-            "Chhōe hó ūn"
+            "Chhōe hó ūn",
+            "Koán lí"
         ],
         "PageLinkList": [
             "/",
             "/chonglam",
-            "/search"
+            "/search",
+            "/hoann"
         ]
     },
     "Components": {

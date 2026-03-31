@@ -2,19 +2,64 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { apiFetch } from "../utils/api";
+import { validateEmail } from "../misc/misc";
 
 function Login(){
     const [t] = useTranslation();
     const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const handleLogin = async () => {
+        // Wait for implementation
+        console.log(`Email: ${email}, Password: ${password}`);
+        if(!validateEmail(email)){
+            alert('Please enter a valid email address.');
+            return;
+        }
+        try {
+           const res = await apiFetch('/user/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+           })
+           if(res.status === 200){
+                const data = await res.json();
+                const token = data.token;
+                if(token){
+                    localStorage.setItem('token', token);
+                    alert('Login successful!');
+                    navigate('/');
+                }
+           }else if(res.status === 401){
+                alert('Invalid email or password. Please try again.');
+           }else{
+                alert('Login failed due to an unknown error. Please try again later.');
+           }
+        } catch (e) {
+            alert('Login failed due to an unknown error. Please try again later.');
+        }
+    };
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { id, value } = e.target;
+        if (id === 'username') {
+            setEmail(value);
+        } else if (id === 'password') {
+            setPassword(value);
+        }
+    }
     useEffect(() =>{
         const checkStatus = async() => {
             const res = await apiFetch('/user/check', {
-                method: 'POST', // Check if user is an admin
+                method: 'POST',
             });
             if(res.status === 200){
                 navigate('/');
+            }else if(res.status === 401){
+                alert('Your session has expired. Please log in again.');
             }
         }
         checkStatus();
@@ -27,13 +72,13 @@ function Login(){
                     <p className="mt-5 font-[phiaute] text-4xl text-center">LOGIN</p>
                     <div className="mt-5 flex flex-row justify-center">
                         <p>Username</p>
-                        <input id='username' className="ms-2 text-element w-1/2 dark:text-element-dark border-2 border-infobd dark:border-infobd-dark bg-main dark:bg-main-dark placeholder-gray-400 dark:placeholder-gray-500 rounded-lg focus:ring-2 focus:ring-interactive dark:focus:ring-interactive-dark" type="text" placeholder={` username`}/>
+                        <input id='username' className="ms-2 text-element w-1/2 dark:text-element-dark border-2 border-infobd dark:border-infobd-dark bg-main dark:bg-main-dark placeholder-gray-400 dark:placeholder-gray-500 rounded-lg focus:ring-2 focus:ring-interactive dark:focus:ring-interactive-dark" type="text" placeholder={` username`} onChange={handleInputChange} />
                     </div>
                     <div className="mt-5 flex flex-row justify-center">
                         <p>Password</p>
-                        <input id='password' className="ms-2 text-element w-1/2 dark:text-element-dark border-2 border-infobd dark:border-infobd-dark bg-main dark:bg-main-dark placeholder-gray-400 dark:placeholder-gray-500 rounded-lg focus:ring-2 focus:ring-interactive dark:focus:ring-interactive-dark" type="password" placeholder={` password`}/>
+                        <input id='password' className="ms-2 text-element w-1/2 dark:text-element-dark border-2 border-infobd dark:border-infobd-dark bg-main dark:bg-main-dark placeholder-gray-400 dark:placeholder-gray-500 rounded-lg focus:ring-2 focus:ring-interactive dark:focus:ring-interactive-dark" type="password" placeholder={` password`} onChange={handleInputChange} />
                     </div>
-                    <button id='login-button' className='self-center my-5 rounded-s-full pt-1.5 rounded-e-full w-50 h-20 bg-interactive dark:bg-interactive-dark font-[phiaute] text-4xl hover:outline-1'>{`Login`}</button>
+                    <button id='login-button' className='self-center my-5 rounded-s-full pt-1.5 rounded-e-full w-50 h-20 bg-interactive dark:bg-interactive-dark font-[phiaute] text-4xl hover:outline-1' onClick={handleLogin}>{`Login`}</button>
                 </div>
             </div>
             <Footer className='text-sm text-element dark:text-element-dark bg-header dark:bg-header-dark w-full h-30 fixed lg:flex hidden bottom-0 border-1 border-infobd dark:border-infobd-dark' />

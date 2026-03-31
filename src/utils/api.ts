@@ -11,7 +11,6 @@ export const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
         ...options,
         headers,
     });
-
     if(response.status === 401 ){ // Unauthorized, token might be invalid or expired
         localStorage.removeItem('token');
     }

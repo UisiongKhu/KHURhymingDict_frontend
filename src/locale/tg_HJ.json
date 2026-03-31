@@ -170,12 +170,14 @@
         "PageNameList": [
             "主頁",
             "字韻總覽",
-            "尋好韻"
+            "尋好韻",
+            "管理"
         ],
         "PageLinkList": [
             "/",
             "/chonglam",
-            "/search"
+            "/search",
+            "/hoann"
         ]
     },
     "Components": {
