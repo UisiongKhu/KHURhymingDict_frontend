@@ -180,6 +180,29 @@
             "/hoann"
         ]
     },
+    "UserManagement": {
+        "General": {
+            "FillAllFields": "Chhiáⁿ kā lóng chóng ê nôa thiⁿ ho͘ hó sè.",
+            "EmailError": "Chhiáⁿ thiⁿ ū hāu ê tiān chú phoe tháng tē chí.",
+            "SessionExpired": "Ji̍p chām ê sî hān kàu ah, chhiáⁿ koh ji̍p chām chi̍t pái"
+        },
+        "Login": {
+            "login_successfully": "Ji̍p chām sêng kong!",
+            "wrong_information": "Ji̍p chām si̍t pāi, chhiáⁿ koh kiám cha phoe tháng tē chí a̍h sī àm hō",
+            "user_banned": "Lí ê kháu chō í keng hō͘ koán ·ê kìm chí ji̍p chām, nā ū būn tê chhiáⁿ kā koán ·ê liân lo̍k",
+            "user_not_verified": "Koán ·ê iáu bōe tông ì lí ê sin chhéng, nā sī iû goân ū chit khoán būn tê, chhiáⁿ kā koán ·ê liân lo̍k",
+            "user_login_failed": "Ji̍p chām si̍t pāi, chhiáⁿ sió tán chi̍t ē koh chài chhì, nā sī iû goân ū chit khoán būn tê, chhiáⁿ kā koán ·ê liân lo̍k"
+        },
+        "Registration": {
+            "lack_of_field": "Chhiáⁿ kā lóng chóng ê nôa thiⁿ ho͘ hó sè.",
+            "password_length_error": "Àm hō siāng bô ài ū 8 jī.",
+            "nickname_length_error": "Phian miâ siāng bô ài ū 2 jī, siāng ke 32 jī.",
+            "email_format_error": "Chhiáⁿ thiⁿ ū hāu ê tiān chú phoe tháng tē chí.",
+            "email_exists_error": "Chit ê tiān chú phoe tháng tē chí í keng ū khí kháu chō ah, chhiáⁿ koh ōaⁿ chi̍t ê phoe tháng tē chí.",
+            "registration_successfully": "Sim chhéng sêng kong! Chhiáⁿ koh tán koán ·ê kā lán tông ì.",
+            "registration_failed": "Sin chhéng si̍t pāi, chhiáⁿ sió tán chi̍t ē koh chài chhì, nā sī iû goân ū chit khoán būn tê, chhiáⁿ kā koán ·ê liân lo̍k"
+        }
+    },
     "Components": {
         "LanguageSelector": {
             "LanguageOptions": [

@@ -13,34 +13,39 @@ function Login(){
     const [password, setPassword] = useState("");
     const handleLogin = async () => {
         // Wait for implementation
-        console.log(`Email: ${email}, Password: ${password}`);
+        if(!email || !password){
+            alert(t('UserManagement.General.FillAllFields'));
+            return;
+        }
         if(!validateEmail(email)){
-            alert('Please enter a valid email address.');
+            alert(t('UserManagement.General.EmailError'));
             return;
         }
         try {
-           const res = await apiFetch('/user/login', {
+            const res = await apiFetch('/user/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email, password }),
-           })
-           if(res.status === 200){
-                const data = await res.json();
+            });
+            const data = await res.json();
+            if(res.status === 200){
                 const token = data.token;
                 if(token){
                     localStorage.setItem('token', token);
-                    alert('Login successful!');
+                    alert(t(`UserManagement.Login.${data.message}`));
                     navigate('/');
                 }
-           }else if(res.status === 401){
-                alert('Invalid email or password. Please try again.');
-           }else{
-                alert('Login failed due to an unknown error. Please try again later.');
-           }
+            }else if(res.status === 401){
+                alert(t(`UserManagement.Login.${data.message}`));
+            }else if(res.status === 403){
+                alert(t(`UserManagement.Login.${data.message}`));
+            }else{
+                alert(t(`UserManagement.Login.${data.message}`));
+            }
         } catch (e) {
-            alert('Login failed due to an unknown error. Please try again later.');
+            alert(t(`UserManagement.Login.user_login_failed`));
         }
     };
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +64,7 @@ function Login(){
             if(res.status === 200){
                 navigate('/');
             }else if(res.status === 401){
-                alert('Your session has expired. Please log in again.');
+                alert(t('UserManagement.General.SessionExpired'));
             }
         }
         checkStatus();

@@ -186,6 +186,29 @@
             "/hoann"
         ]
     },
+    "UserManagement": {
+        "General": {
+            "FillAllFields": "Please fill in all fields.",
+            "EmailError": "Please enter a valid email address.",
+            "SessionExpired": "Your session has expired. Please log in again."
+        },
+        "Login": {
+            "login_successfully": "Login Successful!",
+            "wrong_information": "Wrong email or password. Please try again.",
+            "user_banned": "Your account has been banned. Please contact the administrator for more information.",
+            "user_not_verified": "Your account is not verified yet. Please wait for the administrator to verify your account.",
+            "user_login_failed": "Login failed due to an error. Please try again later or contact the administrator if the problem persists."
+        },
+        "Registration": {
+            "lack_of_field": "Please fill in all the required fields.",
+            "password_length_error": "Password must be at least 8 characters long.",
+            "nickname_length_error": "Nickname must be between 2 and 20 characters long.",
+            "email_format_error": "Please enter a valid email address.",
+            "email_exists_error": "An account with this email already exists. Please use a different email address.",
+            "registration_successfully": "Registration successful! Please wait for the administrator to verify your account before logging in.",
+            "registration_failed": "Registration failed due to an error. Please try again later or contact the administrator if the problem persists."
+        }
+    },
     "Components": {
         "LanguageSelector": {
             "LanguageOptions": [
