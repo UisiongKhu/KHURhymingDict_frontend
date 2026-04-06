@@ -1,7 +1,7 @@
 import Header from '../components/Header';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { to10KCommaString } from '../misc/misc';
+import { isLocaleHanji, to10KCommaString } from '../misc/misc';
 import SearchBar from '../components/SearchBar';
 import { useEffect, useState } from 'react';
 import Checkbox from '../components/Checkbox';
@@ -12,9 +12,8 @@ import { apiFetch } from '../utils/api';
 
 function Homepage(){     
 
-    const [t,i18n] = useTranslation();
+    const [t] = useTranslation();
     const navigate = useNavigate();
-    const isLocaleHanji = i18n.language === 'tg_HJ';
     const [getSearchBarInput, setSearchBarInput] = useState("");
     const [optionsVisible, setOptionsVisible] = useState(true);
     const [homepageStats, setHomepageStats] = useState({
@@ -140,8 +139,10 @@ function Homepage(){
                             <div id='News-table-container' className='rounded-xl border-3 border-header dark:border-header-dark overflow-hidden'>
                                 <table className='w-full rounded-lg'>
                                     <thead className='bg-header dark:bg-header-dark'>
-                                        <th className={`w-3/4 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('Homepage.News.Table.Title')}</th>
-                                        <th className={`w-1/4 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('Homepage.News.Table.Date')}</th>
+                                        <tr>
+                                            <th className={`w-3/4 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('Homepage.News.Table.Title')}</th>
+                                            <th className={`w-1/4 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('Homepage.News.Table.Date')}</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         {announcementData.length === 0 && <HomepageAnnouncementTitle id={-1} title={t('Homepage.News.NoAnnouncement')} createdAt={new Date()}/>}

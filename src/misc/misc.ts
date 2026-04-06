@@ -1,3 +1,5 @@
+import i18n from "../i18n";
+
 export const to10KCommaString = (num:number)=>{
     if (typeof num !== 'number' || isNaN(num)) {
         return "無效的數字"; // 處理非數字輸入
@@ -72,3 +74,4 @@ export const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 };
+export const isLocaleHanji = i18n.language === 'tg_HJ';
