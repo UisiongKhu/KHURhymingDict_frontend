@@ -77,7 +77,7 @@ function Login(){
                     <p className="mt-5 font-[phiaute] text-4xl text-center">LOGIN</p>
                     <div className="mt-5 flex flex-row justify-center">
                         <p>Username</p>
-                        <input id='username' className="ms-2 text-element w-1/2 dark:text-element-dark border-2 border-infobd dark:border-infobd-dark bg-main dark:bg-main-dark placeholder-gray-400 dark:placeholder-gray-500 rounded-lg focus:ring-2 focus:ring-interactive dark:focus:ring-interactive-dark" type="text" placeholder={` username`} onChange={handleInputChange} />
+                        <input id='username' className="ms-2 text-element w-1/2 dark:text-element-dark border-2 border-infobd dark:border-infobd-dark bg-main dark:bg-main-dark placeholder-gray-400 dark:placeholder-gray-500 rounded-lg focus:ring-2 focus:ring-interactive dark:focus:ring-interactive-dark" type="email" placeholder={` username`} onChange={handleInputChange} />
                     </div>
                     <div className="mt-5 flex flex-row justify-center">
                         <p>Password</p>
