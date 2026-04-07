@@ -207,6 +207,20 @@
             "email_exists_error": "An account with this email already exists. Please use a different email address.",
             "registration_successfully": "Registration successful! Please wait for the administrator to verify your account before logging in.",
             "registration_failed": "Registration failed due to an error. Please try again later or contact the administrator if the problem persists."
+        },
+        "AdminPageComponents": {
+            "UserTable": {
+                "Id": "ID",
+                "Type": "Type",
+                "Status": "Status",
+                "Email": "Email",
+                "Nickname": "Nickname",
+                "Desc": "Description",
+                "CreatedAt": "Created At",
+                "UpdatedAt": "Updated At",
+                "MutedTo": "Muted To",
+                "LastLoginAt": "Last Login At"
+            }
         }
     },
     "Components": {

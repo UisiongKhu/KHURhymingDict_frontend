@@ -201,6 +201,20 @@
             "email_exists_error": "此个電子批桶地址以經有起口座啞、請閣換一个批桶地址",
             "registration_successfully": "申請成功！請閣等管个共咱同意",
             "registration_failed": "申請失敗、請小等一下閣再試、若是由原有此款問題、請共管个聯絡"
+        },
+        "AdminPageComponents": {
+            "UserTable": {
+                "Id": "番号",
+                "Type": "類型",
+                "Status": "狀態",
+                "Email": "電子批桶地址",
+                "Nickname": "偏名",
+                "Desc": "記錄",
+                "CreatedAt": "起口座日",
+                "UpdatedAt": "改新日",
+                "MutedTo": "惦甲冬時",
+                "LastLoginAt": "尾擺入站"
+            }
         }
     },
     "Components": {

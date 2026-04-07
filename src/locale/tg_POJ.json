@@ -201,6 +201,20 @@
             "email_exists_error": "Chit ê tiān chú phoe tháng tē chí í keng ū khí kháu chō ah, chhiáⁿ koh ōaⁿ chi̍t ê phoe tháng tē chí.",
             "registration_successfully": "Sim chhéng sêng kong! Chhiáⁿ koh tán koán ·ê kā lán tông ì.",
             "registration_failed": "Sin chhéng si̍t pāi, chhiáⁿ sió tán chi̍t ē koh chài chhì, nā sī iû goân ū chit khoán būn tê, chhiáⁿ kā koán ·ê liân lo̍k"
+        },
+        "AdminPageComponents": {
+            "UserTable": {
+                "Id": "ID",
+                "Type": "Lūi hêng",
+                "Status": "Chōng thài",
+                "Email": "E-mail",
+                "Nickname": "Phian miâ",
+                "Desc": "Kì lo̍k",
+                "CreatedAt": "Khí kháu chō ji̍t",
+                "UpdatedAt": "Kái sin ji̍t",
+                "MutedTo": "Tiām kah tang sî",
+                "LastLoginAt": "Bóe pái ji̍p chām"
+            }
         }
     },
     "Components": {
