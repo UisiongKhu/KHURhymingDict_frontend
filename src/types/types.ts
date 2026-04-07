@@ -102,6 +102,13 @@ export type HomepageAnnouncementTitleType = {
     title: string;
     createdAt: Date;
 }
+export type AdminAnnouncementRowType = {
+    id: number;
+    title: string;
+    createdAt: Date;
+    onEdited?: (id: number) => void;
+    onDeleted?: (id: number) => void;
+}
 
 export type Announcement = {
     id: number;
@@ -110,4 +117,39 @@ export type Announcement = {
     createdAt: Date;
     updatedAt?: Date;
     isFalse?: boolean;
+}
+
+export interface UserData {
+    id: number;
+    type: number; // 0: normal user, 1: administrator
+    status: number; // 0: normal, 1: muted, 2: banned, 3: deleted, 4: not verified
+    email: string;
+    nickname: string;
+    profilePic: string | null;
+    desc: string | null;
+    created_at: string;
+    updated_at?: string;
+    mutedTo?: string | null;
+    lastLoginAt?: string | null;
+};
+export interface User {
+    id: number;
+    type: number; // 0: normal user, 1: administrator
+    status: number; // 0: normal, 1: muted, 2: banned, 3: deleted, 4: not verified
+    email: string;
+    nickname: string;
+    profilePic: string | null;
+    desc: string | null;
+    createdAt: Date;
+    updatedAt?: Date;
+    mutedTo?: Date | null;
+    lastLoginAt?: Date | null;
+};
+
+export type AdminUserRowType = {
+    user: User;
+    onRoleChange?: (id: number) => void;
+    onStatusChange?: (id: number) => void;
+    onTokenReset?: (id: number) => void;
+    onDescChange?: (id: number) => void;
 }

@@ -5,30 +5,108 @@ import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 import { apiFetch } from "../utils/api";
 import { isLocaleHanji } from "../misc/misc";
-import type { HomepageAnnouncementTitleType } from "../types/types";
+import type { HomepageAnnouncementTitleType, User, UserData } from "../types/types";
 import AdminAnnoucementRow from "../components/AdminAnnouncementRow";
+import AdminUserRow from "../components/AdminUserRow";
 
 function Administration() {
     const [t] = useTranslation();
     const navigate = useNavigate();
     const [invisible, setInvisible] = useState(false);
-    const [announcementData, setAnnouncementData] = useState<HomepageAnnouncementTitleType[]>([]);
+    // User related states
+    const [users, setUsers] = useState<User[]>([]);
     // User Management Handlers
+    // Announcement related states
+    const [announcementData, setAnnouncementData] = useState<HomepageAnnouncementTitleType[]>([]);
+    const [title, setTitle] = useState('');
+    const [content, setContent] = useState('');
+    const [editMode, setEditMode] = useState(false);
+    const [editingAnnouncementId, setEditingAnnouncementId] = useState<number | null>(null);
     // Announcement Management Handlers
-    const handleAnnouncementEdit = (id: number) => {
-        // Wait for implementation   
+    const handleAnnouncementEdit = async (id: number) => {
+        const res = await apiFetch(`/announcement/${id}`, {
+            method: 'GET',
+        });
+        if(res.status === 200){
+            setEditMode(true);
+            setEditingAnnouncementId(id);
+            const announcement = await res.json();
+            setTitle(announcement.title);
+            setContent(announcement.content);
+        }else{
+            const errorData = await res.json();
+            const errorMessage = errorData.message || 'Unknown error';
+            alert(`Failed to fetch announcement details: ${errorMessage}`);
+        }
     };
     const handleAnnouncementDelete = async (id: number) => {
-        // Wait for implementation
+        // Remove that row from the table immediately for better UX, then send delete request to backend
+        setAnnouncementData(prev => prev.filter(announcement => announcement.id !== id));
     };
-    const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // Wait for implementation
-    };
-    const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        // Wait for implementation
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        switch(e.target.id){
+            case 'title-input':
+                setTitle(e.target.value);
+                break;
+            case 'content-input':
+                setContent(e.target.value);
+                break;
+        }
     };
     const handleSubmitAnnouncement = async () => {
-        // Wait for implementation
+        if(!title || !content){
+            alert('Title and content cannot be empty');
+            return;
+        };
+        if(!window.confirm(`Are you sure you want to ${editMode ? 'update' : 'create'} this announcement?`)){
+            return;
+        }
+        const res = await apiFetch('/announcement', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ title, content }),
+        });
+        if(res.status === 201){
+            const newAnnouncement = await res.json();
+            setAnnouncementData(prev => [newAnnouncement, ...prev]);
+            setTitle('');
+            setContent('');
+        }else{
+            const errorData = await res.json();
+            const errorMessage = errorData.message || 'Unknown error';
+            alert(`Failed to create announcement: ${errorMessage}`);
+        }
+    };
+    const handleUpdateAnnouncement = async () => {
+        if(!title || !content){
+            alert('Title and content cannot be empty');
+            return;
+        };
+        if(!window.confirm(`Are you sure you want to ${editMode ? 'update' : 'create'} this announcement?`)){
+            return;
+        }
+        // Set edit mode to true, and populate the title and content input fields with the current title and content of the announcement with the given id.
+        const res = await apiFetch(`/announcement/${editingAnnouncementId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ title, content }),
+        });
+        if(res.status === 200){
+            const updatedAnnouncement = await res.json();
+            setAnnouncementData(prev => prev.map(announcement => announcement.id === editingAnnouncementId ? updatedAnnouncement : announcement));
+            setTitle('');
+            setContent('');
+            setEditMode(false);
+            setEditingAnnouncementId(null);
+        } else {
+            const errorData = await res.json();
+            const errorMessage = errorData.message || 'Unknown error';
+            alert(`Failed to update announcement: ${errorMessage}`);
+        }
     };
 
     useEffect(() =>{
@@ -62,9 +140,35 @@ function Administration() {
                 console.log('Error fetching homepage announcement titles:', e);
             }
         };
+        const fetchUsers = async () => {
+            try {
+                const res = await apiFetch('/user', {
+                    method: 'GET',
+                });
+                const data = await res.json();
+                const userData = data.users;
+                console.log(userData);
+                const users: User[] = userData.map((user: UserData) => ({
+                    ...user,
+                    createdAt: user.created_at ? new Date(user.created_at) : undefined,
+                    updatedAt: user.updated_at ? new Date(user.updated_at) : undefined,
+                    mutedTo: user.mutedTo ? new Date(user.mutedTo) : null,
+                    lastLoginAt: user.lastLoginAt ? new Date(user.lastLoginAt) : null,
+                }));
+                setUsers(users);
+            } catch (e) {
+                alert(`Coundn't fetch user data: ${(e as Error).message}`);
+            }
+        };
         checkStatus();
+        fetchUsers();
         fetchAnnouncement();
     },[]); // Init
+    useEffect(()=>{},[announcementData]); // When announcementData changes, re-render the page (for now, we can optimize this later by only re-rendering the announcement table instead of the whole page)
+    useEffect(()=>{
+        console.log('User data eee:', users);
+    },[users]); // When user data changes, re-render the page (for now, we can optimize this later by only re-rendering the user table instead of the whole page)
+    
     return(
         <>
             <Header/>
@@ -72,7 +176,28 @@ function Administration() {
                 <div id={'Tiāⁿ ēng ê kong lêng'} className="min-h-screen h-content bg-main dark:bg-main-dark text-element dark:text-element-dark w-content">
                     <div className="flex flex-col">
                         <h1 className='self-center text-center pt-5 ms-5 font-[phiaute] text-4xl'>{`Iōng chiá Koán lí`}</h1>
-                        
+                        <div id='user-table-container' className='self-center w-3/4 rounded-xl border-3 border-header dark:border-header-dark overflow-hidden'>
+                            <table className='w-full rounded-lg'>
+                                <thead className='bg-header dark:bg-header-dark'>
+                                    <tr>
+                                        <th className={`w-1/10 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('UserManagement.AdminPageComponents.UserTable.Id')}</th>
+                                        <th className={`w-1/10 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('UserManagement.AdminPageComponents.UserTable.Type')}</th>
+                                        <th className={`w-1/10 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('UserManagement.AdminPageComponents.UserTable.Status')}</th>
+                                        <th className={`w-1/10 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('UserManagement.AdminPageComponents.UserTable.Email')}</th>
+                                        <th className={`w-1/10 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('UserManagement.AdminPageComponents.UserTable.Nickname')}</th>
+                                        <th className={`w-1/10 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('UserManagement.AdminPageComponents.UserTable.Desc')}</th>
+                                        <th className={`w-1/10 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('UserManagement.AdminPageComponents.UserTable.CreatedAt')}</th>
+                                        <th className={`w-1/10 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('UserManagement.AdminPageComponents.UserTable.UpdatedAt')}</th>
+                                        <th className={`w-1/10 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('UserManagement.AdminPageComponents.UserTable.MutedTo')}</th>
+                                        <th className={`w-1/10 font-[phiaute] font-normal ${isLocaleHanji?'text-xl':'text-2xl'}`}>{t('UserManagement.AdminPageComponents.UserTable.LastLoginAt')}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {users.length === 0 && <tr><td colSpan={3} className='text-center text-lg'>{"Hm, that's weird. How did you get here. :\\"}</td></tr>}
+                                    {users.map((user)=>(<AdminUserRow key={`user-${user.id}`} user={user} />))}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div className=" flex flex-col items-center">
                         <h1 className='ms-5 font-[phiaute] text-4xl'>{`Siau sit Koán lí`}</h1>
@@ -89,23 +214,25 @@ function Administration() {
                                 <tbody>
                                     {announcementData.length === 0 && <tr><td colSpan={3} className='text-center text-lg'>{t('Homepage.News.NoAnnouncement')}</td></tr>}
                                     {announcementData.map((announcementTitle)=>{
-                                        return(<AdminAnnoucementRow key={`announcement-${announcementTitle.id}`} id={announcementTitle.id} title={announcementTitle.title} createdAt={new Date(announcementTitle.createdAt)}/>)
+                                        return(<AdminAnnoucementRow key={`announcement-${announcementTitle.id}`} id={announcementTitle.id} title={announcementTitle.title} createdAt={new Date(announcementTitle.createdAt)} onDeleted={handleAnnouncementDelete} onEdited={handleAnnouncementEdit}/>)
                                     })}
                                 </tbody>
                             </table>
                         </div>
-                        <h2 className='w-3/4 mt-5 mb-2 font-[phiaute] text-3xl'>{`Khí sin ê Siau sit`}</h2>
+                        <h2 className='w-3/4 mt-5 mb-2 font-[phiaute] text-3xl'>{editMode?`Phian chi̍p Siau sit`:`Khí sin ê Siau sit`}</h2>
                         <div id="add-news-container" className="flex flex-col w-3/4 outline-header dark:outline-header-dark outline-3 rounded-xl">
                             <div id="title-container" className="flex flex-row align-middle">
                                 <h3 className="text-center pt-2 ps-2 w-1/4 text-2xl font-[phiaute] bg-header dark:bg-header-dark border-b-2 border-main dark:border-main-dark">Phiau tê</h3>
-                                <input type="text" className="w-full text-lg p-2"></input>
+                                <input id={`title-input`} type="text" className="w-full text-lg p-2" value={title} onChange={handleChange}></input>
                             </div>
                             <div id="content-container" className="flex flex-col">
                                 <h3 className="text-center ps-2 py-1.5 text-2xl font-[phiaute] bg-header dark:bg-header-dark">Bûn chiuⁿ</h3>
-                                <textarea className="w-full h-50 p-2"></textarea>
+                                <textarea id={`content-input`} className="w-full h-50 p-2" value={content} onChange={handleChange}></textarea>
                             </div>
                             <div id="btn-container" className="flex flex-row justify-end">
-                                <button className="mx-2 my-2 px-10 py-2 bg-interactive dark:bg-interactive-dark text-lg text-element dark:text-element-dark rounded">{`Add`}</button>
+                                {editMode && <button className="mx-2 my-2 px-10 py-2 bg-orange-500 dark:bg-orange-600 text-lg text-element dark:text-element-dark rounded" onClick={handleSubmitAnnouncement}>{`Cancel`}</button>}
+                                {editMode && <button className="mx-2 my-2 px-10 py-2 bg-interactive dark:bg-interactive-dark text-lg text-element dark:text-element-dark rounded" onClick={handleUpdateAnnouncement}>{`Update`}</button>}
+                                {!editMode && <button className="mx-2 my-2 px-10 py-2 bg-interactive dark:bg-interactive-dark text-lg text-element dark:text-element-dark rounded" onClick={handleSubmitAnnouncement}>{`Add`}</button>}
                             </div>
                         </div>
                     </div>
