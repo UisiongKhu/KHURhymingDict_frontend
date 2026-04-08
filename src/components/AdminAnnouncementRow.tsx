@@ -35,8 +35,8 @@ function AdminAnnoucementRow(props: AdminAnnouncementRowType) {
                 <td className='border-e-2 border-header dark:border-header-dark text-center ps-2 cursor-pointer' onClick={() => navigate(`/announcement/${props.id}`)}>{props.title}</td>
                 <td className='text-center border-e-2 border-header dark:border-header-dark ps-2'>{props.createdAt.getFullYear()}.{props.createdAt.getMonth() + 1}.{props.createdAt.getDate()}</td>
                 <td className='text-center'>
-                    <button className='mx-2 px-2 py-1/2 bg-green-500 dark:bg-green-600 text-element dark:text-element-dark rounded' onClick={handleEdit}>{`Edit`}</button>
-                    <button className='mx-2 px-2 py-1/2 bg-red-500 dark:bg-red-600i text-element dark:text-element-dark rounded' onClick={handleDelete}>{`Delete`}</button>
+                    <button className='mx-2 px-2 py-1/2 bg-green-500 dark:bg-green-600 text-element dark:text-element-dark rounded hover:cursor-pointer' onClick={handleEdit}>{`Edit`}</button>
+                    <button className='mx-2 px-2 py-1/2 bg-red-500 dark:bg-red-600i text-element dark:text-element-dark rounded hover:cursor-pointer' onClick={handleDelete}>{`Delete`}</button>
                 </td>
             </tr>
         </>
