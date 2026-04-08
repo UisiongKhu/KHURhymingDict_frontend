@@ -184,7 +184,18 @@
         "General": {
             "FillAllFields": "請共朗總个欄添乎好勢",
             "EmailError": "請添有效个電子批桶地址",
-            "SessionExpired": "入站个時限到啞、請閣再入站一擺"
+            "SessionExpired": "入站个時限到啞、請閣再入站一擺",
+            "UserType": {
+                "0": "用者",
+                "1": "管理員"
+            },
+            "UserStatus": {
+                "0": "正常",
+                "1": "禁話",
+                "2": "禁止入站",
+                "3": "以經刪除",
+                "4": "未驗證"
+            }
         },
         "Login": {
             "login_successfully": "入站成功！",
@@ -213,7 +224,8 @@
                 "CreatedAt": "起口座日",
                 "UpdatedAt": "改新日",
                 "MutedTo": "惦甲冬時",
-                "LastLoginAt": "尾擺入站"
+                "LastLoginAt": "尾擺入站",
+                "Action": "動作"
             }
         }
     },

@@ -184,7 +184,18 @@
         "General": {
             "FillAllFields": "Chhiáⁿ kā lóng chóng ê nôa thiⁿ ho͘ hó sè.",
             "EmailError": "Chhiáⁿ thiⁿ ū hāu ê tiān chú phoe tháng tē chí.",
-            "SessionExpired": "Ji̍p chām ê sî hān kàu ah, chhiáⁿ koh ji̍p chām chi̍t pái"
+            "SessionExpired": "Ji̍p chām ê sî hān kàu ah, chhiáⁿ koh ji̍p chām chi̍t pái",
+            "UserType": {
+                "0": "Iōng chiá",
+                "1": "Koán ·ê"
+            },
+            "UserStatus": {
+                "0": "Chèng siông",
+                "1": "Kìm ōe",
+                "2": "Kìm chí Ji̍p chām",
+                "3": "Í keng san tû",
+                "4": "Iáu bōe giām chèng"
+            }
         },
         "Login": {
             "login_successfully": "Ji̍p chām sêng kong!",
@@ -213,7 +224,8 @@
                 "CreatedAt": "Khí kháu chō ji̍t",
                 "UpdatedAt": "Kái sin ji̍t",
                 "MutedTo": "Tiām kah tang sî",
-                "LastLoginAt": "Bóe pái ji̍p chām"
+                "LastLoginAt": "Bóe pái ji̍p chām",
+                "Action": "Tōng chok"
             }
         }
     },

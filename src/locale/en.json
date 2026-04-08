@@ -190,7 +190,18 @@
         "General": {
             "FillAllFields": "Please fill in all fields.",
             "EmailError": "Please enter a valid email address.",
-            "SessionExpired": "Your session has expired. Please log in again."
+            "SessionExpired": "Your session has expired. Please log in again.",
+            "UserType": {
+                "0": "User",
+                "1": "Administrator"
+            },
+            "UserStatus": {
+                "0": "Normal",
+                "1": "Muted",
+                "2": "Banned",
+                "3": "Deleted",
+                "4": "Not Verified"
+            }
         },
         "Login": {
             "login_successfully": "Login Successful!",
@@ -219,7 +230,8 @@
                 "CreatedAt": "Created At",
                 "UpdatedAt": "Updated At",
                 "MutedTo": "Muted To",
-                "LastLoginAt": "Last Login At"
+                "LastLoginAt": "Last Login At",
+                "Action": "Action"
             }
         }
     },
