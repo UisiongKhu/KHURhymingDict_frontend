@@ -42,6 +42,7 @@ function Header(){
                 localStorage.removeItem('lastLoginAt');
                 setUserNickname("");
                 setLastLoginAt(null);
+                navigate('/'); // Redirect to homepage after logout
                 alert('Logout successful');
             }
         } catch (e) {
