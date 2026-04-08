@@ -148,8 +148,10 @@ export interface User {
 
 export type AdminUserRowType = {
     user: User;
-    onRoleChange?: (id: number) => void;
-    onStatusChange?: (id: number) => void;
-    onTokenReset?: (id: number) => void;
-    onDescChange?: (id: number) => void;
+    handleRoleChange?: (id: number, type: number) => void;
+    handleMute?: (id: number, mute: boolean) => void;
+    handleBan?: (id: number, ban: boolean) => void;
+    handleAccept?: (id: number) => void;
+    handleLogout?: (id: number) => void;
+    handleDescChange?: (id: number, currentDesc: string) => void;
 }
