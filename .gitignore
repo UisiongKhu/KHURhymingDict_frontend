@@ -27,3 +27,4 @@ dist-ssr
 src/assets/**
 
 package-lock.json 
+.vercel
