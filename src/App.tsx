@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import AnnouncementDetail from './pages/AnnouncementDetail';
 import Administration from './pages/Administration';
 import Login from './pages/Login';
+import { StatProvider } from './contexts/Stat';
+import { UserProvider } from './contexts/User';
 
 function App() {
 
@@ -45,20 +47,24 @@ function App() {
 
   return (
     <>
-    <BrowserRouter >
-      <Routes>
-        <Route index element={<Homepage/>}></Route>
-        <Route path='chonglam' element={<Rhymes/>}></Route>
-        <Route path='search' element={<SimpleSearch/>}></Route>
-        {/*<Route path='contactUs' element={<Contact/>}></Route>*/}
-        {/*<Route path='forum' element={<Forum/>}></Route>*/}
-        <Route path='announcement/:id' element={<AnnouncementDetail/>}></Route>
-        <Route path='hoann' element={<Administration/>}></Route>
-        <Route path='jipcham' element={<Login/>}></Route>
-        {/*<Route path='chhengsinkhaucho' element={<Registration/>}></Route>*/}
-        <Route path='*' element={<div>404 Not Found</div>}></Route>
-      </Routes>
-    </BrowserRouter>
+    <UserProvider>
+    <StatProvider>
+      <BrowserRouter >
+        <Routes>
+          <Route index element={<Homepage/>}></Route>
+          <Route path='chonglam' element={<Rhymes/>}></Route>
+          <Route path='search' element={<SimpleSearch/>}></Route>
+          {/*<Route path='contactUs' element={<Contact/>}></Route>*/}
+          {/*<Route path='forum' element={<Forum/>}></Route>*/}
+          <Route path='announcement/:id' element={<AnnouncementDetail/>}></Route>
+          <Route path='hoann' element={<Administration/>}></Route>
+          <Route path='jipcham' element={<Login/>}></Route>
+          {/*<Route path='chhengsinkhaucho' element={<Registration/>}></Route>*/}
+          <Route path='*' element={<div>404 Not Found</div>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </StatProvider>
+    </UserProvider>
     </>
   )
 }

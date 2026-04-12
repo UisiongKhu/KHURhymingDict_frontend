@@ -9,6 +9,7 @@ import { Tooltip } from 'react-tooltip';
 import type { HomepageAnnouncementTitleType } from '../types/types';
 import HomepageAnnouncementTitle from '../components/HomepageAnnouncementTitle';
 import { apiFetch } from '../utils/api';
+import { useStat } from '../contexts/Stat';
 
 function Homepage(){     
 
@@ -16,20 +17,20 @@ function Homepage(){
     const navigate = useNavigate();
     const [getSearchBarInput, setSearchBarInput] = useState("");
     const [optionsVisible, setOptionsVisible] = useState(true);
-    const [homepageStats, setHomepageStats] = useState({
-        totalVisitors: 0,
-        searchCounter: 0,
-        syllableCounter: 0,
-        wordCounter: 0,
-        dataSourceAmount: 0,
-    });
+    const homepageStats = useStat();
     const [announcementData, setAnnouncementData] = useState<HomepageAnnouncementTitleType[]>([]);
     const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const OptionsStringArray = t<'SearchBar.Homepage.Dropdown.Options', { returnObjects: true }, string[]>('SearchBar.Homepage.Dropdown.Options', { returnObjects: true }).map(v=>v);
+    const tooltipStyle : Object = {
+        maxWidth: '250px',
+        whiteSpace: 'normal',
+        wordBreak: 'break-word',
+        lineHeight: 1.5,
+    }
     const handleSearchBarInput = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchBarInput(event.target.value);
     }
-
+ 
     const getSearchBarDropdownOptions = () =>{
         return OptionsStringArray.map(optionStr => Object({value: OptionsStringArray.indexOf(optionStr)+1, text: optionStr})
         );
@@ -40,19 +41,6 @@ function Homepage(){
 
     // Ùi Statistics API the̍h Thâu ia̍h ê thóng kè chu liāu
     useEffect(()=>{
-        const fetchHomepageStats = async () => {
-            try {
-                const statistics = await apiFetch(`/statistics/homepage`, {
-                    method: 'GET',
-                });
-                const statsData = await statistics.json();
-                // Tī chia ē-sái chhú lí statsData
-                setHomepageStats(statsData);
-                //console.log('Homepage statistics data:', homepageStats);
-            } catch (e) {
-                //console.log('Error fetching homepage statistics:', e);
-            }
-        }
         const fetchAnnouncement = async () => {
             try {
                 const _announcementData = await apiFetch(`/announcement`, {
@@ -65,10 +53,9 @@ function Homepage(){
             }
         }
         
-        fetchHomepageStats();
         fetchAnnouncement();
     },[]);
-    useEffect(()=> {}, [homepageStats]);
+    useEffect(()=> {}, []);
 
 
     // Chit ia̍h bô footer, in ūi footer ê mih á tī chia lóng ū khǹg.
@@ -79,8 +66,8 @@ function Homepage(){
                 <Header/> 
 
                 <div id='main-container' className='flex flex-col items-center h-content min-h-screen bg-main dark:bg-main-dark text-element dark:text-element-dark font-[iansui]' >
-                    <h1 className='self-center mt-10 font-[phiaute] text-5xl'>{t('Homepage.Title')}</h1>
-                    <div id='brief-container' className='mt-5 text-element dark:text-element-dark w-2/3 font-[iansui] text-xl text-center'>
+                    <h1 className={`self-center mt-10 font-[phiaute] text-5xl`}>{t('Homepage.Title')}</h1>
+                    <div id='brief-container' className='mt-5 text-element dark:text-element-dark md:w-2/3 w-4/5 font-[iansui] text-xl md:text-center text-left'>
                         <Trans i18nKey="Homepage.Brief"><p>{t('Homepage.Brief')}</p></Trans>
                     </div>
                     <div id='navigate-to-search-page-container'>
@@ -89,11 +76,11 @@ function Homepage(){
                     <div className='h-0.5 w-5/6 bg-element dark:bg-element-dark' />
 
 
-                    <div id='info-container' className='flex flex-row flex-wrap w-4/5'>
+                    <div id='info-container' className='flex flex-row flex-wrap md:w-4/5 w-full'>
                         <div id='tutorial-container' className='flex flex-col flex-wrap w-full p-4 mt-10 mb-5'>
                             <p className='font-[phiaute] text-3xl text-left'>{t('Homepage.Tutorial.Title')}</p>
                             <p className='font-[iansui] text-xl text-left'>{t('Homepage.Tutorial.Brief')}</p>
-                            <div id='tutorial-ui-container' className="flex flex-col justify-center border-2 border-infobd dark:border-infobd-dark rounded-lg p-5 mt-5 w-1/2 self-center">
+                            <div id='tutorial-ui-container' className="flex flex-col justify-center border-2 border-infobd dark:border-infobd-dark rounded-lg p-5 mt-5 md:w-1/2 w-full self-center">
                                     <SearchBar id='tutorial-searchbar' className="w-full px-5 self-center tutorial-searchbar" label={t('SearchBar.SimpleSearch.Label')} input={getSearchBarInput} inputFunc={handleSearchBarInput} placeholder={t('SearchBar.SimpleSearch.Placeholder')} options={getSearchBarDropdownOptions()} onClick={()=>{return}} />
 
                                     <div id="option-container" className={`font-[iansui] self-center mt-2 p-2 lg:w-1/2 md:w-2/3 sm:w-2/3 w-4/5 rounded-lg border-2 border-infobd dark:border-infobd-dark 
@@ -123,12 +110,12 @@ function Homepage(){
                                             <h2>{t('Search.SimpleSearch.SearchOption.SubTitle.Tone')}</h2><br/>
                                                 <Checkbox checkboxId="cbSameTone" label={t('Search.SimpleSearch.SearchOption.SameTone')} />
                                         </div>
-                                        <Tooltip anchorSelect='.tutorial-searchbar' place='left' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.SearchBar')}</Tooltip>
-                                        <Tooltip id="cbIgnoreNasalSound" place='left-end' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.IgnoreNasalSound')}</Tooltip>
-                                        <Tooltip id="cbSimilarVowel" place='right' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.SimilarVowel')}</Tooltip>
-                                        <Tooltip id="cbIgnoreFinalSound" place='left' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.IgnoreFinalSound')}</Tooltip>
-                                        <Tooltip id="cbSameArticulationPart" place='right' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.SameArticulationPart')}</Tooltip>
-                                        <Tooltip id="cbSameTone" place='right' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.SameTone')}</Tooltip>
+                                        <Tooltip style={tooltipStyle} anchorSelect='.tutorial-searchbar' place='left' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.SearchBar')}</Tooltip>
+                                        <Tooltip style={tooltipStyle} id="cbIgnoreNasalSound" place='left-end' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.IgnoreNasalSound')}</Tooltip>
+                                        <Tooltip style={tooltipStyle} id="cbSimilarVowel" place='right' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.SimilarVowel')}</Tooltip>
+                                        <Tooltip style={tooltipStyle} id="cbIgnoreFinalSound" place='left' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.IgnoreFinalSound')}</Tooltip>
+                                        <Tooltip style={tooltipStyle} id="cbSameArticulationPart" place='right' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.SameArticulationPart')}</Tooltip>
+                                        <Tooltip style={tooltipStyle} id="cbSameTone" place='right' className={isDarkMode?'tooltip-dark':'tooltip'} classNameArrow={isDarkMode?`tooltip-arrow-dark`:`tooltip-arrow`}>{t('Homepage.Tutorial.Tooltip.SameTone')}</Tooltip>
                                     </div>
 
                             </div>
@@ -145,7 +132,7 @@ function Homepage(){
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {announcementData.length === 0 && <HomepageAnnouncementTitle id={-1} title={t('Homepage.News.NoAnnouncement')} createdAt={new Date()}/>}
+                                        {announcementData.length === 0 && <tr><td className='text-center' colSpan={2}>{t('Homepage.News.NoAnnouncement')}</td></tr>}
                                         {announcementData.map((announcementTitle)=>{
                                             return(<HomepageAnnouncementTitle key={`announcement-${announcementTitle.id}`} id={announcementTitle.id} title={announcementTitle.title} createdAt={new Date(announcementTitle.createdAt)}/>)
                                         })}
@@ -154,7 +141,7 @@ function Homepage(){
                             </div>
                             
                         </div>
-                        <div id='stat-container' className='md:w-1/2 sm:w-full p-4'>
+                        <div id='stat-container' className='md:w-1/2 w-full p-4'>
                             <p className='my-5 font-[phiaute] text-3xl'>{t('Homepage.Stat.Title')}</p>
                             <div id='stat-data-container' className={`grid grid-cols-2 grid-rows-5 bg-header dark:bg-header-dark rounded-xl p-5 font-[phiaute] ${isLocaleHanji?"text-2xl":"text-3xl"}`}>
                                 <p>{t('Homepage.Stat.UserVisited')}</p>

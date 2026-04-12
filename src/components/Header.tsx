@@ -3,20 +3,21 @@ import LanguageSelector from "./LanguageSelector";
 import { useTranslation } from "react-i18next";
 import SideMenu from "./SideMenu";
 import { useNavigate } from "react-router-dom";
-import { apiFetch } from "../utils/api";
+import { useUser } from "../contexts/User";
 function Header(){
     const [t] = useTranslation();
     const navigate = useNavigate();
     const [isHeaderMenuOpen, setHeaderMenuOpen] = useState(false);
     const [isHeaderExiting, setHeaderExiting] = useState(false);
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [userNickname, setUserNickname] = useState("");
-    const [lastLoginAt, setLastLoginAt] = useState<Date | null>(null);
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
     });
+    const userData = useUser();
+    const isAdmin = userData.type === 1;
+    const loggedIn = userData.type !== -1;
+    console.log(userData);
+    const userNickname = userData.nickname;
     const toggleMenu = ()=> {
         if(!isHeaderMenuOpen){
             setHeaderMenuOpen(true);
@@ -27,20 +28,8 @@ function Header(){
     }
     const handleLogout = async () => {
         try {
-            const res = await apiFetch(`/user/logout`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            if(res.status === 200){
-                setLoggedIn(false);
-                setIsAdmin(false);
-                localStorage.removeItem('token');
-                localStorage.removeItem('nickname');
-                localStorage.removeItem('lastLoginAt');
-                setUserNickname("");
-                setLastLoginAt(null);
+            const logoutState = await userData.handleLogout();
+            if(logoutState!){
                 navigate('/'); // Redirect to homepage after logout
                 alert('Logout successful');
             }
@@ -48,36 +37,6 @@ function Header(){
             console.error('Error logging out:', e);
         }
     }
-    
-    useEffect(()=>{
-        const fetchUserData = async () => {
-            try {
-                const res = await apiFetch(`/user/check`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ type: 'user' }),
-                });
-                if(res.status === 200){
-                    const data = await res.json();
-                    const user = data.user;
-                    setLoggedIn(true);
-                    setIsAdmin(user.type === 1 || user.type === '1');
-                    localStorage.setItem('nickname', user.nickname);
-                    localStorage.setItem('lastLoginAt', user.lastLoginAt);
-                    setUserNickname(user.nickname);
-                    setLastLoginAt(new Date(user.lastLoginAt));
-                    lastLoginAt;
-                }else{
-                    //console.log('Not logged in');
-                }
-            } catch (e) {
-                //console.log('Not logged in');
-            }
-        }
-        fetchUserData();
-    },[]);
 
     useEffect(()=>{
         let timer: ReturnType<typeof setTimeout>;
@@ -124,7 +83,7 @@ function Header(){
                 {/*<img className='w-10 h-10 mr-1' src={nodokaPic}/>*/}
                 <h1 onMouseDown={()=>{navigate('/')}} className='hover:cursor-pointer pl-1 pr-1 font-[phiaute] lg:text-3xl md:text-3xl sm:text-2xl text-2xl items-center mt-1 hover:bg-header-hover dark:hover:bg-header-hover-dark'>{t('Homepage.Header.Title')}</h1>
                 <div className='grow'/>
-                {loggedIn?(
+                {loggedIn &&(
                     <>
                         <div id='user-nick-name-container' className='flex flex-row items-center mr-2'>
                             <p className='text-md'>{userNickname}</p>
@@ -133,7 +92,7 @@ function Header(){
                             Logout
                         </div>
                     </>
-                ):null}
+                )}
                 <LanguageSelector className='hover:cursor-pointer hover:bg-header-hover dark:hover:bg-header-hover-dark'/>
             </div>
         </>

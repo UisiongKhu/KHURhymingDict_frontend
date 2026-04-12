@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useStat } from "../contexts/Stat";
 
 type propType = {
     className?: string;
@@ -21,14 +22,15 @@ function Footer(prop: propType){
                 break;
         }
     };
+    const homepageStats = useStat();
     return(
         <>
             <div className={`flex flex-row p-5 justify-between ${prop.className!==undefined?prop.className:''}`}>
                     <div className="w-fit">
-                        <p>User Visited: 1,2345.</p>
-                        <p>User Online: 12.</p>
-                        <p>Topic Published: 23.</p>
-                        <p>Rhymes Searched: 4,8763.</p>
+                        <p>{`${t('Homepage.Stat.UserVisited')}: ${homepageStats.totalVisitors}`}</p>
+                        <p>{`${t('Homepage.Stat.RhymeSearched')}: ${homepageStats.searchCounter}`}</p>
+                        <p>{`${t('Homepage.Stat.SyllableAmount')}: ${homepageStats.syllableCounter}`}</p>
+                        <p>{`${t('Homepage.Stat.WordAmount')}: ${homepageStats.wordCounter}`}</p>
                     </div>
                     <div className="w-fit flex flex-row underline underline-offset-5 items-center">
                         <Link to="/contactUs" className="m-1">{t('Components.Footer.Title.Contact')}</Link>
