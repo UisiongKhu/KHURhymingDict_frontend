@@ -2,15 +2,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './css/main.css'
 import 'react-tooltip/dist/react-tooltip.css';
 import Homepage from './pages/Homepage'
-import Contact from './pages/Contact'
 import Rhymes from './pages/Rhymes'
 import SimpleSearch from './pages/SimpleSearch'
-import Forum from './pages/Forum'
 import { useEffect } from 'react';
 import AnnouncementDetail from './pages/AnnouncementDetail';
 import Administration from './pages/Administration';
 import Login from './pages/Login';
-import Registration from './pages/Registration';
 
 function App() {
 

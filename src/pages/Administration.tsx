@@ -19,9 +19,9 @@ function Administration() {
     const [editingDesc, setEditingDesc] = useState<string>('');
     const [muteDate, setMuteDate] = useState<Date>(new Date());
     // User Management Handlers
-    const handleRoleChange = (id: number, type: number) => {
+    /*const handleRoleChange = (id: number, type: number) => {
 
-    };
+    };*/
     const handleMuteDateChange = (e: ChangeEvent<HTMLInputElement>) =>{
         const datetime = e.target.value;
         const dDatetime = new Date(datetime)
@@ -33,7 +33,6 @@ function Administration() {
     const handleMute = async (id:number, flag: boolean) => {
         if(!window.confirm(`Are you really want to ${flag?'mute':'unmute'} the user?`)) return;
         // When unmute use 1970/1/1 00:00 as the "past".
-        const mutedTo = flag ? muteDate.toISOString().slice(0,-1) : (new Date(0)).toISOString().slice(0,-1);
         // flag: true for mute, false for unmute
         const res = await apiFetch(`/user/mute/${id}`,{
             method: 'PUT',
@@ -303,7 +302,7 @@ function Administration() {
                                 </thead>
                                 <tbody>
                                     {users.length === 0 && <tr><td colSpan={3} className='text-center text-lg'>{"Hm, that's weird. How did you get here. :\\"}</td></tr>}
-                                    {users.map((user)=>(<AdminUserRow key={`user-${user.id}`} user={user} handleAccept={()=>handleAccept} handleBan={handleBan} handleDescChange={handleEditUserDesc} handleRoleChange={handleRoleChange} handleLogout={handleLogout} handleMute={handleMute} />))}
+                                    {users.map((user)=>(<AdminUserRow key={`user-${user.id}`} user={user} handleAccept={()=>handleAccept} handleBan={handleBan} handleDescChange={handleEditUserDesc} handleLogout={handleLogout} handleMute={handleMute} />))}
                                 </tbody>
                             </table>
                         </div>

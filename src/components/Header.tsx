@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import LanguageSelector from "./LanguageSelector";
-import nodokaPic from '../assets/nodoka.png';
 import { useTranslation } from "react-i18next";
 import SideMenu from "./SideMenu";
 import { useNavigate } from "react-router-dom";
@@ -69,6 +68,7 @@ function Header(){
                     localStorage.setItem('lastLoginAt', user.lastLoginAt);
                     setUserNickname(user.nickname);
                     setLastLoginAt(new Date(user.lastLoginAt));
+                    lastLoginAt;
                 }else{
                     //console.log('Not logged in');
                 }
