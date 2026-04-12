@@ -66,7 +66,7 @@ function RhymeSearchResults(props: RhymeSearchResultsType){
                     </thead>
                     <tbody key="tbody">
                     {isShowResults?
-                    props.results!.slice((currentPage-1)*resultsPerPage,currentPage*resultsPerPage).map((result)=>(<SearchResult lomaji={result.lomaji} hanjiKip={result.hanjiKip} onClick={props.onWordInfoClick} />))
+                    props.results!.slice((currentPage-1)*resultsPerPage,currentPage*resultsPerPage).map((result,idx)=>(<SearchResult key={`search-result-row-${idx}`} lomaji={result.lomaji} hanjiKip={result.hanjiKip} onClick={props.onWordInfoClick} />))
                     :
                     <></>
                     }
