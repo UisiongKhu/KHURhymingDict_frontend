@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
 import { useEffect, useState, type ChangeEvent } from "react";
 import { apiFetch } from "../utils/api";
 import { isLocaleHanji } from "../misc/misc";
@@ -339,7 +338,7 @@ function Administration() {
                             </table>
                         </div>
                         <h2 className='w-3/4 mt-5 mb-2 font-[phiaute] text-3xl'>{editMode?`Phian chi̍p Siau sit`:`Khí sin ê Siau sit`}</h2>
-                        <div id="add-news-container" className="flex flex-col w-3/4 outline-header dark:outline-header-dark outline-3 rounded-xl">
+                        <div id="add-news-container" className="flex flex-col w-3/4 outline-header dark:outline-header-dark outline-3 rounded-xl mb-30">
                             <div id="title-container" className="flex flex-row align-middle">
                                 <h3 className="text-center pt-2 ps-2 w-1/4 text-2xl font-[phiaute] bg-header dark:bg-header-dark border-b-2 border-main dark:border-main-dark">Phiau tê</h3>
                                 <input id={`title-input`} placeholder={`Enter Announcement Title...`} type="text" className="w-full text-lg p-2" value={title} onChange={handleChange}></input>
@@ -357,7 +356,6 @@ function Administration() {
                     </div>
                 </div>
             )}
-            <Footer className='text-sm text-element dark:text-element-dark bg-header dark:bg-header-dark w-full h-30 fixed lg:flex hidden bottom-0 border-1 border-infobd dark:border-infobd-dark' />
         </>
     )
 }
