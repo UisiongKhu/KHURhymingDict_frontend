@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import { apiFetch } from "../utils/api";
 import { isLocaleHanji } from "../misc/misc";
 import type { HomepageAnnouncementTitleType, User, UserData } from "../types/types";
@@ -17,12 +17,41 @@ function Administration() {
     const [users, setUsers] = useState<User[]>([]);
     const [editingId, setEditingId] = useState<number | null>(null);
     const [editingDesc, setEditingDesc] = useState<string>('');
+    const [muteDate, setMuteDate] = useState<Date>(new Date());
     // User Management Handlers
     const handleRoleChange = (id: number, type: number) => {
 
     };
-    const handleMute = (id:number, flag: boolean) => {
-        // flag: true for mute, false for unmute   
+    const handleMuteDateChange = (e: ChangeEvent<HTMLInputElement>) =>{
+        const datetime = e.target.value;
+        const dDatetime = new Date(datetime)
+        const isValid = !isNaN(dDatetime.getTime());
+        if(isValid){
+            setMuteDate(new Date(datetime));
+        }
+    };
+    const handleMute = async (id:number, flag: boolean) => {
+        if(!window.confirm(`Are you really want to ${flag?'mute':'unmute'} the user?`)) return;
+        // When unmute use 1970/1/1 00:00 as the "past".
+        const mutedTo = flag ? muteDate.toISOString().slice(0,-1) : (new Date(0)).toISOString().slice(0,-1);
+        // flag: true for mute, false for unmute
+        const res = await apiFetch(`/user/mute/${id}`,{
+            method: 'PUT',
+            headers:{
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify({
+                mutedTo: muteDate.toISOString().slice(0,-1), // Remove the postfix 'Z'
+            }),
+        });
+        if(res.status === 200){
+            setUsers(prevUsers => prevUsers.map(user => user.id === id ? { ...user, mutedTo: flag ? muteDate : null} : user));
+            setMuteDate(new Date());
+            alert(`User muted`);
+        }else{
+            const data = await res.json();
+            alert(`mute error: ${data}`);
+        }
     };
     const handleBan = async (id:number, flag: boolean) => {
         if(!window.confirm(`Are you sure you want to ${flag ? 'ban' : 'unban'} this user?`)) return;
@@ -205,7 +234,7 @@ function Administration() {
             });
             if(res.status === 200){
                 setInvisible(true);
-                console.log(await res.json());
+                //console.log(await res.json());
             }else{
                 navigate('/jipcham');
             }
@@ -216,9 +245,9 @@ function Administration() {
                     method: 'GET',
                 }).then(res => res.json());
                 setAnnouncementData(_announcementData);
-                console.log('Homepage announcement data:', _announcementData);
+                //console.log('Homepage announcement data:', _announcementData);
             } catch (e) {
-                console.log('Error fetching homepage announcement titles:', e);
+                //console.log('Error fetching homepage announcement titles:', e);
             }
         };
         const fetchUsers = async () => {
@@ -228,7 +257,7 @@ function Administration() {
                 });
                 const data = await res.json();
                 const userData = data.users;
-                console.log(userData);
+                //console.log(userData);
                 const users: User[] = userData.map((user: UserData) => ({
                     ...user,
                     createdAt: user.created_at ? new Date(user.created_at) : undefined,
@@ -274,14 +303,14 @@ function Administration() {
                                 </thead>
                                 <tbody>
                                     {users.length === 0 && <tr><td colSpan={3} className='text-center text-lg'>{"Hm, that's weird. How did you get here. :\\"}</td></tr>}
-                                    {users.map((user)=>(<AdminUserRow key={`user-${user.id}`} user={user} handleAccept={()=>handleAccept} handleBan={handleBan} handleDescChange={handleEditUserDesc} handleRoleChange={handleRoleChange} handleLogout={handleLogout} />))}
+                                    {users.map((user)=>(<AdminUserRow key={`user-${user.id}`} user={user} handleAccept={()=>handleAccept} handleBan={handleBan} handleDescChange={handleEditUserDesc} handleRoleChange={handleRoleChange} handleLogout={handleLogout} handleMute={handleMute} />))}
                                 </tbody>
                             </table>
                         </div>
                         <div id='user-table-editor-container' className="flex flex-row items-center self-center mt-5 w-3/4">
                             <div id='mute-date-selector' className="flex flex-row border-2 rounded-lg border-header dark:border-header-dark justify-between w-1/4">
                                 <h3 className="text-center px-2 py-3 text-2xl font-[phiaute] bg-header dark:bg-header-dark">MUTE DATE SELECTOR</h3>
-                                <input type="date" className="text-lg ms-2 mt-2 flex-grow self-center appearance-none"></input>
+                                <input type="datetime-local" className="text-lg ms-2 mt-2 flex-grow self-center appearance-none" min={(new Date).toString()} value={muteDate.toISOString().slice(0,-8)} onChange={handleMuteDateChange} />
                             </div>
                             <div id='desc-editor' className="flex flex-grow ms-5 flex-row border-2 rounded-lg border-header dark:border-header-dark justify-between">
                                 <h3 className="text-center px-2 py-3 text-2xl font-[phiaute] bg-header dark:bg-header-dark">DESCRIPTION EDITOR</h3>
