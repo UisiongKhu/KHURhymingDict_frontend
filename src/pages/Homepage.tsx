@@ -48,9 +48,9 @@ function Homepage(){
                 const statsData = await statistics.json();
                 // Tī chia ē-sái chhú lí statsData
                 setHomepageStats(statsData);
-                console.log('Homepage statistics data:', homepageStats);
+                //console.log('Homepage statistics data:', homepageStats);
             } catch (e) {
-                console.log('Error fetching homepage statistics:', e);
+                //console.log('Error fetching homepage statistics:', e);
             }
         }
         const fetchAnnouncement = async () => {
@@ -59,9 +59,9 @@ function Homepage(){
                     method: 'GET',
                 }).then(res => res.json());
                 setAnnouncementData(_announcementData);
-                console.log('Homepage announcement data:', _announcementData);
+                //console.log('Homepage announcement data:', _announcementData);
             } catch (e) {
-                console.log('Error fetching homepage announcement titles:', e);
+                //console.log('Error fetching homepage announcement titles:', e);
             }
         }
         

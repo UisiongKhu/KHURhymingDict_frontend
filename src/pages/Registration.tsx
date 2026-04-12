@@ -53,14 +53,11 @@ function Registration(){
             }),
         });
         if(res.status === 201){
-            const data = await res.json();
-            const user = data.user;
-            console.log('Registered user:', user);
             alert(t('UserManagement.Registration.registration_successful'));
             navigate('/jipcham');
         }else{
-            const data = await res.json();
-            console.error(data.message);
+            //const data = await res.json();
+            //console.error(data.message);
             alert(t('UserManagement.Registration.registration_failed'));
         }
     };

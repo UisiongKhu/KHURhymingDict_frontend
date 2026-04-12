@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     const lastTimeVisited = localStorage.getItem('lastTimeVisited');
-    console.log('lastTimeVisited:', lastTimeVisited);
+    //console.log('lastTimeVisited:', lastTimeVisited);
     if (!lastTimeVisited) {
       localStorage.setItem('lastTimeVisited', new Date().toISOString());
       // And call trackVisit API
@@ -53,12 +53,12 @@ function App() {
         <Route index element={<Homepage/>}></Route>
         <Route path='chonglam' element={<Rhymes/>}></Route>
         <Route path='search' element={<SimpleSearch/>}></Route>
-        <Route path='contactUs' element={<Contact/>}></Route>
-        <Route path='forum' element={<Forum/>}></Route>
+        {/*<Route path='contactUs' element={<Contact/>}></Route>*/}
+        {/*<Route path='forum' element={<Forum/>}></Route>*/}
         <Route path='announcement/:id' element={<AnnouncementDetail/>}></Route>
         <Route path='hoann' element={<Administration/>}></Route>
         <Route path='jipcham' element={<Login/>}></Route>
-        <Route path='chhengsinkhaucho' element={<Registration/>}></Route>
+        {/*<Route path='chhengsinkhaucho' element={<Registration/>}></Route>*/}
         <Route path='*' element={<div>404 Not Found</div>}></Route>
       </Routes>
     </BrowserRouter>

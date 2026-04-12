@@ -41,7 +41,7 @@ function SimpleSearch(){
 
     const handleChecked = (event: ChangeEvent<HTMLInputElement>)=>{
         const id = String(event.target.id).replace('cb','');
-        console.log(`Clicked. id=${id} checked=${event.target.checked}`);
+        //console.log(`Clicked. id=${id} checked=${event.target.checked}`);
         if(keyofSearchOptionStates.includes(id as keyof RhymeSearchOptionStates)){
             setSearchOptionStates(prevOptions => ({
                 ...prevOptions,
@@ -85,7 +85,7 @@ function SimpleSearch(){
     }
 
     useEffect(()=>{
-        console.log(`new state: ${JSON.stringify(getSearchOptionStates)}`)
+        //console.log(`new state: ${JSON.stringify(getSearchOptionStates)}`)
         localStorage.setItem('IgnoreNasalSound', getSearchOptionStates.IgnoreNasalSound.toString());
         localStorage.setItem('SimilarVowel', getSearchOptionStates.SimilarVowel.toString());
         localStorage.setItem('IgnoreFinalSound', getSearchOptionStates.IgnoreFinalSound.toString());
@@ -117,14 +117,14 @@ function SimpleSearch(){
                 params.append('sameTone', String(getSearchOptionStates.SameTone));
                 params.append('similarVowel', String(getSearchOptionStates.SimilarVowel));
                 params.append('rhymingSyllableCount', rhymingSyllableCount.toString());
-                console.log(rhymingSyllableCount);
+                //console.log(rhymingSyllableCount);
                 const response = await fetch(`${apiUrl}/rhyming/word?${params.toString()}`, {
                     method: 'GET', 
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 });
-                console.log(`Response Status: ${response.status}`)
+                //console.log(`Response Status: ${response.status}`)
                 if(response.status === 200){
                     const result = await response.json().then(res=>res.data);
                     setSearchResults(result);

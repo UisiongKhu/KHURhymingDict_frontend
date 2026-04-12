@@ -36,7 +36,6 @@ function AdminUserRow(props: AdminUserRowType) {
     useEffect(()=>{},[tokenExists]);
     
     try {
-        console.log(user);
         return (
             <>
                 <tr className="h-8">
@@ -61,7 +60,7 @@ function AdminUserRow(props: AdminUserRowType) {
                             {tokenExists && (
                                 <button className='py-1/2 bg-red-500 dark:bg-red-600 text-element dark:text-element-dark rounded hover:cursor-pointer' onClick={()=>handleLogoutLocal(user.id)}>{'Logout'}</button>
                             )}
-                            <button className='py-1/2 bg-red-500 dark:bg-red-600 text-element dark:text-element-dark rounded hover:cursor-pointer' >{user.mutedTo ? 'Unmute' : 'Mute'}</button>
+                            <button className='py-1/2 bg-red-500 dark:bg-red-600 text-element dark:text-element-dark rounded hover:cursor-pointer' onClick={()=>{props.handleMute && props.handleMute(user.id, user.mutedTo ? false : true)}} >{user.mutedTo ? 'Unmute' : 'Mute'}</button>
                             <button className='py-1/2 bg-red-500 dark:bg-red-600 text-element dark:text-element-dark rounded hover:cursor-pointer' onClick={()=>{props.handleBan && props.handleBan(user.id, user.status===2 ? false : true)}}>{user.status===2 ? 'Unban' : 'Ban'}</button>
                             <button className='py-1/2 bg-interactive dark:bg-interactive-dark text-element dark:text-element-dark rounded hover:cursor-pointer' onClick={()=>{props.handleDescChange && props.handleDescChange(user.id, user.desc || '')}}>{`Edit Desc`}</button>
                             <button className='py-1/2 bg-interactive dark:bg-interactive-dark text-element dark:text-element-dark rounded hover:cursor-pointer' onClick={()=>{props.handleRoleChange && props.handleRoleChange(user.id, user.type===0?1:0)}}>{user.type===0 ? 'Promote' : 'Demote'}</button>

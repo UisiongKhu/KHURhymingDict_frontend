@@ -69,12 +69,11 @@ function Header(){
                     localStorage.setItem('lastLoginAt', user.lastLoginAt);
                     setUserNickname(user.nickname);
                     setLastLoginAt(new Date(user.lastLoginAt));
-                    console.log('User data:', user);
                 }else{
-                    console.log('Not logged in');
+                    //console.log('Not logged in');
                 }
             } catch (e) {
-                console.log('Not logged in');
+                //console.log('Not logged in');
             }
         }
         fetchUserData();
@@ -122,7 +121,7 @@ function Header(){
                     ${isHeaderExiting ?' animate-fading-out':''}`} />
                     }
                 </div>
-                <img className='w-10 h-10 mr-1' src={nodokaPic}/>
+                {/*<img className='w-10 h-10 mr-1' src={nodokaPic}/>*/}
                 <h1 onMouseDown={()=>{navigate('/')}} className='hover:cursor-pointer pl-1 pr-1 font-[phiaute] lg:text-3xl md:text-3xl sm:text-2xl text-2xl items-center mt-1 hover:bg-header-hover dark:hover:bg-header-hover-dark'>{t('Homepage.Header.Title')}</h1>
                 <div className='grow'/>
                 {loggedIn?(

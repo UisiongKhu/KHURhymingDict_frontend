@@ -24,7 +24,7 @@ function Rhymes(){
     const [t] = useTranslation();
     const [rhymes, setRhymes] = useState<RhymeType[]>([]);
 
-    const allRhymes = [
+    /*const allRhymes = [
             // 韻腹 [a]
             "a", "aⁿ", "am", "an", "ang", "ap", "at", "ak", "ah", "ahⁿ",
 
@@ -139,13 +139,13 @@ function Rhymes(){
 
             // 特殊韻母 [ng] (自成音節)
             "黃", ""
-        ] ;
+        ] ;*/
     const getRhymeCards = (rhyme: string, exampleHanji: string|null, amount?: number) => {
         return(<RhymeCard rhyme={rhyme} exampleHanji={(exampleHanji===null)?'':exampleHanji} amount={amount?amount:0} className="m-2"/>)
     }
-    const getExampleRhymeCards = () => {
+    /*const getExampleRhymeCards = () => {
         return allRhymes.map((value,index)=>(getRhymeCards(value,allRhymesExample[index],index)));
-    }
+    }*/
     const getFetchedRhymeCards = () => {
         return rhymes.map(data=>{
             return (getRhymeCards(data.lomaji, data.hanji, data.dataCounts))
@@ -154,22 +154,22 @@ function Rhymes(){
 
     useEffect(()=>{
         const apiUrl = import.meta.env.VITE_API_BASE_URL;
-        console.log(apiUrl);
+        //console.log(apiUrl);
         try {
             const fetchRhymes = async () => {
                 const response =  await fetch(`${apiUrl}/rhymes`);
                 if(!response.ok){
                     throw new Error(`HTTP Error, Status Code: ${response.status}`);
                 }else{
-                    console.log('GET OK!')
+                    //console.log('GET OK!')
                 }
                 const data = await response.json();
                 setRhymes(data);
             }
             fetchRhymes();
-            console.log(rhymes);
+            //console.log(rhymes);
         } catch (error) {
-            console.log('ERROR: '+error); 
+            //console.log('ERROR: '+error); 
         }
     },[]);
 
