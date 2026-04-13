@@ -4,50 +4,20 @@ import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 import { apiFetch } from "../utils/api";
-import { validateEmail } from "../misc/misc";
+import { useUser } from "../contexts/User";
 
 function Login(){
     const [t] = useTranslation();
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const handleLogin = async () => {
-        // Wait for implementation
-        if(!email || !password){
-            alert(t('UserManagement.General.FillAllFields'));
-            return;
-        }
-        if(!validateEmail(email)){
-            alert(t('UserManagement.General.EmailError'));
-            return;
-        }
-        try {
-            const res = await apiFetch('/user/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
-            const data = await res.json();
-            if(res.status === 200){
-                const token = data.token;
-                if(token){
-                    localStorage.setItem('token', token);
-                    alert(t(`UserManagement.Login.${data.message}`));
-                    navigate('/');
-                }
-            }else if(res.status === 401){
-                alert(t(`UserManagement.Login.${data.message}`));
-            }else if(res.status === 403){
-                alert(t(`UserManagement.Login.${data.message}`));
-            }else{
-                alert(t(`UserManagement.Login.${data.message}`));
-            }
-        } catch (e) {
-            alert(t(`UserManagement.Login.user_login_failed`));
-        }
+    const userData = useUser();
+    const handleLogin = userData.handleLogin;
+
+    const handleLoginLocal = async () => {
+        await handleLogin(email,password);
     };
+    
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
         if (id === 'username') {
@@ -83,7 +53,7 @@ function Login(){
                         <p>Password</p>
                         <input id='password' className="ms-2 text-element w-1/2 dark:text-element-dark border-2 border-infobd dark:border-infobd-dark bg-main dark:bg-main-dark placeholder-gray-400 dark:placeholder-gray-500 rounded-lg focus:ring-2 focus:ring-interactive dark:focus:ring-interactive-dark" type="password" placeholder={` password`} onChange={handleInputChange} />
                     </div>
-                    <button id='login-button' className='self-center my-5 rounded-s-full pt-1.5 rounded-e-full w-50 h-20 bg-interactive dark:bg-interactive-dark font-[phiaute] text-4xl hover:outline-1' onClick={handleLogin}>{`Login`}</button>
+                    <button id='login-button' className='self-center my-5 rounded-s-full pt-1.5 rounded-e-full w-50 h-20 bg-interactive dark:bg-interactive-dark font-[phiaute] text-4xl hover:outline-1' onClick={handleLoginLocal}>{`Login`}</button>
                 </div>
             </div>
             <Footer className='text-sm text-element dark:text-element-dark bg-header dark:bg-header-dark w-full h-30 fixed lg:flex hidden bottom-0 border-1 border-infobd dark:border-infobd-dark' />

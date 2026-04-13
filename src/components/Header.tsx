@@ -16,7 +16,6 @@ function Header(){
     const userData = useUser();
     const isAdmin = userData.type === 1;
     const loggedIn = userData.type !== -1;
-    console.log(userData);
     const userNickname = userData.nickname;
     const toggleMenu = ()=> {
         if(!isHeaderMenuOpen){
@@ -60,6 +59,8 @@ function Header(){
             }
         }
     },[isHeaderExiting])
+
+    useEffect(()=>{},[userData]);
 
     return(
         <>
