@@ -24,7 +24,5 @@ dist-ssr
 *.sln
 *.sw?
 
-src/assets/**
-
 package-lock.json 
 .vercel
