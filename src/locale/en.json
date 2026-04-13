@@ -20,7 +20,9 @@
         },
         "DataSource": {
             "Title": "Data Source",
-            "ChhoeTaigiDatabase": "ChhoeTaigi Taiwanese Database"
+            "ChhoeTaigiDatabase": "ChhoeTaigi Taiwanese Database",
+            "TitleForPOJFonts": "Fonts:",
+            "POJFonts": "aiongg/POJFonts - Fonts for POJ that improved by A Ióng"
         },
         "News": {
             "Title": "News",

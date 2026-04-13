@@ -20,7 +20,9 @@
         },
         "DataSource": {
             "Title": "資料个水頭",
-            "ChhoeTaigiDatabase": "ChhoeTaigi：台語字詞資料庫"
+            "ChhoeTaigiDatabase": "ChhoeTaigi：台語字詞資料庫",
+            "TitleForPOJFonts": "字骨:",
+            "POJFonts": "aiongg/POJFonts - 阿勇改良个白話字字骨"
         },
         "News": {
             "Title": "消息",

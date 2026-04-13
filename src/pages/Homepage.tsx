@@ -65,13 +65,13 @@ function Homepage(){
             <div className='min-h-screen h-full not-dark:bg-main dark:bg-main-dark'>
                 <Header/> 
 
-                <div id='main-container' className='flex flex-col items-center h-content min-h-screen bg-main dark:bg-main-dark text-element dark:text-element-dark font-[iansui]' >
+                <div id='main-container' className='flex flex-col items-center h-content min-h-screen bg-main dark:bg-main-dark text-element dark:text-element-dark font-[iansui] pb-30' >
                     <h1 className={`self-center mt-10 font-[phiaute] text-5xl`}>{t('Homepage.Title')}</h1>
                     <div id='brief-container' className='mt-5 text-element dark:text-element-dark md:w-2/3 w-4/5 font-[iansui] text-xl md:text-center text-left'>
                         <Trans i18nKey="Homepage.Brief"><p>{t('Homepage.Brief')}</p></Trans>
                     </div>
                     <div id='navigate-to-search-page-container'>
-                        <button id='search-button' className='my-5 rounded-s-full pt-1.5 rounded-e-full w-50 h-20 bg-green-500 dark:bg-green-600 font-[phiaute] text-4xl hover:outline-1' onClick={()=>{navigate('/search')}}>{t('Homepage.SearchButton')}</button>
+                        <button id='search-button' className='my-5 rounded-s-full pt-1.5 rounded-e-full w-50 h-20 bg-green-500 dark:bg-green-600 font-[phiaute] text-4xl hover:outline-1 hover: cursor-pointer' onClick={()=>{navigate('/search')}}>{t('Homepage.SearchButton')}</button>
                     </div>
                     <div className='h-0.5 w-5/6 bg-element dark:bg-element-dark' />
 
@@ -120,7 +120,7 @@ function Homepage(){
 
                             </div>
                         </div>
-                        <div id='news-container' className='md:w-full sm:w-full p-4 text-xl'>
+                        <div id='news-container' className='md:w-full w-full p-4 text-xl'>
                             <p className='my-5 font-[phiaute] text-3xl'>{t('Homepage.News.Title')}</p>
                             {/* Ēng chi̍t ê div kā table pau khí lâi siat tēng rounded koh kā overflow ê pō͘ hūn chhàng khí lâi, án ne chiah ū îⁿ kak ê table */}
                             <div id='News-table-container' className='rounded-xl border-3 border-header dark:border-header-dark overflow-hidden'>
@@ -158,8 +158,14 @@ function Homepage(){
                         </div>
                         <div id='data-sources-container' className='md:w-1/2 sm:w-full p-4'>
                             <p className='my-5 font-[phiaute] text-3xl'>{t('Homepage.DataSource.Title')}</p>
-                            <ul className='list-disc pl-5'>
-                                <li><a href='https://github.com/ChhoeTaigi/ChhoeTaigiDatabase'><p className='text-xl underline'>{t('Homepage.DataSource.ChhoeTaigiDatabase')}</p></a></li>
+                            <ul className='list-disc pl-5 text-xl'>
+                                <li><a href='https://github.com/ChhoeTaigi/ChhoeTaigiDatabase'><p className='underline'>{t('Homepage.DataSource.ChhoeTaigiDatabase')}</p></a></li>
+                                <li>
+                                    <div className='flex flex-row gap-2'>
+                                        <p>{t('Homepage.DataSource.TitleForPOJFonts')}</p>
+                                        <a href='https://github.com/aiongg/POJFonts'><p className='underline'>{t('Homepage.DataSource.POJFonts')}</p></a>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                         <div id='author-container'></div>

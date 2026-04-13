@@ -20,7 +20,9 @@
         },
         "DataSource": {
             "Title": "Chu liāu ê chúi thâu",
-            "ChhoeTaigiDatabase": "ChhoeTaigi：Tâi gí Jī sû Chu liāu khò͘"
+            "ChhoeTaigiDatabase": "ChhoeTaigi：Tâi gí Jī sû Chu liāu khò͘",
+            "TitleForPOJFonts": "Jī kut:",
+            "POJFonts": "aiongg/POJFonts - A Ióng kái chìn ê POJ jī kut"
         },
         "News": {
             "Title": "Siau sit",
