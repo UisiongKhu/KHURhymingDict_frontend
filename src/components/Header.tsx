@@ -55,16 +55,17 @@ function Header(){
         }
         return ()=>{
             if(timer){
+                window.removeEventListener('resize', handleResize);
                 clearTimeout(timer);
             }
         }
-    },[isHeaderExiting, windowSize])
+    },[isHeaderExiting])
 
     return(
         <>
             <div className='flex flex-row h-10 z-30 w-full  md:sticky md:top-0 sm:fixed sm:bottom-0 fixed bottom-0  bg-header dark:bg-header-dark text-element dark:text-element-dark justify-between'>
                 <div className='relative' onMouseLeave={toggleMenu}>
-                    <button type="button" className="w-8 h-10 hover:bg-header-hover dark:hover:bg-header-hover-dark p-2" onClick={toggleMenu}>
+                    <button type="button" className="w-8 h-10 hover:bg-header-hover dark:hover:bg-header-hover-dark p-2 hover:cursor-pointer" onClick={toggleMenu}>
                         <svg fill="currentColor" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="1.25rem" height="1.25rem" viewBox="0 0 24.75 24.75" xmlSpace="preserve">
                             <g>
                                     <path d="M0,3.875c0-1.104,0.896-2,2-2h20.75c1.104,0,2,0.896,2,2s-0.896,2-2,2H2C0.896,5.875,0,4.979,0,3.875z M22.75,10.375H2

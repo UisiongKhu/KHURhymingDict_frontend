@@ -17,7 +17,7 @@ function LanguageSelector(props: _props){
     const LanguageArr = t<'Components.LanguageSelector.LanguageOptions', { returnObjects: true }, string[]>('Components.LanguageSelector.LanguageOptions', { returnObjects: true }).map(v=>v);
     const getLanguageOptionElements = ()=>{
         return LanguageArr.map(languageOption=>(
-            <option key={languageOption} value={languageOption}>{t(`Components.LanguageSelector.LanguageNames.${languageOption}`)}</option>
+            <option className="hover:cursor-pointer" key={languageOption} value={languageOption}>{t(`Components.LanguageSelector.LanguageNames.${languageOption}`)}</option>
         ))
     }
     return(

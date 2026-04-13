@@ -180,7 +180,7 @@ function SimpleSearch(){
     return(
         <>
             <Header/> 
-            <div className='h-content min-h-screen bg-main dark:bg-main-dark text-element dark:text-element-dark mb-30'>
+            <div className='h-content min-h-screen bg-main dark:bg-main-dark text-element dark:text-element-dark pb-30'>
                 <div className="flex flex-col justify-center">
                     <h1 className='self-center mt-10 font-[phiaute] text-5xl'>{t('Search.SimpleSearch.Title')}</h1>
                     <SearchBar className="w-full px-5 self-center" label={t('SearchBar.SimpleSearch.Label')} input={getSearchBarInput} inputFunc={handleSearchBarInput} selectFunc={handleSearchBarSelect} placeholder={t('SearchBar.SimpleSearch.Placeholder')} options={getSearchBarDropdownOptions()} onClick={()=>handleSumbit({keyword: getSearchBarInput})} />

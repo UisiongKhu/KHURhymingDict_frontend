@@ -4,7 +4,7 @@ function SearchBar(props:SearchBarType){
     const getOptions = ()=>{
         try{
             return (props.options!).map(optionObj => (
-                <option value={optionObj.value}>{optionObj.text}</option>
+                <option className="hover:cursor-pointer" value={optionObj.value}>{optionObj.text}</option>
             ));
         }catch{
             throw Error('Not a proper object to deal with. e.Message:');
@@ -24,13 +24,13 @@ function SearchBar(props:SearchBarType){
                         {
                             (props.options!==undefined)?
                             (
-                                <select onChange={props.selectFunc} className="border-2 border-l-0 border-r-0 border-interactive dark:border-interactive-dark dark:text-element-dark dark:bg-main-dark">
+                                <select onChange={props.selectFunc} className="border-2 border-l-0 border-r-0 border-interactive dark:border-interactive-dark dark:text-element-dark dark:bg-main-dark hover:cursor-pointer ">
                                     {getOptions()}
                                 </select>
                             ):
                             <></>
                         }
-                        <button type="button" className="bg-interactive dark:bg-interactive-dark hover:bg-interactive-hover dark:hover:bg-interactive-hover-dark p-2 border-interactive dark:border-interactive-dark rounded-r-lg rounded-br-lg" onClick={()=>{
+                        <button type="button" className="hover:cursor-pointer bg-interactive dark:bg-interactive-dark hover:bg-interactive-hover dark:hover:bg-interactive-hover-dark p-2 border-interactive dark:border-interactive-dark rounded-r-lg rounded-br-lg" onClick={()=>{
                             props.onClick!(props.json!);
                         }}>
                             <svg className="w-4 h-4 text-white dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
