@@ -60,7 +60,7 @@ function Header(){
         }
     },[isHeaderExiting])
 
-    useEffect(()=>{},[userData]);
+    useEffect(()=>{},[userData, isAdmin, loggedIn]);
 
     return(
         <>

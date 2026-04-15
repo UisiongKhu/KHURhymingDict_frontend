@@ -39,6 +39,12 @@ function Login(){
         }
         checkStatus();
     },[]); // Init
+
+    useEffect(()=>{
+        if(userData.type!==-1){
+            navigate('/');
+        }
+    },[userData]);
     return(
         <>
             <Header/>

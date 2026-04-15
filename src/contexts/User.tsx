@@ -85,15 +85,7 @@ export const UserProvider = ({children}: {children: ReactNode})=>{
         }
     };
     const fetchUserData = async () => {
-            const pNickname = localStorage.getItem('nickname');
-            const pLastLoginAt = localStorage.getItem('lastLoginAt'); 
-            if(pNickname === null){
-            }else{
-                setType(0);
-                setNickname(pNickname);
-            }
-            if(pLastLoginAt)
-                setLastLoginAt(new Date(pLastLoginAt));
+            
         try {
             const res = await apiFetch(`/user/check`, {
                 method: 'POST',
@@ -111,17 +103,56 @@ export const UserProvider = ({children}: {children: ReactNode})=>{
                 setNickname(user.nickname);
                 setLastLoginAt(new Date(user.lastLoginAt));
                 type;nickname;lastLoginAt;
-            }else{
+            }else if(res.status===400){
                 //console.log('Not logged in');
+                localStorage.removeItem('nickname');
+                setNickname("");
+                setType(-1);
+            }else if(res.status===401){
+                localStorage.removeItem('nickname');
+                setNickname("");
+                setType(-1);
+                localStorage.removeItem('token');
+            }else{
+                localStorage.removeItem('nickname');
+                setNickname("");
+                setType(-1);
             }
         } catch (e) {
+            setNickname("");
+            setType(-1);
+            localStorage.removeItem('nickname');
             //console.log('Not logged in');
         }
     }
 
     useEffect(()=>{
+        const pNickname = localStorage.getItem('nickname');
+        const pLastLoginAt = localStorage.getItem('lastLoginAt'); 
+        if(pNickname === null){
+            setType(-1);
+        }else{
+            setType(0);
+            setNickname(pNickname);
+        }
+        if(pLastLoginAt)
+            setLastLoginAt(new Date(pLastLoginAt));
+
         fetchUserData(); 
     },[]);
+
+    useEffect(()=>{
+        const pNickname = localStorage.getItem('nickname');
+        const pLastLoginAt = localStorage.getItem('lastLoginAt'); 
+        if(pNickname === null){
+            setType(-1);
+        }else{
+            setType(0);
+            setNickname(pNickname);
+        }
+        if(pLastLoginAt)
+            setLastLoginAt(new Date(pLastLoginAt));
+    },[type, nickname])
     return (<UserContext.Provider value={{type, nickname, lastLoginAt, handleLogout, handleLogin}}>
             {children}
         </UserContext.Provider>)
