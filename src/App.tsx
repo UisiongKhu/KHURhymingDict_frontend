@@ -10,6 +10,9 @@ import Administration from './pages/Administration';
 import Login from './pages/Login';
 import { StatProvider } from './contexts/Stat';
 import { UserProvider } from './contexts/User';
+import { PrivacyProvider} from './contexts/Privacy';
+import CookieBanner from './components/CookieBanner';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 function App() {
 
@@ -47,6 +50,7 @@ function App() {
 
   return (
     <>
+    <PrivacyProvider>
     <UserProvider>
     <StatProvider>
       <BrowserRouter >
@@ -59,12 +63,15 @@ function App() {
           <Route path='announcement/:id' element={<AnnouncementDetail/>}></Route>
           <Route path='hoann' element={<Administration/>}></Route>
           <Route path='jipcham' element={<Login/>}></Route>
+          <Route path='privacy' element={<PrivacyPolicy/>}></Route>
           {/*<Route path='chhengsinkhaucho' element={<Registration/>}></Route>*/}
           <Route path='*' element={<div>404 Not Found</div>}></Route>
         </Routes>
+        <CookieBanner/>
       </BrowserRouter>
     </StatProvider>
     </UserProvider>
+    </PrivacyProvider>
     </>
   )
 }

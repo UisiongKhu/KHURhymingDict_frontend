@@ -279,6 +279,13 @@
         "Loading": {
             "DefaultText": "Tng teh chhōe...",
             "SearchResultWordInfo": "Tng teh tha̍k..."
-        }
+        },
+        "CookieBanner": {
+            "Title": "Goan iōng Cookies lâi thê seng lan chhōe hó ūn ê thé giām.",
+            "LearnMore": "Khòaⁿ lán ê Ún su Chèng chhek",
+            "Agree": "Tông ì",
+            "Reject": "Kī choa̍t"
+        },
+        "PrivacyPolicy": "Ún su koân Chèng chhek"
     }
 }

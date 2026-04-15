@@ -286,6 +286,13 @@
         "Loading": {
             "DefaultText": "Loading...",
             "SearchResultWordInfo": "Loading..."
-        }
+        },
+        "CookieBanner": {
+            "Title": "We use cookies to enhance your rhyming experience.",
+            "LearnMore": "Learn more about our Privacy Policy",
+            "Agree": "Agree",
+            "Reject": "Reject"
+        },
+        "PrivacyPolicy": "Privacy Policy"
     }
 }

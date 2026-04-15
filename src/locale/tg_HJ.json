@@ -279,6 +279,13 @@
         "Loading": {
             "DefaultText": "當塊尋……",
             "SearchResultWordInfo": "當塊讀……"
-        }
+        },
+        "CookieBanner": {
+            "Title": "阮用 Cookies 來提升咱尋好韻个體驗",
+            "LearnMore": "看咱个隱私政策",
+            "Agree": "同意",
+            "Reject": "拒絕"
+        },
+        "PrivacyPolicy": "隱私權政策"
     }
 }
